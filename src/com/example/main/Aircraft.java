@@ -23,6 +23,10 @@ public class Aircraft {
     public String getModel() { return this.model; }
     public List<Flight> getFlights() { return this.flights; }
 
+    public void setAircraftCompany(AircraftCompany aircraftCompany) { this.aircraftCompany = aircraftCompany; }
+    public void setSeatsCount(int seatsCount) { this.seatsCount = seatsCount; }
+    public void setModel(String model) { this.model = model; }
+
     public boolean addFlight(Flight flight) {
         if (!this.flights.contains(flight)) {
             this.flights.add(flight);

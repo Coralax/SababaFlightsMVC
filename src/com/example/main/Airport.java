@@ -11,28 +11,24 @@ public class Airport {
         this.terminals = terminals;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setTerminals(List<String> terminals) {
-        this.terminals = terminals;
-    }
-
     public String getAddress() {
         return this.address;
     }
-
     public String getName() {
         return this.name;
     }
-
     public List<String> getTerminals() {
         return this.terminals;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public void setTerminals(List<String> terminals) {
+        this.terminals = terminals;
     }
 
     public boolean addTerminal(String terminal) {
