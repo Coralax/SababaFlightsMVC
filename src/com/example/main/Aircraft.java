@@ -2,22 +2,23 @@ package com.example.main;
 import java.util.List;
 
 public class Aircraft {
-    private static int aircraftID;
+    private static int staticAircraftID;
+    private int aircraftID;
     private AircraftCompany aircraftCompany;
     private int seatsCount;
     private String model;
     private List<Flight> flights;
 
-    static { aircraftID = 0; }
+    static { staticAircraftID = 0; }
 
     public Aircraft(AircraftCompany aircraftCompany, int seatsCount, String model) {
-        aircraftID++;
+        this.aircraftID = staticAircraftID++;
         this.aircraftCompany = aircraftCompany;
         this.seatsCount = seatsCount;
         this.model = model;
     }
 
-    public static int getAircraftID() { return aircraftID; }
+    public int getAircraftID() { return this.aircraftID; }
     public AircraftCompany getAircraftCompany() { return this.aircraftCompany; }
     public int getSeatsCount() { return this.seatsCount; }
     public String getModel() { return this.model; }
@@ -34,6 +35,7 @@ public class Aircraft {
         }
         return false;
     }
+
     public boolean removeFlight(Flight flight) {
         if (flights.contains(flight)) {
             flights.remove(flight);

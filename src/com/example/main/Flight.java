@@ -2,7 +2,8 @@ package com.example.main;
 import java.util.Date;
 
 public class Flight {
-    private static int flightID;
+    private static int staticFlightID;
+    private int flightID;
     private String flightNumber;
     private Aircraft aircraft;
     private Airport departureAirpot, destinationAirport;
@@ -10,10 +11,11 @@ public class Flight {
     private double flightPrice;
     private boolean isAvailable;
 
-    static { flightID = 0; }
+    static { staticFlightID = 0; }
 
     public Flight(Aircraft aircraft, Airport departureAirpot, Airport destinationAirport,
                   Date departureDate, Date arrivalDate, double flightPrice, boolean isAvailable) {
+        this.flightID = staticFlightID++;
         this.flightNumber = randomizeFlightNumber(5);
         this.aircraft = aircraft;
         this.departureAirpot = departureAirpot;
@@ -26,6 +28,7 @@ public class Flight {
 
     public Flight(String flightNumber, Aircraft aircraft, Airport departureAirpot, Airport destinationAirport,
                   Date departureDate, Date arrivalDate, double flightPrice, boolean isAvailable) {
+        this.flightID = staticFlightID++;
         this.flightNumber = flightNumber;
         this.aircraft = aircraft;
         this.departureAirpot = departureAirpot;
