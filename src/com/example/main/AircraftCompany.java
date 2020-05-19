@@ -1,28 +1,31 @@
 package com.example.main;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AircraftCompany {
-    private List<Aircraft> aircrafts;
-    private String companyClass;                // Regular flight, low-cost, etc.
+    private static List<String> companiesNames;
+    private String companyName, companyClass;                // Regular flight, low-cost, etc.
 
-    public List<Aircraft> getAircrafts() { return aircrafts; }
-    public int getAircraftCount() { return this.aircrafts.size(); }
-    public String getCompanyClass() { return this.companyClass; }
+    static { companiesNames = new ArrayList<>(); }
 
-    public void setCompanyClass(String companyClass) { this.companyClass = companyClass; }
-
-    public boolean addAircraft(Aircraft aircraft) {
-        if (!this.aircrafts.contains(aircraft)) {
-            this.aircrafts.add(aircraft);
-            return true;
-        }
-        return false;
+    public AircraftCompany(String companyName) {
+        this.companyName = companyName;
+        this.companyClass = "regular";
+        this.addCompanyName(this.companyName);
     }
 
-    public boolean removeAircraft(Aircraft aircraft) {
-        if (this.aircrafts.contains(aircraft)) {
-            this.aircrafts.remove(aircraft);
+    public AircraftCompany(String companyName, String companyClass) {
+        this.companyName = companyName;
+        this.companyClass = companyClass;
+    }
+
+    public String getCompanyName() { return this.companyName; }
+    public String getCompanyClass() { return this.companyClass; }
+
+    private boolean addCompanyName(String companyName) {
+        if (!companiesNames.contains(companyName)) {
+            companiesNames.add(companyName);
             return true;
         }
         return false;

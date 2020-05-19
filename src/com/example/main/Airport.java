@@ -1,14 +1,15 @@
 package com.example.main;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Airport {
     private String address, name;
-    private List<String> terminals;
+    private List<String> terminals = new ArrayList<>();
 
-    Airport(String address, String name, List<String> terminals) {
+    Airport(String address, String name, String terminal) {
         this.address = address;
         this.name = name;
-        this.terminals = terminals;
+        this.terminals.add(terminal);
     }
 
     public String getAddress() {
@@ -17,18 +18,13 @@ public class Airport {
     public String getName() {
         return this.name;
     }
-    public List<String> getTerminals() {
-        return this.terminals;
-    }
+    public List<String> getTerminals() { return this.terminals; }
 
     public void setAddress(String address) {
         this.address = address;
     }
     public void setName(String name) {
         this.name = name;
-    }
-    public void setTerminals(List<String> terminals) {
-        this.terminals = terminals;
     }
 
     public boolean addTerminal(String terminal) {
