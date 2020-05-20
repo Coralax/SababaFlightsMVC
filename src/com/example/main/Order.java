@@ -1,8 +1,5 @@
 package com.example.main;
 
-// :TODO// how to IMPLEMENT the functions of the list
-
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,10 +7,9 @@ public class Order {
     private String flightCompany;
     private boolean roundTrip;
     private int orderId;
-    private List<Flight> flightTo = new ArrayList<>();
-    private List<Flight> flightFrom = new ArrayList<>();
-    private Passenger ownerPassenger;
-    private List<Passenger> otherPassenger = new ArrayList<>();
+    private List<String> flightTo = new ArrayList<>();
+    private List<String> flightFrom = new ArrayList<>();
+    private List<Passenger> passengers = new ArrayList<>();
     private long creditCard;
     private double totalCost;
 
@@ -23,13 +19,8 @@ public class Order {
         this.flightCompany = flightCompany;
         this.roundTrip = roundTrip;
         this.orderId = orderId;
-        this.ownerPassenger = ownerPassenger;
         this.creditCard = creditCard;
         this.totalCost = totalCost;
-
-//        this.addFlightTo(this.flightTo);
-//        this.addFlightFrom(this.flightFrom);
-//        this.addOtherPassenger(this.otherPassenger);
     }
 
     public boolean isRoundTrip() { return roundTrip; }
@@ -37,39 +28,19 @@ public class Order {
     public int getOrderId() { return orderId; }
     public long getCreditCard() { return creditCard; }
     public String getFlightCompany() { return flightCompany; }
-    public Passenger getOwnerPassenger() { return ownerPassenger; }
+    public List<Passenger> getPassengers() { return passengers; }
+    public Passenger getMainPassenger(){ return this.passengers.get(0); }
 
     public void setRoundTrip(boolean roundTrip) { this.roundTrip = roundTrip; }
     public void setTotalCost(double totalCost) { this.totalCost = totalCost; }
     public void setOrderId(int orderId) { this.orderId = orderId; }
     public void setCreditCard(long creditCard) { this.creditCard = creditCard; }
     public void setFlightCompany(String flightCompany) { this.flightCompany = flightCompany; }
-    public void setOwnerPassenger(Passenger ownerPassenger) { this.ownerPassenger = ownerPassenger; }
+    public void setFlightTo(List<String> flightTo) { this.flightTo = flightTo; }
+    public void setFlightFrom(List<String> flightFrom) { this.flightFrom = flightFrom; }
+    public void setPassengers(List<Passenger> passengers) { this.passengers = passengers; }
 
 
-//    private boolean addFlightTo(String _flightTo)
-//    {
-//        if (!flightTo.contains(_flightTo)) {
-//            flightTo.add(_flightTo);
-//            return true;
-//        }
-//        return false;
-//    }
-//    private boolean addFlightFrom(String _flightFrom)
-//    {
-//        if (!flightFrom.contains(_flightFrom)) {
-//            flightFrom.add(_flightFrom);
-//            return true;
-//        }
-//        return false;
-//    }
-//    private boolean addOtherPassenger(String _otherPassenger)
-//    {
-//        if (!otherPassenger.contains(_otherPassenger)) {
-//            otherPassenger.add(_otherPassenger);
-//            return true;
-//        }
-//        return false;
-//    }
+
 }
 
