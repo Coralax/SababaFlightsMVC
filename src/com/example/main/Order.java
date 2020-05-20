@@ -1,6 +1,6 @@
 package com.example.main;
 
-// how to do set and get for the list I have here
+// :TODO// how to IMPLEMENT the functions of the list
 
 
 import java.util.ArrayList;
