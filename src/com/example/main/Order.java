@@ -14,7 +14,7 @@ public class Order {
     private double totalCost;
 
 
-    public Order(String flightCompany, boolean roundTrip, int orderId, Passenger ownerPassenger,long creditCard, double totalCost)
+    public Order(String flightCompany, boolean roundTrip, int orderId,long creditCard, double totalCost)
     {
         this.flightCompany = flightCompany;
         this.roundTrip = roundTrip;
