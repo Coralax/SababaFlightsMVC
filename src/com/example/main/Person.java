@@ -5,7 +5,9 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class Person {
-    private String firstName, lastName, email, birthDateString;
+    protected String firstName, lastName, email, birthDateString;
+
+    public Person() {}
 
     public Person(String firstName, String lastName, String email) {
         this.firstName = firstName;
