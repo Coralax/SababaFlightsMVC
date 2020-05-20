@@ -40,6 +40,9 @@ public class Aircraft {
         return null;
     }
 
+    // you select the branch you want to use and then checking out.
+    // The checkout moves you to the selected branch and make it your current workspace
+
     public static List<Aircraft> getAircraftsByCompanyName(String companyName) {
         List<Aircraft> aircraftsByCompanyName = new ArrayList<>();
         for (Aircraft aircraft : aircraftsList) {

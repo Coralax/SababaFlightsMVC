@@ -18,6 +18,7 @@ public class AircraftCompany {
     public AircraftCompany(String companyName, String companyClass) {
         this.companyName = companyName;
         this.companyClass = companyClass;
+        this.addCompanyName(this.companyName);
     }
 
     public String getCompanyName() { return this.companyName; }
