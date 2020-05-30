@@ -1,5 +1,7 @@
 package com.example.main;
 
+
+/*Gotta add validation methods for Passenger class as well */
 public class Passenger extends Person{
     private String passport;
     private boolean suitcase, meals;
