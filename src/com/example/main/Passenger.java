@@ -1,16 +1,19 @@
 package com.example.main;
 
 
-/*Gotta add validation methods for Passenger class as well */
 public class Passenger extends Person{
     private String passport;
     private boolean suitcase, meals;
 
-    public Passenger(String firstName, String lastName, long id, String email, String birthDateString, String passport, boolean suitcase, boolean meals) {
-        super(firstName, lastName, id, email, birthDateString);
-        this.passport = passport;
+
+    public Passenger(Person pr, String passport, boolean suitcase, boolean meals) {
+        super(pr.firstName, pr.lastName, pr.id, pr.email, pr.birthDateString);
         this.suitcase = suitcase;
         this.meals = meals;
+        if(!passportValidation(passport))
+            throw new IllegalArgumentException("");
+        else
+            this.passport = passport;
     }
 
     public void setPassport(String passport) {
@@ -34,5 +37,21 @@ public class Passenger extends Person{
 
     public boolean isMeals() {
         return meals;
+    }
+
+    private static boolean passportValidation(String passport) {
+        if (!(passport.matches("[A-Za-z0-9_]+")) ) {
+            System.out.println("Passport must consist of English alphanumeric characters and digits only!");
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "\n" + "Passenger additional information: " + "\n" +
+                "Passport: " + passport + "\n" +
+                "Suitcase: " + suitcase + "\n" +
+                "Plane meal: " + meals + "\n" ;
     }
 }

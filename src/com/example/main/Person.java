@@ -7,7 +7,8 @@ import java.util.regex.Pattern;
 
 
 /*Need to do:
-* 1. A function to validate that an ID is a unique identifier and no other person exists with the same ID*/
+* 1. A method to validate that an ID is a unique identifier and no other person exists with the same ID
+* 2. A method to validate that an email address is not already taken by another person */
 
 public class Person {
 
