@@ -1,16 +1,23 @@
 package com.example.main;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 
 /*Need to do:
 * 1. A method to validate that an ID is a unique identifier and no other person exists with the same ID
-* 2. A method to validate that an email address is not already taken by another person */
+* 2. A method to validate that an email address is not already taken by another person
+*
+* Question: Where should we put all validation methods? what part of the MVC?
+*
+* */
 
-public class Person {
+
+public abstract class Person implements Serializable {
 
     protected String firstName;
     protected String lastName;
@@ -94,5 +101,18 @@ public class Person {
                 "ID: " + id + "\n" +
                 "Email: " + email + "\n" +
                 "Date of birth: " + birthDateString + "\n");
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Person)) return false;
+        Person person = (Person) o;
+        return id == person.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

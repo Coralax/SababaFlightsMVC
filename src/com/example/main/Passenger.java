@@ -1,13 +1,15 @@
 package com.example.main;
 
 
+import java.util.Objects;
+
 public class Passenger extends Person{
     private String passport;
     private boolean suitcase, meals;
 
 
-    public Passenger(Person pr, String passport, boolean suitcase, boolean meals) {
-        super(pr.firstName, pr.lastName, pr.id, pr.email, pr.birthDateString);
+    public Passenger( String firstName,String lastName,long id,  String email, String birthDateString,String passport, boolean suitcase, boolean meals) {
+        super(firstName, lastName, id, email, birthDateString);
         this.suitcase = suitcase;
         this.meals = meals;
         if(!passportValidation(passport))
@@ -53,5 +55,19 @@ public class Passenger extends Person{
                 "Passport: " + passport + "\n" +
                 "Suitcase: " + suitcase + "\n" +
                 "Plane meal: " + meals + "\n" ;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Passenger passenger = (Passenger) o;
+        return Objects.equals(passport, passenger.passport);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), passport);
     }
 }

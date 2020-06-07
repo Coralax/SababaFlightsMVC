@@ -4,9 +4,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class AirportTest {
+class AirportTests {
     @Test
-    void addTerminal_NewTerminals_AddsSuccessfullyToList()  {
+    void addTerminal_NewTerminals_AddsSuccessfullyToList() {
         Airport ar1 = new Airport("Sababa Road 100", "Israel", "T1");
         ar1.addTerminal("T2");
         int count = ar1.getTerminals().size();

@@ -3,18 +3,19 @@ package com.example.main;
 /*Need to do:
  * 1. A method to validate that the user name is not already taken */
 
+import java.util.Objects;
+
 public class Agent extends Person {
 
     private String userName, password;
     private int agentCode;
     private boolean enabled;
 
-
-    public Agent(Person pr, boolean enabled , String userName, String password){
-        super(pr.firstName, pr.lastName, pr.id, pr.email, pr.birthDateString);
+  public Agent(String firstName,String lastName,long id,  String email, String birthDateString, boolean enabled , String userName, String password){
+        super(firstName,lastName,id,email,birthDateString);
         this.enabled= enabled;
 
-        //We have to implement a method that validates the agent code from a pre-made file and then sets the enabled attribute accordingly
+        //We have to implement a method (from an admin context) that validates the agent code from a pre-made file and then sets the enabled field accordingly
         if(!enabled)
             throw new IllegalArgumentException("Agent is not enabled, can not register to the system");
         if(!(userNameValidation(userName))|| !passwordStrength(password) ) {
@@ -96,5 +97,18 @@ public class Agent extends Person {
                 "Password: " + "*********" + "\n" +
                 "Agent code: " + agentCode + "\n" +
                 "Enabled: " + enabled + "\n";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Agent agent = (Agent) o;
+        return agentCode == agent.agentCode;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(agentCode);
     }
 }
