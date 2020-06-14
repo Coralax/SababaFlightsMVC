@@ -23,7 +23,6 @@ public class SababaFlightsProgram {
     }
 
     public void startProgram() {
-
         /*CLI options*/
     }
 }

@@ -8,14 +8,6 @@ public class Passenger extends Person {
     private String passport;
     private boolean suitcase, meals;
 
-
-    public Passenger(String firstName, String lastName, long id, String email, LocalDate birthDate, String passport, boolean suitcase, boolean meals) {
-        super(firstName, lastName, id, email, birthDate);
-        this.suitcase = suitcase;
-        this.meals = meals;
-        this.passport = passport;
-    }
-
     public void setPassport(String passport) {
         this.passport = passport;
     }

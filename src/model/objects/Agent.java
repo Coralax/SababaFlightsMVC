@@ -1,60 +1,62 @@
 package model.objects;
 
-
 import java.time.LocalDate;
 import java.util.Objects;
+import model.builders.AgentBuilder;
 
 public class Agent extends Person {
 
     private String userName, password;
     private int agentCode;
-    private boolean enabled;
-    private int permission;
+    private boolean isVerified;
+    private int permissionLevel;
 
-  public Agent(String firstName, String lastName, long id, String email, LocalDate birthDate, boolean enabled , String userName, String password){
-        super(firstName,lastName,id,email,birthDate);
-        this.enabled= enabled;
-        this.userName=userName;
-        this.password= password;
-     }
+    public static AgentBuilder builder() {
+        return new AgentBuilder();
+    }
 
+    // Setters (which will be used by the builder)
     public void setUserName(String userName) {
         this.userName = userName;
     }
-
     public void setPassword(String password) {
+        // TODO: encrypt password (implement password encryption in agent repository)
         this.password = password;
     }
-
     public void setAgentCode(int agentCode) {
         this.agentCode = agentCode;
     }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
+    public void setIsVerified(boolean isVerified) {
+        this.isVerified = isVerified;
     }
+
+    public void setPermissionLevel(int permissionLevel) { this.permissionLevel = permissionLevel; }
+
+    // Getters
     public String getUserName() {
         return userName;
     }
-
-    public String getPassword() {
-        return password;
-    }
-
     public int getAgentCode() {
         return agentCode;
     }
-    public boolean isEnabled() {
-        return enabled;
+    public boolean isVerified() {
+        return isVerified;
     }
-
 
     @Override
     public String toString() {
-        return super.toString() + "\n" + "Agent additional information: " + "\n" +
-                "User name: " + userName + "\n" +
-                "Agent code: " + agentCode + "\n" +
-                "Enabled: " + enabled + "\n";
+        return "Agent{" +
+                "userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", agentCode=" + agentCode +
+                ", isVerified=" + isVerified +
+                ", permissionLevel=" + permissionLevel +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", id=" + id +
+                ", email='" + email + '\'' +
+                ", birthDate=" + birthDate +
+                '}';
     }
 
     @Override
