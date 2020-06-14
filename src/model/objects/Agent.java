@@ -71,9 +71,3 @@ public class Agent extends Person {
     }
 }
 
-/*We have to implement a method (from an admin context) that validates the agent code from a pre-made file and then sets the enabled field accordingly
-        if(!enabled)
-                throw new IllegalArgumentException("Agent is not enabled, can not register to the system");
-                if(!(userNameValidation(userName))|| !passwordStrength(password) ) {
-                throw new IllegalArgumentException("");
-                }*/
