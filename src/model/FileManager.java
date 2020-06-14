@@ -6,9 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class FileManager<T> {
 
@@ -22,7 +20,7 @@ public class FileManager<T> {
      * Converts object to json format.
      * Returns an empty string if failed.
      */
-    private String objToJson(List<T> obj) {
+    private String objToJson(Set<T> obj) {
         String jsonSting;
         try {
             ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
@@ -35,13 +33,13 @@ public class FileManager<T> {
     }
 
     /*
-    * Saves a list of type T to file `fileName`
+    * Saves a Set of type T to file `fileName`
     *
     * Params:
-    * 1. List of objects to insert to the json file.
+    * 1. Set of objects to insert to the json file.
     * 2. Name of the file the data should be inserted to.
     */
-    public boolean saveObj(List<T> obj, String fileName) {
+    public boolean saveObj(Set<T> obj, String fileName) {
        try {
            /* Opens the file for writing */
            FileWriter myWriter = new FileWriter(fileName);
@@ -67,10 +65,10 @@ public class FileManager<T> {
     * T - the type of class trying to read
     * e.g: Agent
     *
-    * Constructs a list of all objects of type T in the corresponding file name.
+    * Constructs a Set of all objects of type T in the corresponding file name.
     */
-    public List<T> read() {
-       List<T> jsonObjList = new ArrayList<>();
+    public Set<T> read() {
+       Set<T> jsonObjSet = new HashSet<>();
         try {
 
             /* Required stuff to read from a file */
@@ -83,10 +81,10 @@ public class FileManager<T> {
                 data.append(myReader.nextLine());
             }
 
-            /* Convert Json string to List<T> */
-            jsonObjList = objectMapper.readValue(data.toString(), new TypeReference<List<T>>(){});
+            /* Convert Json string to Set<T> */
+            jsonObjSet = objectMapper.readValue(data.toString(), new TypeReference<Set<T>>(){});
 
-            for (T t : jsonObjList) {
+            for (T t : jsonObjSet) {
                 System.out.println(t.toString());
             }
 
@@ -96,7 +94,7 @@ public class FileManager<T> {
         }
 
         /* Return List<T> */
-        return jsonObjList;
+        return jsonObjSet;
     }
 
 //    public void write(Set<T> object){

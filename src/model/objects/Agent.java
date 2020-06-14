@@ -1,6 +1,5 @@
 package model.objects;
 
-import java.time.LocalDate;
 import java.util.Objects;
 import model.builders.AgentBuilder;
 
@@ -10,6 +9,7 @@ public class Agent extends Person {
     private int agentCode;
     private boolean isVerified;
     private int permissionLevel;
+
 
     public static AgentBuilder builder() {
         return new AgentBuilder();
@@ -39,24 +39,17 @@ public class Agent extends Person {
     public int getAgentCode() {
         return agentCode;
     }
-    public boolean isVerified() {
-        return isVerified;
-    }
+    public boolean isVerified() { return isVerified; }
+    public int getPermissionLevel() {return permissionLevel; }
+
 
     @Override
     public String toString() {
-        return "Agent{" +
-                "userName='" + userName + '\'' +
-                ", password='" + password + '\'' +
-                ", agentCode=" + agentCode +
-                ", isVerified=" + isVerified +
-                ", permissionLevel=" + permissionLevel +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", id=" + id +
-                ", email='" + email + '\'' +
-                ", birthDate=" + birthDate +
-                '}';
+        return super.toString() + "\n"+
+                " User name='" + userName + "\n" +
+                " Agent code=" + agentCode + "\n" +
+                " Is verified=" + isVerified + "\n" +
+                " Permission level=" + permissionLevel + "\n" ;
     }
 
     @Override
@@ -69,7 +62,8 @@ public class Agent extends Person {
 
     @Override
     public int hashCode() {
-        return Objects.hash(agentCode);
+        return Objects.hash(super.hashCode(), agentCode);
     }
+
 }
 

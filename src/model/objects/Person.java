@@ -12,7 +12,7 @@ import java.util.Objects;
 * */
 
 
-public abstract class Person implements Serializable {
+public abstract class Person {
 
     protected String firstName;
     protected String lastName;
@@ -32,12 +32,12 @@ public abstract class Person implements Serializable {
 
     @Override
     public String toString() {
-        return("\n" +"Person details are: " +" \n" +
+        return
                 "First name: " + firstName +"\n" +
                 "Last name: " + lastName + "\n" +
                 "ID: " + id + "\n" +
                 "Email: " + email + "\n" +
-                "Date of birth: " + birthDate + "\n");
+                "Date of birth: " + birthDate + "\n";
     }
 
     @Override

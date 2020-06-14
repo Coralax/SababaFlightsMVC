@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Aircraft implements Serializable {
+public class Aircraft {
     private static int aircraftsCount;
     private int aircraftID;
     private AircraftCompany aircraftCompany;
@@ -37,4 +37,14 @@ public class Aircraft implements Serializable {
     /* TODO: Implement getAircraftByCompanyName(List<Aircraft> aircraftList, String companyName) in Repository */
     /* TODO: Implement addFlight(Flight flight, int id) in Repository */
     /* TODO: Implement removeFlight(Flight flight) in Repository */
+
+    @Override
+    public String toString() {
+        return super.toString() + "\n"+
+                " Aircraft ID=" + aircraftID + "\n"+
+                " Aircraft company=" + aircraftCompany + "\n"+
+                " Seats count=" + seatsCount + "\n"+
+                " Model='" + model + "\n"+
+                " Flights=" + flights ;
+    }
 }

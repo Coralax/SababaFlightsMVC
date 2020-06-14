@@ -33,16 +33,10 @@ public class Passenger extends Person {
 
     @Override
     public String toString() {
-        return "Passenger{" +
-                "passport='" + passport + '\'' +
-                ", hasSuitcase=" + hasSuitcase +
-                ", hasMeals=" + hasMeals +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", id=" + id +
-                ", email='" + email + '\'' +
-                ", birthDate=" + birthDate +
-                '}';
+        return super.toString() + "\n"+
+                " Passport='" + passport + "\n" +
+                " Has suitcase=" + hasSuitcase + "\n" +
+                " Has meals=" + hasMeals + "\n" ;
     }
 
     @Override
@@ -54,8 +48,4 @@ public class Passenger extends Person {
         return Objects.equals(passport, passenger.passport);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), passport);
-    }
 }

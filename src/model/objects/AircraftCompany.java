@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AircraftCompany implements Serializable {
+public class AircraftCompany {
     private static List<String> companiesNames;
     private String companyName, companyClass;                // Regular flight, low-cost, etc.
 
@@ -31,5 +31,13 @@ public class AircraftCompany implements Serializable {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return
+                " Company name='" + companyName + "\n"+
+                " Company class='" + companyClass + "\n"+
+                '}';
     }
 }

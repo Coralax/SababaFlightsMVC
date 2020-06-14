@@ -3,7 +3,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Airport implements Serializable {
+public class Airport {
 
     private String address, name;
     private List<String> terminals = new ArrayList<>();
@@ -38,4 +38,11 @@ public class Airport implements Serializable {
         }
     }
 
+    @Override
+    public String toString() {
+        return
+                " Address='" + address + "\n" +
+                " Name='" + name + "\n"+
+                " Terminals=" + terminals ;
+    }
 }

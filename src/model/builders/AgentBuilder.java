@@ -27,7 +27,7 @@ public class AgentBuilder {
 
     // Password should be implemented in the AgentRepositoryImpl
 
-    public AgentBuilder agnerCode(int agentCode) {
+    public AgentBuilder agentCode(int agentCode) {
         this.agentCode = agentCode;
         return this;
     }

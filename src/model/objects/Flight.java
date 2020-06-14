@@ -3,7 +3,7 @@ package model.objects;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Flight implements Serializable {
+public class Flight {
     private static int staticFlightID;
     private int flightID;
     private String flightNumber;
@@ -77,5 +77,19 @@ public class Flight implements Serializable {
                     .charAt(index));
         }
         return sb.toString();
+    }
+
+    @Override
+    public String toString() {
+        return
+                "  Flight ID=" + flightID + "\n"+
+                " Flight number='" + flightNumber + "\n"+
+                " Aircraft=" + aircraft + "\n" +
+                " Departure airpot =" + departureAirpot + "\n" +
+                " Destination airport=" + destinationAirport + "\n" +
+                " Departure date=" + departureDate + "\n" +
+                " Arrival date=" + arrivalDate + "\n" +
+                " Flight price=" + flightPrice + "\n" +
+                " Is available=" + isAvailable + "\n" ;
     }
 }
