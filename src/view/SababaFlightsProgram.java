@@ -9,6 +9,8 @@ import model.objects.Passenger;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class SababaFlightsProgram {
@@ -24,6 +26,9 @@ public class SababaFlightsProgram {
     }
 
     public void startProgram() {
+        FileManager<Agent> fileManagerAgent = new FileManager<>("src/agents2.json");
+        List<Agent> agents = fileManagerAgent.read();
+//        fileManagerAgent.saveObj(agents, "src/agents2.json");
         /*CLI options*/
     }
 }
