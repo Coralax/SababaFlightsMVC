@@ -5,6 +5,7 @@ import controller.OrderController;
 import controller.SearchController;
 import model.FileManager;
 import model.objects.Agent;
+import model.objects.Passenger;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;

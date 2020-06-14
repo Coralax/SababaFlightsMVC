@@ -1,42 +1,48 @@
 package model.objects;
 
-
-import java.time.LocalDate;
 import java.util.Objects;
+import model.builders.PassengerBuilder;
 
 public class Passenger extends Person {
     private String passport;
-    private boolean suitcase, meals;
+    private boolean hasSuitcase, hasMeals;
 
+    public static PassengerBuilder builder() { return new PassengerBuilder(); }
+
+    // Setters (which will be used by the builder)
     public void setPassport(String passport) {
         this.passport = passport;
     }
-
-    public void setSuitcase(boolean suitcase) {
-        this.suitcase = suitcase;
+    public void setHasSuitcase(boolean suitcase) {
+        this.hasSuitcase = suitcase;
+    }
+    public void setHasMeals(boolean meals) {
+        this.hasMeals = meals;
     }
 
-    public void setMeals(boolean meals) {
-        this.meals = meals;
-    }
+    // Getters
     public String getPassport() {
-        return passport;
+        return this.passport;
     }
-
     public boolean isSuitcase() {
-        return suitcase;
+        return this.hasSuitcase;
     }
-
     public boolean isMeals() {
-        return meals;
+        return this.hasMeals;
     }
 
     @Override
     public String toString() {
-        return super.toString() + "\n" + "Passenger additional information: " + "\n" +
-                "Passport: " + passport + "\n" +
-                "Suitcase: " + suitcase + "\n" +
-                "Plane meal: " + meals + "\n" ;
+        return "Passenger{" +
+                "passport='" + passport + '\'' +
+                ", hasSuitcase=" + hasSuitcase +
+                ", hasMeals=" + hasMeals +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", id=" + id +
+                ", email='" + email + '\'' +
+                ", birthDate=" + birthDate +
+                '}';
     }
 
     @Override
