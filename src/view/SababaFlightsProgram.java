@@ -5,6 +5,7 @@ import controller.OrderController;
 import controller.SearchController;
 import model.FileManager;
 import model.objects.Agent;
+import model.objects.Aircraft;
 import model.objects.Passenger;
 
 import java.time.DateTimeException;
@@ -26,10 +27,16 @@ public class SababaFlightsProgram {
     }
 
     public void startProgram() {
-        FileManager<Agent> fileManagerAgent = new FileManager<>("src/agents2.json");
-        List<Agent> agents = fileManagerAgent.read();
-//        fileManagerAgent.saveObj(agents, "src/agents2.json");
         /*CLI options*/
+        FileManager<Agent> fileManagerAgent = new FileManager<>("src/data/agents2.json");
+        List<Agent> agents = fileManagerAgent.read();
+//        fileManagerAgent.saveObj(agents, "src/data/agents2.json");
+        FileManager<Aircraft> fileManagerAircraft = new FileManager<>("src/data/aircrafts.json");
+        List<Aircraft> aircrafts = fileManagerAircraft.read();
+        // TODO: Fix next three lines
+//        System.out.println(aircrafts.get(0).toString());
+//        aircrafts.get(0).setSeatsCount(88);
+//        fileManagerAircraft.saveObj(aircrafts, "src/data/aircrafts.json");
     }
 }
 

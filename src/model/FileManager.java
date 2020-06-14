@@ -86,6 +86,10 @@ public class FileManager<T> {
             /* Convert Json string to List<T> */
             jsonObjList = objectMapper.readValue(data.toString(), new TypeReference<List<T>>(){});
 
+            for (T t : jsonObjList) {
+                System.out.println(t.toString());
+            }
+
         /* Errors handling */
         } catch (IOException e) {
             e.printStackTrace();
