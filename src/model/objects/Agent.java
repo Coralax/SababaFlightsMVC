@@ -11,6 +11,7 @@ public class Agent extends Person {
     private int permissionLevel;
 
 
+
     public static AgentBuilder builder() {
         return new AgentBuilder();
     }

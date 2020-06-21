@@ -1,9 +1,9 @@
 package model;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import model.objects.JSONWrapper;
 
 import java.io.*;
 import java.util.*;
@@ -82,17 +82,13 @@ public class FileManager<T> {
             }
 
             /* Convert Json string to Set<T> */
-            jsonObjSet = objectMapper.readValue(data.toString(), new TypeReference<Set<T>>(){});
+            JSONWrapper obj = objectMapper.readValue(data.toString(), JSONWrapper.class);
+            return obj.getSet();
 
-            for (T t : jsonObjSet) {
-                System.out.println(t.toString());
-            }
-
-        /* Errors handling */
+            /* Errors handling */
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         /* Return List<T> */
         return jsonObjSet;
     }

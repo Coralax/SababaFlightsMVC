@@ -7,6 +7,7 @@ package model.service;
 import model.repository.AuthenticationRepository;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.UUID;
 import java.util.regex.Pattern;
 
 public class AuthenticationService {
@@ -16,6 +17,14 @@ public class AuthenticationService {
     public AuthenticationService() {
         this.authRepository = new AuthenticationRepository();
     }
+
+    public String login(String username, String password){
+        if(this.authRepository.validateLoginUser(username, password)){
+            return UUID.randomUUID().toString();
+        }
+        return null;
+    }
+
 
     public boolean userNameValidation(String userName) {
 

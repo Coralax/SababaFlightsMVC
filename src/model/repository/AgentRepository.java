@@ -13,4 +13,5 @@ public interface AgentRepository {
     Agent find(int agentCode);
     List<Order> findAllOrdersForAgent(int agentCode);
     List<Order> findAllOrdersForAgentByDate(int agentCode, LocalDate begin, LocalDate end);
+
 }
