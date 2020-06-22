@@ -1,7 +1,5 @@
 package model.repository;
 
-import model.objects.Order;
-
 import java.util.List;
 
 public interface OrderRepository {

@@ -3,36 +3,43 @@ package view;
 import controller.AuthenticationController;
 import controller.OrderController;
 import controller.SearchController;
+import controller.objects.Search;
 import model.FileManager;
 import model.objects.Agent;
 import model.objects.Aircraft;
 
-import java.util.Scanner;
-import java.util.Set;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.*;
 
 public class SababaFlightsProgram {
 
     private AuthenticationController authController;
     private OrderController orderController;
-    private SearchController searchController;
+    private SababaSearch sabbaSearch;
 
     public SababaFlightsProgram() {
         this.authController = new AuthenticationController();
         this.orderController = new OrderController();
-        this.searchController = new SearchController();
-    }
+        this.sabbaSearch = new SababaSearch();
+     }
 
-    public void startProgram() {
+    public void startProgram() throws IOException, ClassNotFoundException {
         /*CLI options*/
-        FileManager<Agent> fileManagerAgent = new FileManager<>("src/data/agents2.json");
-        Set<Agent> agents = fileManagerAgent.read();
+        //FileManager<Agent> fileManagerAgent = new FileManager<>("src/data/agents2.json");
+       // Set<Agent> agents = fileManagerAgent.read();
 //        fileManagerAgent.saveObj(agents, "src/data/agents2.json");
-        FileManager<Aircraft> fileManagerAircraft = new FileManager<>("src/data/aircrafts.json");
-        Set<Aircraft> aircrafts = fileManagerAircraft.read();
+       // FileManager<Aircraft> fileManagerAircraft = new FileManager<>("src/data/aircrafts.json");
+        //Set<Aircraft> aircrafts = fileManagerAircraft.read();
         // TODO: Fix next three lines
 //        System.out.println(aircrafts.get(0).toString());
 //        aircrafts.get(0).setSeatsCount(88);
 //        fileManagerAircraft.saveObj(aircrafts, "src/data/aircrafts.json");
+
+            sabbaSearch.search();
+
     }
 
 
@@ -40,51 +47,55 @@ public class SababaFlightsProgram {
         String op;
         do {
             System.out.println("Welcome to SababaFlight: ");
-            System.out.println("1. login: ");
-            System.out.println("2. SignUp: ");
-            System.out.println("-1 to exit: ");
+            System.out.println("1: Sign up ");
+            System.out.println("2: Log in ");
+            System.out.println("-1: Exit ");
             try (Scanner scanner = new Scanner((System.in))) {
                 op = scanner.nextLine();
                 switch (op) {
                     case "1":
-                        this.login();
-                        break;
-                    case "2":
                         this.SignUp();
                         break;
+                    case "2":
+                        this.login();
+                        break;
                     case "-1":
+                        break;
                     default:
                         System.exit(0);
 
                 }
             }
-        }while (op!= "-1");
+        }while (!(op.equals("-1")));
     }
 
 
     public void homePage(String username){
-        String op;
+        String op = null;
         do {
-            System.out.println("Welcome " + username + "WHAT WOULD YOU LIKE TO DO?");
-            System.out.println("a. Search Flight: ");
-            System.out.println("b. Order a flight: ");
-            System.out.println("-1 to exit: ");
+            System.out.println("Welcome " + username + ",what would you like to do?");
+            System.out.println("1: Search a Flight ");
+            System.out.println("2: Order a flight ");
+            System.out.println("-1: Exit ");
             try (Scanner scanner = new Scanner((System.in))) {
                 op = scanner.nextLine();
                 switch (op) {
-                    case "a":
-                        this.search();
+                    case "1":
+                        sabbaSearch.search();
                         break;
-                    case "b":
+                    case "2":
                         this.order();
                         break;
                     case "-1":
+                        break;
                     default:
                         System.exit(0);
 
                 }
-            }
-        }while (op!= "-1");
+            } catch (IOException  |ClassNotFoundException e) {
+                e.printStackTrace();
+                      }
+        }while (!(op.equals("-1")));
     }
 
     public void login() {
@@ -104,10 +115,6 @@ public class SababaFlightsProgram {
 
     public void SignUp(){
 
-
-    }
-
-    public void search(){
 
     }
 

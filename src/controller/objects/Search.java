@@ -7,23 +7,23 @@ public class Search {
     private LocalDate arrival;
     private String destination;
     private int numberOfPassengers;
-    private boolean standardFlight;
+    private boolean directFlight;
+    private boolean cabinClass;
 
-    public Search(LocalDate departure, LocalDate arrival, String destination, int numberOfPassengers, boolean standardFlight) {
+
+      public Search()
+    {
+
+    }
+    public Search(LocalDate departure, LocalDate arrival, String destination, int numberOfPassengers,boolean cabinClass,boolean directFlight) {
         this.departure = departure;
         this.arrival = arrival;
         this.destination = destination;
         this.numberOfPassengers = numberOfPassengers;
-        this.standardFlight = standardFlight;
+        this.cabinClass=cabinClass;
+        this.directFlight = directFlight;
     }
 
-
-    public Search(LocalDate departure, LocalDate arrival, String destination, int numberOfPassengers) {
-        this.departure = departure;
-        this.arrival = arrival;
-        this.destination = destination;
-        this.numberOfPassengers = numberOfPassengers;
-    }
 
     public LocalDate getDeparture() {
         return departure;
@@ -57,11 +57,17 @@ public class Search {
         this.numberOfPassengers = numberOfPassengers;
     }
 
-    public boolean isStandardFlight() {
-        return standardFlight;
+    public boolean isDirectFlight() {
+        return directFlight;
     }
 
-    public void setStandardFlight(boolean standardFlight) {
-        this.standardFlight = standardFlight;
+    public void setDirectFlight(boolean directFlight) {
+        this.directFlight = directFlight;
+    }
+    public void setCabinClass(boolean cabinClass) {
+        this.cabinClass = cabinClass;
+    }
+    public boolean isCabinClass() {
+        return cabinClass;
     }
 }

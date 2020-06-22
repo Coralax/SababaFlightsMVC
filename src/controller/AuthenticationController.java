@@ -25,8 +25,8 @@ public class AuthenticationController {
     }
 
     public boolean login(String username, String password) {
-        if(username ==null || username == "" || password == null || password == ""){
-            throw  new IllegalArgumentException("Username or password must not be null");
+        if(username==null || username.equals("")|| password == null || password.equals("")){
+            throw new IllegalArgumentException("Username or password must not be null");
         }
 
         String session = authService.login(username, password);
