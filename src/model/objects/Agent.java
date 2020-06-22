@@ -1,7 +1,6 @@
 package model.objects;
 
 import java.util.Objects;
-import model.builders.AgentBuilder;
 
 public class Agent extends Person {
 
@@ -10,11 +9,6 @@ public class Agent extends Person {
     private boolean isVerified;
     private int permissionLevel;
 
-
-
-    public static AgentBuilder builder() {
-        return new AgentBuilder();
-    }
 
     // Setters (which will be used by the builder)
     public void setUserName(String userName) {

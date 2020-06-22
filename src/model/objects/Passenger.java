@@ -1,13 +1,11 @@
 package model.objects;
 
 import java.util.Objects;
-import model.builders.PassengerBuilder;
 
 public class Passenger extends Person {
     private String passport;
     private boolean hasSuitcase, hasMeals;
 
-    public static PassengerBuilder builder() { return new PassengerBuilder(); }
 
     // Setters (which will be used by the builder)
     public void setPassport(String passport) {
