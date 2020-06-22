@@ -19,4 +19,21 @@ public class AuthenticationController {
         return true;
     }
 
+
+    public AuthenticationController(){
+        AuthenticationService authService = new AuthenticationService();
+    }
+
+    public boolean login(String username, String password) {
+        if(username ==null || username == "" || password == null || password == ""){
+            throw  new IllegalArgumentException("Username or password must not be null");
+        }
+
+        String session = authService.login(username, password);
+        if(session != null){
+            System.out.println("Session token: " + session);
+            return true;
+        }
+        return false;
+    }
 }
