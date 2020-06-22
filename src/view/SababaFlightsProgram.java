@@ -36,32 +36,55 @@ public class SababaFlightsProgram {
     }
 
 
-    public void HomePage(){
-        System.out.println("Welcome to SababaFlight: ");
-        System.out.println("1. login: ");
-        System.out.println("2. Orders: ");
-        System.out.println("2. Search: ");
-        System.out.println("Q. exit: ");
+    public void loginScreen(){
+        String op;
+        do {
+            System.out.println("Welcome to SababaFlight: ");
+            System.out.println("1. login: ");
+            System.out.println("2. SignUp: ");
+            System.out.println("-1 to exit: ");
+            try (Scanner scanner = new Scanner((System.in))) {
+                op = scanner.nextLine();
+                switch (op) {
+                    case "1":
+                        this.login();
+                        break;
+                    case "2":
+                        this.SignUp();
+                        break;
+                    case "-1":
+                    default:
+                        System.exit(0);
 
-        try(Scanner scanner = new Scanner((System.in))){
-            String command = scanner.nextLine();
-            switch(command){
-                case "1":
-                    this.login();
-                    break;
-                case "2":
-                    this.order();
-                    break;
-                case "3":
-                    this.search();
-                    break;
-                case "Q":
-                case "q":
-                default:
-                    System.exit(0);
-
-        }
+                }
             }
+        }while (op!= "-1");
+    }
+
+
+    public void homePage(String username){
+        String op;
+        do {
+            System.out.println("Welcome " + username + "WHAT WOULD YOU LIKE TO DO?");
+            System.out.println("a. Search Flight: ");
+            System.out.println("b. Order a flight: ");
+            System.out.println("-1 to exit: ");
+            try (Scanner scanner = new Scanner((System.in))) {
+                op = scanner.nextLine();
+                switch (op) {
+                    case "a":
+                        this.search();
+                        break;
+                    case "b":
+                        this.order();
+                        break;
+                    case "-1":
+                    default:
+                        System.exit(0);
+
+                }
+            }
+        }while (op!= "-1");
     }
 
     public void login() {
@@ -74,15 +97,21 @@ public class SababaFlightsProgram {
             boolean login = authController.login(username, password);
             System.out.println("Login status: " + login);
 
+            homePage(username);
         }
     }
 
 
-    public void order(){
+    public void SignUp(){
+
 
     }
 
     public void search(){
+
+    }
+
+    public void order(){
 
     }
 

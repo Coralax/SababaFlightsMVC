@@ -4,9 +4,8 @@ package model.repository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import jdk.nashorn.internal.ir.debug.JSONWriter;
-import model.builders.AgentBuilder;
 import model.objects.Agent;
-import model.objects.Order;
+//import model.objects.Order;
 import model.FileManager;
 import sun.util.resources.LocaleData;
 
@@ -68,13 +67,13 @@ public class AgentRepositoryImpl implements AgentRepository {
 
     }
 
-    @Override
-    public List<Order> findAllOrdersForAgent(int agentCode) {
-        return null;
-    }
-
-    @Override
-    public List<Order> findAllOrdersForAgentByDate(int agentCode, LocalDate begin, LocalDate end) {
-        return null;
-    }
+//    @Override
+//    public List<Order> findAllOrdersForAgent(int agentCode) {
+//        return null;
+//    }
+//
+//    @Override
+//    public List<Order> findAllOrdersForAgentByDate(int agentCode, LocalDate begin, LocalDate end) {
+//        return null;
+//    }
 }
