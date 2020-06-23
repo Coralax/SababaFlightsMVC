@@ -4,10 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import model.objects.JSONWrapper;
 
 import java.io.*;
-import java.util.List;
 import java.util.Set;
 
 public class FileManager<T> {
@@ -43,10 +41,10 @@ public class FileManager<T> {
     * 1. List of objects to insert to the json file.
     * 2. Name of the file the data should be inserted to.
     */
-    public boolean saveObj(Set<T> obj, String fileName) {
+    public boolean saveObj(Set<T> obj) {
        try {
            /* Opens the file for writing */
-           FileWriter myWriter = new FileWriter(fileName);
+           FileWriter myWriter = new FileWriter(this.fileName);
 
            /*
             * Sends the object to objToJson which convert the object to json.

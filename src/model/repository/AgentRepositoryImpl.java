@@ -41,7 +41,7 @@ public class AgentRepositoryImpl implements AgentRepository {
         if(agent.isVerified())
         {
             this.agents.add(agent);
-            fileManager.saveObj(this.agents, agentFile);
+            fileManager.saveObj(this.agents);
         }
 
 

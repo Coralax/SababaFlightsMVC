@@ -46,7 +46,7 @@ public class SababaFlightsProgram {
 
     private<T> boolean saveData(Set<T> data, String fileName) {
         FileManager<T> fileManager = new FileManager<>(fileName);
-        return fileManager.saveObj(data, fileName);
+        return fileManager.saveObj(data);
     }
 
     public void loginScreen(){
