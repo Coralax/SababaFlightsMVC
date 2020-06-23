@@ -104,7 +104,6 @@ public class SababaFlightsProgram {
             String username = scanner.nextLine();
             System.out.println("password: ");
             String password = scanner.nextLine();
-
             boolean login = authController.login(username, password);
             System.out.println("Login status: " + login);
 

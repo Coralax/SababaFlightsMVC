@@ -26,21 +26,13 @@ public class SearchService {
                 }
             }
 
-
-        /*Depart date and arrival date are logical*/
-
-        /*Depart date and arrival date are logical*/
-
-        /*Check if there are seats left in the flight. Do not show an empty flight.
-        * (Number of passengers) */
-
-        /*Does there exist an economy/business class as requested*/
-
-        /*Does there exist a direct flight*/
-
-
-        /*If everything is OK, call to showResults below*/
-
+//TODO: Depart date and arrival date are logical
+//TODO: Arrival date and arrival date are logical
+//TODO: Check if there are seats left in the flight. Do not show an empty flight
+//TODO: (Number of passengers) - CHECK IF THERE AR ENOUGH SEATS
+//TODO: Does there exist an economy/business class as requested
+//TODO: Does there exist a direct flight
+//TODO: If everything is OK, call to showResults below
 
     }
 
