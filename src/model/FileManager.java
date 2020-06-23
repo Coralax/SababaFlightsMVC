@@ -4,15 +4,18 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import model.objects.Agent;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 public class FileManager<T> {
 
     private final String fileName;
+
+    final ObjectMapper mapper = new ObjectMapper();
 
     public FileManager(String fileName) {
         this.fileName = fileName;
@@ -69,12 +72,9 @@ public class FileManager<T> {
     *
     * Constructs a list of all objects of type T in the corresponding file name.
     */
-    public List<T> read() {
-       List<T> jsonObjList = new ArrayList<>();
+    public Set<T> read() {
         try {
-
             /* Required stuff to read from a file */
-            ObjectMapper objectMapper = new ObjectMapper();
             Scanner myReader = new Scanner(new File(this.fileName));
             StringBuilder data = new StringBuilder();
 
@@ -82,13 +82,9 @@ public class FileManager<T> {
             while (myReader.hasNextLine()) {
                 data.append(myReader.nextLine());
             }
+            String jsonString = data.toString();
 
-            /* Convert Json string to List<T> */
-            jsonObjList = objectMapper.readValue(data.toString(), new TypeReference<List<T>>(){});
-
-            for (T t : jsonObjList) {
-                System.out.println(t.toString());
-            }
+            return new ObjectMapper().readValue(jsonString, new TypeReference<Set<Agent>>(){});
 
         /* Errors handling */
         } catch (IOException e) {
@@ -96,7 +92,7 @@ public class FileManager<T> {
         }
 
         /* Return List<T> */
-        return jsonObjList;
+        return null;
     }
 
 //    public void write(Set<T> object){

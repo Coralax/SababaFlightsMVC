@@ -52,19 +52,19 @@ public class AgentBuilder {
         return this;
     }
 
-    public Agent build() {
-        Agent agent = new Agent();
-        agent.setFirstName(this.firstName);
-        agent.setLastName(this.lastName);
-        agent.setEmail(this.email);
-        agent.setUserName(this.userName);
-        agent.setAgentCode(this.agentCode);
-        agent.setPermissionLevel(this.permissionLevel);
-        agent.setIsVerified(this.isVerified);
-        agent.setAgentCode(this.agentCode);
-        agent.setBirthDate(this.birthDate);
-        agent.setId(this.id);
-        return agent;
-    }
+//    public Agent build() {
+//        Agent agent = new Agent();
+//        agent.setFirstName(this.firstName);
+//        agent.setLastName(this.lastName);
+//        agent.setEmail(this.email);
+//        agent.setUserName(this.userName);
+//        agent.setAgentCode(this.agentCode);
+//        agent.setPermissionLevel(this.permissionLevel);
+//        agent.setIsVerified(this.isVerified);
+//        agent.setAgentCode(this.agentCode);
+//        agent.setBirthDate(this.birthDate);
+//        agent.setId(this.id);
+//        return agent;
+//    }
 
 }

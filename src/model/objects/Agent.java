@@ -11,8 +11,20 @@ public class Agent extends Person {
     private boolean isVerified;
     private int permissionLevel;
 
-    public static AgentBuilder builder() {
-        return new AgentBuilder();
+//    public static AgentBuilder builder() {
+//        return new AgentBuilder();
+//    }
+
+    public Agent() {}
+
+    public Agent(String firstName, String lastName, String email, String userName,
+                 String password, int agentCode) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.userName = userName;
+        this.password = password;
+        this.agentCode = agentCode;
     }
 
     // Setters (which will be used by the builder)
