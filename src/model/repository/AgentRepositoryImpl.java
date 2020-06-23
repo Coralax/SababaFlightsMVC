@@ -23,10 +23,10 @@ public class AgentRepositoryImpl implements AgentRepository {
     private FileManager<Agent> fileManager;
 
 
-    public AgentRepositoryImpl() {
-        this.fileManager=new FileManager<>(agentFile);
-        this.agents = (Set<Agent>) fileManager.read();
-    }
+//    public AgentRepositoryImpl() {
+//        this.fileManager=new FileManager<>(agentFile);
+//        this.agents = (Set<Agent>) fileManager.read();
+//    }
 
     // we need to verify if the first if is required because the AuthenticationService should prevent it
     @Override

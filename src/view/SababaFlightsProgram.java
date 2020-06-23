@@ -32,7 +32,7 @@ public class SababaFlightsProgram {
 
         Set<Agent> agents = this.loadData(Agent.class, "src/data/agents.json");
         Set<AircraftCompany> aircraftCompanies = this.loadData(AircraftCompany.class, "src/data/aircraftCompanies.json");
-
+        System.out.println(aircraftCompanies.toString());
         sabbaSearch.search();
 
     }
@@ -53,17 +53,17 @@ public class SababaFlightsProgram {
         String op;
         do {
             System.out.println("Welcome to SababaFlight: ");
-            System.out.println("1: Sign up ");
-            System.out.println("2: Log in ");
+            System.out.println("1: Log in ");
+            System.out.println("2: Sign up ");
             System.out.println("-1: Exit ");
             try (Scanner scanner = new Scanner((System.in))) {
                 op = scanner.nextLine();
                 switch (op) {
                     case "1":
-                        this.SignUp();
+                        this.login();
                         break;
                     case "2":
-                        this.login();
+                        this.SignUp();
                         break;
                     case "-1":
                         break;
