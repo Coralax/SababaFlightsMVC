@@ -1,16 +1,20 @@
 package model;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import model.objects.JSONWrapper;
 
 import java.io.*;
-import java.util.*;
+import java.util.List;
+import java.util.Set;
 
 public class FileManager<T> {
 
     private final String fileName;
+
+    final ObjectMapper mapper = new ObjectMapper();
 
     public FileManager(String fileName) {
         this.fileName = fileName;
@@ -33,10 +37,10 @@ public class FileManager<T> {
     }
 
     /*
-    * Saves a Set of type T to file `fileName`
+    * Saves a list of type T to file `fileName`
     *
     * Params:
-    * 1. Set of objects to insert to the json file.
+    * 1. List of objects to insert to the json file.
     * 2. Name of the file the data should be inserted to.
     */
     public boolean saveObj(Set<T> obj, String fileName) {
@@ -65,32 +69,21 @@ public class FileManager<T> {
     * T - the type of class trying to read
     * e.g: Agent
     *
-    * Constructs a Set of all objects of type T in the corresponding file name.
+    * Constructs a list of all objects of type T in the corresponding file name.
     */
-    public Set<T> read() {
-       Set<T> jsonObjSet = new HashSet<>();
+    public Set<T> read(Class<T> classType) {
         try {
 
-            /* Required stuff to read from a file */
-            ObjectMapper objectMapper = new ObjectMapper();
-            Scanner myReader = new Scanner(new File(this.fileName));
-            StringBuilder data = new StringBuilder();
+            JavaType type = mapper.getTypeFactory().constructCollectionType(Set.class, classType);
+            return new ObjectMapper().readValue(new File(this.fileName), type);
 
-            /* Get all lines in the file */
-            while (myReader.hasNextLine()) {
-                data.append(myReader.nextLine());
-            }
-
-            /* Convert Json string to Set<T> */
-            JSONWrapper obj = objectMapper.readValue(data.toString(), JSONWrapper.class);
-            return obj.getSet();
-
-            /* Errors handling */
+        /* Errors handling */
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         /* Return List<T> */
-        return jsonObjSet;
+        return null;
     }
 
 //    public void write(Set<T> object){

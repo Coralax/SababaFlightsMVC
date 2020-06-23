@@ -2,13 +2,13 @@
   {
     "aircraftID": 0,
     "aircraftCompany": "El-Al",
-    "seatCount": 78,
+    "seatsCount": 78,
     "model": "Boeing-797"
   },
   {
     "aircraftID": 0,
     "aircraftCompany": "WizzAir",
-    "seatCount": 78,
+    "seatsCount": 78,
     "model": "Boeing-797"
   }
 ]

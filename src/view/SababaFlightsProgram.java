@@ -7,6 +7,7 @@ import controller.objects.Search;
 import model.FileManager;
 import model.objects.Agent;
 import model.objects.Aircraft;
+import model.objects.AircraftCompany;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -28,20 +29,25 @@ public class SababaFlightsProgram {
 
     public void startProgram() throws IOException, ClassNotFoundException {
         /*CLI options*/
-        //FileManager<Agent> fileManagerAgent = new FileManager<>("src/data/agents2.json");
-       // Set<Agent> agents = fileManagerAgent.read();
-//        fileManagerAgent.saveObj(agents, "src/data/agents2.json");
-       // FileManager<Aircraft> fileManagerAircraft = new FileManager<>("src/data/aircrafts.json");
-        //Set<Aircraft> aircrafts = fileManagerAircraft.read();
-        // TODO: Fix next three lines
-//        System.out.println(aircrafts.get(0).toString());
-//        aircrafts.get(0).setSeatsCount(88);
-//        fileManagerAircraft.saveObj(aircrafts, "src/data/aircrafts.json");
 
-            sabbaSearch.search();
+        Set<Agent> agents = this.loadData(Agent.class, "src/data/agents.json");
+        Set<AircraftCompany> aircraftCompanies = this.loadData(AircraftCompany.class, "src/data/aircraftCompanies.json");
+
+        sabbaSearch.search();
 
     }
 
+    private <T> Set<T> loadData(Class<T> classType, String fileName) {
+        Set<T> data;
+        FileManager<T> fileManager = new FileManager<>(fileName);
+        data = fileManager.read(classType);
+        return data;
+    }
+
+    private<T> boolean saveData(Set<T> data, String fileName) {
+        FileManager<T> fileManager = new FileManager<>(fileName);
+        return fileManager.saveObj(data, fileName);
+    }
 
     public void loginScreen(){
         String op;
@@ -94,7 +100,7 @@ public class SababaFlightsProgram {
                 }
             } catch (IOException  |ClassNotFoundException e) {
                 e.printStackTrace();
-                      }
+            }
         }while (!(op.equals("-1")));
     }
 
