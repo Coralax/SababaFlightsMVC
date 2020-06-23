@@ -28,10 +28,16 @@ public class SababaFlightsProgram {
     public void startProgram() {
         /*CLI options*/
 
-        FileManager<Agent> fileManagerAgent = new FileManager<>("src/data/agents.json");
-        Set<Agent> agents = fileManagerAgent.read();
+        FileManager<Agent> agentFileManager = new FileManager<>("src/data/agents.json");
+        Set<Agent> agents = agentFileManager.read(Agent.class);
         for (Agent agent : agents) {
             System.out.println(agent.getUserName());
+        }
+
+        FileManager<Aircraft> aircraftFileManager = new FileManager<>("src/data/aircrafts.json");
+        Set<Aircraft> aircrafts = aircraftFileManager.read(Aircraft.class);
+        for (Aircraft aircraft : aircrafts) {
+            System.out.println(aircraft.getModel());
         }
     }
 }

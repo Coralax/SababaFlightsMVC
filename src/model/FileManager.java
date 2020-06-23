@@ -1,14 +1,13 @@
 package model;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import model.objects.Agent;
+import model.objects.JSONWrapper;
 
 import java.io.*;
 import java.util.List;
-import java.util.Scanner;
 import java.util.Set;
 
 public class FileManager<T> {
@@ -72,19 +71,11 @@ public class FileManager<T> {
     *
     * Constructs a list of all objects of type T in the corresponding file name.
     */
-    public Set<T> read() {
+    public Set<T> read(Class<T> classType) {
         try {
-            /* Required stuff to read from a file */
-            Scanner myReader = new Scanner(new File(this.fileName));
-            StringBuilder data = new StringBuilder();
 
-            /* Get all lines in the file */
-            while (myReader.hasNextLine()) {
-                data.append(myReader.nextLine());
-            }
-            String jsonString = data.toString();
-
-            return new ObjectMapper().readValue(jsonString, new TypeReference<Set<Agent>>(){});
+            JavaType type = mapper.getTypeFactory().constructCollectionType(Set.class, classType);
+            return new ObjectMapper().readValue(new File(this.fileName), type);
 
         /* Errors handling */
         } catch (IOException e) {

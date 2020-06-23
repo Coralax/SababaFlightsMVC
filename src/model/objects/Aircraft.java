@@ -16,6 +16,8 @@ public class Aircraft implements Serializable {
         aircraftsCount = 0;
     }
 
+    public Aircraft() {}
+
     public Aircraft(AircraftCompany aircraftCompany, int seatsCount, String model) {
         this.aircraftID = aircraftsCount++;
         this.aircraftCompany = aircraftCompany;
