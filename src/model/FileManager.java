@@ -24,7 +24,7 @@ public class FileManager<T> {
      * Converts object to json format.
      * Returns an empty string if failed.
      */
-    private String objToJson(List<T> obj) {
+    private String objToJson(Set<T> obj) {
         String jsonSting;
         try {
             ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
@@ -43,7 +43,7 @@ public class FileManager<T> {
     * 1. List of objects to insert to the json file.
     * 2. Name of the file the data should be inserted to.
     */
-    public boolean saveObj(List<T> obj, String fileName) {
+    public boolean saveObj(Set<T> obj, String fileName) {
        try {
            /* Opens the file for writing */
            FileWriter myWriter = new FileWriter(fileName);

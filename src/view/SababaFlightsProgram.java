@@ -5,12 +5,8 @@ import controller.OrderController;
 import controller.SearchController;
 import model.FileManager;
 import model.objects.Agent;
-import model.objects.Aircraft;
-import model.objects.Passenger;
+import model.objects.AircraftCompany;
 
-import java.io.IOException;
-import java.time.DateTimeException;
-import java.time.LocalDate;
 import java.util.*;
 
 public class SababaFlightsProgram {
@@ -28,17 +24,22 @@ public class SababaFlightsProgram {
     public void startProgram() {
         /*CLI options*/
 
-        FileManager<Agent> agentFileManager = new FileManager<>("src/data/agents.json");
-        Set<Agent> agents = agentFileManager.read(Agent.class);
-        for (Agent agent : agents) {
-            System.out.println(agent.getUserName());
-        }
+        Set<Agent> agents = this.loadData(Agent.class, "src/data/agents.json");
+        Set<AircraftCompany> aircraftCompanies = this.loadData(AircraftCompany.class, "src/data/aircraftCompanies.json");
 
-        FileManager<Aircraft> aircraftFileManager = new FileManager<>("src/data/aircrafts.json");
-        Set<Aircraft> aircrafts = aircraftFileManager.read(Aircraft.class);
-        for (Aircraft aircraft : aircrafts) {
-            System.out.println(aircraft.getModel());
-        }
+
+    }
+
+    private <T> Set<T> loadData(Class<T> classType, String fileName) {
+        Set<T> data;
+        FileManager<T> fileManager = new FileManager<>(fileName);
+        data = fileManager.read(classType);
+        return data;
+    }
+
+    private<T> boolean saveData(Set<T> data, String fileName) {
+        FileManager<T> fileManager = new FileManager<>(fileName);
+        return fileManager.saveObj(data, fileName);
     }
 }
 
