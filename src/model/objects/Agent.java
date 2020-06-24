@@ -1,5 +1,13 @@
 package model.objects;
 
+import model.repository.AgentRepository;
+import model.repository.AgentRepositoryImpl;
+
+import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
 
 public class Agent extends Person {
@@ -9,9 +17,7 @@ public class Agent extends Person {
     private boolean isVerified;
     private int permissionLevel;
 
-    public Agent() {
-        super();
-    }
+    public Agent() { super(); }
 
     public Agent(long id, String firstName, String lastName, String email, String userName, String password, int agentCode, String birthDateStr) {
         super(firstName, lastName, email, id, birthDateStr);
@@ -20,12 +26,15 @@ public class Agent extends Person {
         this.agentCode = agentCode;
     }
 
+
+
     // Setters (which will be used by the builder)
     public void setUserName(String userName) {
         this.userName = userName;
     }
     public void setPassword(String password) {
         // TODO: encrypt password (implement password encryption in agent repository)
+//        this.password = this.agentRepository.encryptPassword(password);
         this.password = password;
     }
     public void setAgentCode(int agentCode) {
@@ -34,19 +43,18 @@ public class Agent extends Person {
     public void setIsVerified(boolean isVerified) {
         this.isVerified = isVerified;
     }
-
     public void setPermissionLevel(int permissionLevel) { this.permissionLevel = permissionLevel; }
 
     // Getters
     public String getUserName() {
-        return userName;
+        return this.userName;
     }
     public int getAgentCode() {
-        return agentCode;
+        return this.agentCode;
     }
-    public boolean isVerified() { return isVerified; }
-    public int getPermissionLevel() {return permissionLevel; }
-
+    public boolean isVerified() { return this.isVerified; }
+    public int getPermissionLevel() { return this.permissionLevel; }
+    public String getPassword() { return this.password; }
 
     @Override
     public String toString() {

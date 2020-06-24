@@ -35,6 +35,10 @@ public class SababaFlightsProgram {
         Set<Flight> flights = FlightSingleton.getInstance().flightSet;
         Set<Passenger> passengers = PassengerSingleton.getInstance().passengerSet;
 
+        for (Agent agent : agents) {
+            System.out.println(agent.getPassword());
+        }
+
         sabbaSearch.search();
 
     }
