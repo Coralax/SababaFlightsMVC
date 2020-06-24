@@ -8,7 +8,8 @@
     "password": "1cczzdddds",
     "agentCode": 0,
     "isVerified": false,
-    "permissionLevel": 2
+    "permissionLevel": 2,
+    "birthDateStr": "01/01/1990"
   },
   {
     "id": "313220402",
@@ -19,6 +20,7 @@
     "password": "asdf",
     "agentCode": 1,
     "isVerified": false,
-    "permissionLevel": 3
+    "permissionLevel": 3,
+    "birthDateStr": "16/09/1995"
   }
 ]

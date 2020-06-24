@@ -8,10 +8,12 @@ public class Airport {
     private String address, name;
     private List<String> terminals = new ArrayList<>();
 
-    public Airport(String address, String name, String terminal) {
+    public Airport() {}
+
+    public Airport(String address, String name, List<String> terminals) {
         this.address = address;
         this.name = name;
-        this.terminals.add(terminal);
+        this.terminals = terminals;
     }
 
     public String getAddress() {

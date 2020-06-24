@@ -13,8 +13,8 @@ public class Agent extends Person {
         super();
     }
 
-    public Agent(long id, String firstName, String lastName, String email, String userName, String password, int agentCode) {
-        super(firstName, lastName, email, id);
+    public Agent(long id, String firstName, String lastName, String email, String userName, String password, int agentCode, String birthDateStr) {
+        super(firstName, lastName, email, id, birthDateStr);
         this.userName = userName;
         this.password = password;
         this.agentCode = agentCode;

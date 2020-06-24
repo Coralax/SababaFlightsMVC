@@ -5,9 +5,7 @@ import controller.OrderController;
 import controller.SearchController;
 import controller.objects.Search;
 import model.FileManager;
-import model.objects.Agent;
-import model.objects.Aircraft;
-import model.objects.AircraftCompany;
+import model.objects.*;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -32,8 +30,13 @@ public class SababaFlightsProgram {
 
         Set<Agent> agents = this.loadData(Agent.class, "src/data/agents.json");
         Set<AircraftCompany> aircraftCompanies = this.loadData(AircraftCompany.class, "src/data/aircraftCompanies.json");
+        Set<Airport> airports = this.loadData(Airport.class, "src/data/airports.json");
+        Set<Flight> flights = new HashSet<>();
 
-        System.out.println(agents.toString());
+        flights.add(new Flight(new Aircraft(new AircraftCompany("El-Al"), 78, "Boeing-797"), new Airport("Israel, TLV", "Ben-Gurion", Arrays.asList("T1", "T3")), new Airport("New-York, JFK", "JFK", Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8")), "31/07/2020-23:15", "01/08/2020-03:23", 512, true));
+//        saveData(flights, "src/data/flights.json");
+        flights = this.loadData(Flight.class, "src/data/flights.json");
+        System.out.println(flights);
         sabbaSearch.search();
 
     }

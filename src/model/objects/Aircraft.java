@@ -10,7 +10,6 @@ public class Aircraft {
     private AircraftCompany aircraftCompany;
     private int seatsCount;
     private String model;
-    private List<Flight> flights;
 
     static {
         aircraftsCount = 0;
@@ -29,7 +28,6 @@ public class Aircraft {
     public AircraftCompany getAircraftCompany() { return this.aircraftCompany; }
     public int getSeatsCount() { return this.seatsCount; }
     public String getModel() { return this.model; }
-    public List<Flight> getFlights() { return this.flights; }
 
     public void setAircraftCompany(AircraftCompany aircraftCompany) { this.aircraftCompany = aircraftCompany; }
     public void setSeatsCount(int seatsCount) { this.seatsCount = seatsCount; }
@@ -46,7 +44,6 @@ public class Aircraft {
                 " Aircraft ID=" + aircraftID + "\n"+
                 " Aircraft company=" + aircraftCompany + "\n"+
                 " Seats count=" + seatsCount + "\n"+
-                " Model='" + model + "\n"+
-                " Flights=" + flights ;
+                " Model='" + model;
     }
 }
