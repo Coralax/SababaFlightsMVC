@@ -24,13 +24,13 @@ public class OrderRepositoryImpl implements OrderRepository {
 
     }
 
-    @Override
-    public Order findOrderByID(int orderId) {
-        return null;
-    }
-
-    @Override
-    public List<Order> findOrderByDates(String begin, String end) {
-        return null;
-    }
+//    @Override
+//    public Order findOrderByID(int orderId) {
+//        return null;
+//    }
+//
+//    @Override
+//    public List<Order> findOrderByDates(String begin, String end) {
+//        return null;
+//    }
 }

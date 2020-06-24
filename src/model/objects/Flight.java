@@ -3,20 +3,22 @@ package model.objects;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Flight implements Serializable {
+public class Flight {
     private static int staticFlightID;
     private int flightID;
     private String flightNumber;
     private Aircraft aircraft;
     private Airport departureAirpot, destinationAirport;
-    private Date departureDate, arrivalDate;
+    private String departureDate, arrivalDate;
     private double flightPrice;
     private boolean isAvailable;
 
     static { staticFlightID = 0; }
 
+    public Flight() {}
+
     public Flight(Aircraft aircraft, Airport departureAirpot, Airport destinationAirport,
-                  Date departureDate, Date arrivalDate, double flightPrice, boolean isAvailable) {
+                  String departureDate, String arrivalDate, double flightPrice, boolean isAvailable) {
         this.flightID = staticFlightID++;
         this.flightNumber = randomizeFlightNumber(5);
         this.aircraft = aircraft;
@@ -29,7 +31,7 @@ public class Flight implements Serializable {
     }
 
     public Flight(String flightNumber, Aircraft aircraft, Airport departureAirpot, Airport destinationAirport,
-                  Date departureDate, Date arrivalDate, double flightPrice, boolean isAvailable) {
+                  String departureDate, String arrivalDate, double flightPrice, boolean isAvailable) {
         this.flightID = staticFlightID++;
         this.flightNumber = flightNumber;
         this.aircraft = aircraft;
@@ -45,16 +47,16 @@ public class Flight implements Serializable {
     public int getFlightID() { return flightID; }
     public Airport getDepartureAirpot() { return this.departureAirpot; }
     public Airport getDestinationAirport() { return this.destinationAirport; }
-    public Date getDepartureDate() { return this.departureDate; }
-    public Date getArrivalDate() { return this.arrivalDate; }
+    public String getDepartureDate() { return this.departureDate; }
+    public String getArrivalDate() { return this.arrivalDate; }
     public double getFlightPrice() { return this.flightPrice; }
-    public boolean getIsAvailabe() { return this.isAvailable; }
+    public boolean getIsAvailable() { return this.isAvailable; }
 
     public void setAircraft(Aircraft aircraft) { this.aircraft = aircraft; }
     public void setDepartureAirpot(Airport departureAirpot) { this.departureAirpot = departureAirpot; }
     public void setDestinationAirport(Airport destinationAirport) { this.destinationAirport = destinationAirport; }
-    public void setDepartureDate(Date departureDate) { this.departureDate = departureDate; }
-    public void setArrivalDate(Date arrivalDate) { this.arrivalDate = arrivalDate; }
+    public void setDepartureDate(String departureDate) { this.departureDate = departureDate; }
+    public void setArrivalDate(String arrivalDate) { this.arrivalDate = arrivalDate; }
     public void setFlightPrice(double flightPrice) { this.flightPrice = flightPrice; }
     public void setAvailable(boolean available) { isAvailable = available; }
 
@@ -77,5 +79,19 @@ public class Flight implements Serializable {
                     .charAt(index));
         }
         return sb.toString();
+    }
+
+    @Override
+    public String toString() {
+        return
+                "  Flight ID=" + flightID + "\n"+
+                " Flight number='" + flightNumber + "\n"+
+                " Aircraft=" + aircraft + "\n" +
+                " Departure airpot =" + departureAirpot + "\n" +
+                " Destination airport=" + destinationAirport + "\n" +
+                " Departure date=" + departureDate + "\n" +
+                " Arrival date=" + arrivalDate + "\n" +
+                " Flight price=" + flightPrice + "\n" +
+                " Is available=" + isAvailable + "\n" ;
     }
 }

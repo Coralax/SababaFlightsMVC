@@ -12,41 +12,45 @@ import java.util.Objects;
 * */
 
 
-public abstract class Person implements Serializable {
+public abstract class Person {
 
     protected String firstName;
     protected String lastName;
     protected long id;
     protected String email;
+    protected String birthDateStr;
     protected LocalDate birthDate;
 
-    public Person(String firstName,String lastName,long id,  String email, LocalDate birthDate) {
+    public Person() {}
+
+    public Person(String firstName, String lastName, String email, long id, String birthDateStr) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.id=id;
-        this.birthDate = birthDate;
-         this.email = email;
-      }
+        this.id = id;
+        this.birthDateStr = birthDateStr;
+    }
 
+    public String getBirthDateStr() { return this.birthDateStr; }
     public String getFirstName() { return this.firstName; }
     public String getLastName() { return this.lastName; }
     public String getEmail() { return this.email; }
-    public LocalDate getBirthDateString() { return this.birthDate; }
+    public LocalDate getBirthDate() { return this.birthDate; }
+    public void setBirthDateStr(String birthDateStr) { this.birthDateStr = birthDateStr; }
     public void setFirstName(String firstName) { this.firstName = firstName; }
     public void setLastName(String lastName) { this.lastName = lastName; }
     public void setEmail(String email) { this.email = email; }
-    public void setBirthDateString(LocalDate birthDate) { this.birthDate = birthDate; }
-
+    public void setBirthDate(LocalDate birthDate) { this.birthDate = birthDate; }
+    public void setId(long id) { this.id = id; }
 
     @Override
     public String toString() {
-        return("\n" +"Person details are: " +" \n" +
+        return
                 "First name: " + firstName +"\n" +
                 "Last name: " + lastName + "\n" +
                 "ID: " + id + "\n" +
                 "Email: " + email + "\n" +
-                "Date of birth: " + birthDate + "\n");
+                "Date of birth: " + birthDate + "\n";
     }
 
     @Override
