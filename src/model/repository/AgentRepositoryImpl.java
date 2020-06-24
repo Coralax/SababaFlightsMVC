@@ -7,6 +7,7 @@ import jdk.nashorn.internal.ir.debug.JSONWriter;
 import model.objects.Agent;
 //import model.objects.Order;
 import model.FileManager;
+import model.singletons.AgentSingleton;
 import sun.util.resources.LocaleData;
 
 import java.io.File;
@@ -21,12 +22,14 @@ public class AgentRepositoryImpl implements AgentRepository {
     private final String adminFile = "SababaFlights\\src\\data\\admin.json";
     private Set<Agent> agents;
     private FileManager<Agent> fileManager;
+    private AgentSingleton agentSingletonInstance;
 
 
-//    public AgentRepositoryImpl() {
-//        this.fileManager=new FileManager<>(agentFile);
-//        this.agents = (Set<Agent>) fileManager.read();
-//    }
+    public AgentRepositoryImpl() {
+        this.fileManager=new FileManager<>(agentFile);
+        this.agentSingletonInstance = AgentSingleton.getInstance();
+        this.agents = agentSingletonInstance.agentSet;
+    }
 
     // we need to verify if the first if is required because the AuthenticationService should prevent it
     @Override
@@ -41,7 +44,7 @@ public class AgentRepositoryImpl implements AgentRepository {
         if(agent.isVerified())
         {
             this.agents.add(agent);
-            fileManager.saveObj(this.agents);
+            agentSingletonInstance.saveSet(this.agents);
         }
 
 

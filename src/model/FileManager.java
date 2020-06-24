@@ -41,7 +41,7 @@ public class FileManager<T> {
     * 1. List of objects to insert to the json file.
     * 2. Name of the file the data should be inserted to.
     */
-    public boolean saveObj(Set<T> obj) {
+    public boolean saveSet(Set<T> obj) {
        try {
            /* Opens the file for writing */
            FileWriter myWriter = new FileWriter(this.fileName);

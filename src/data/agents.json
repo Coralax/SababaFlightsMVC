@@ -1,26 +1,21 @@
-[
-  {
-    "id": "313225344",
-    "firstName": "dan",
-    "lastName": "cohen",
-    "email": "dann@gmail.com",
-    "userName": "aaaddd",
-    "password": "1cczzdddds",
-    "agentCode": 0,
-    "isVerified": false,
-    "permissionLevel": 2,
-    "birthDateStr": "01/01/1990"
-  },
-  {
-    "id": "313220402",
-    "firstName": "omer",
-    "lastName": "sha",
-    "email": "superomsha@gmail.com",
-    "userName": "asdf",
-    "password": "asdf",
-    "agentCode": 1,
-    "isVerified": false,
-    "permissionLevel": 3,
-    "birthDateStr": "16/09/1995"
-  }
-]
+[ {
+  "firstName" : "dan",
+  "lastName" : "cohen",
+  "email" : "dann@gmail.com",
+  "birthDateStr" : "01/01/1990",
+  "birthDate" : null,
+  "userName" : "aaaddd",
+  "agentCode" : 0,
+  "permissionLevel" : 2,
+  "isVerified" : false
+}, {
+  "firstName" : "omer",
+  "lastName" : "sha",
+  "email" : "superomsha@gmail.com",
+  "birthDateStr" : "16/09/1995",
+  "birthDate" : null,
+  "userName" : "asdf",
+  "agentCode" : 1,
+  "permissionLevel" : 3,
+  "isVerified" : false
+} ]

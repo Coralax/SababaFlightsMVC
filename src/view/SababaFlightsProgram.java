@@ -6,6 +6,7 @@ import controller.SearchController;
 import controller.objects.Search;
 import model.FileManager;
 import model.objects.*;
+import model.singletons.*;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -28,30 +29,27 @@ public class SababaFlightsProgram {
     public void startProgram() throws IOException, ClassNotFoundException {
         /*CLI options*/
 
-        Set<Agent> agents = this.loadData(Agent.class, "src/data/agents.json");
-        Set<AircraftCompany> aircraftCompanies = this.loadData(AircraftCompany.class, "src/data/aircraftCompanies.json");
-        Set<Airport> airports = this.loadData(Airport.class, "src/data/airports.json");
-        Set<Flight> flights = new HashSet<>();
+        Set<Agent> agents = AgentSingleton.getInstance().agentSet;
+        Set<AircraftCompany> aircraftCompanies = AircraftCompanySingleton.getInstance().aircraftCompanySet;
+        Set<Airport> airports = AirportSingleton.getInstance().airportSet;
+        Set<Flight> flights = FlightSingleton.getInstance().flightSet;
+        Set<Passenger> passengers = PassengerSingleton.getInstance().passengerSet;
 
-        flights.add(new Flight(new Aircraft(new AircraftCompany("El-Al"), 78, "Boeing-797"), new Airport("Israel, TLV", "Ben-Gurion", Arrays.asList("T1", "T3")), new Airport("New-York, JFK", "JFK", Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8")), "31/07/2020-23:15", "01/08/2020-03:23", 512, true));
-//        saveData(flights, "src/data/flights.json");
-        flights = this.loadData(Flight.class, "src/data/flights.json");
-        System.out.println(flights);
         sabbaSearch.search();
 
     }
 
-    private <T> Set<T> loadData(Class<T> classType, String fileName) {
-        Set<T> data;
-        FileManager<T> fileManager = new FileManager<>(fileName);
-        data = fileManager.read(classType);
-        return data;
-    }
-
-    private <T> boolean saveData(Set<T> data, String fileName) {
-        FileManager<T> fileManager = new FileManager<>(fileName);
-        return fileManager.saveObj(data);
-    }
+//    private <T> Set<T> loadData(Class<T> classType, String fileName) {
+//        Set<T> data;
+//        FileManager<T> fileManager = new FileManager<>(fileName);
+//        data = fileManager.read(classType);
+//        return data;
+//    }
+//
+//    private <T> boolean saveData(Set<T> data, String fileName) {
+//        FileManager<T> fileManager = new FileManager<>(fileName);
+//        return fileManager.saveSet(data);
+//    }
 
     public void loginScreen(){
         String op;
