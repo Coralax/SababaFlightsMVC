@@ -35,17 +35,14 @@ public class Agent extends Person {
         this.isVerified = isVerified;
     }
     public void setPermissionLevel(int permissionLevel) { this.permissionLevel = permissionLevel; }
+    public void setVerified(boolean verified) { isVerified = verified;}
 
-    // Getters
-    public String getUserName() {
-        return userName;
-    }
-    public int getAgentCode() {
-        return agentCode;
-    }
-    public boolean isVerified() { return isVerified; }
+       // Getters
+    public String getUserName() {  return userName;}
+    public int getAgentCode() {return agentCode; }
+    public boolean isVerified() { return isVerified;}
     public int getPermissionLevel() {return permissionLevel; }
-
+    public String getPassword() {return password;}
 
     @Override
     public String toString() {
