@@ -1,6 +1,5 @@
 package model.repository;
 
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import jdk.nashorn.internal.ir.debug.JSONWriter;
@@ -9,44 +8,59 @@ import model.objects.Agent;
 import model.FileManager;
 import model.singletons.AgentSingleton;
 import sun.util.resources.LocaleData;
-
 import java.io.File;
 import java.io.ObjectInputStream;
+import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.util.*;
+import java.security.*;
 
 public class AgentRepositoryImpl implements AgentRepository {
-
 
     private final String agentFile = "SababaFlights\\src\\data\\agents.json";
     private final String adminFile = "SababaFlights\\src\\data\\admin.json";
     private Set<Agent> agents;
-    private FileManager<Agent> fileManager;
     private AgentSingleton agentSingletonInstance;
 
-
     public AgentRepositoryImpl() {
-        this.fileManager=new FileManager<>(agentFile);
         this.agentSingletonInstance = AgentSingleton.getInstance();
         this.agents = agentSingletonInstance.agentSet;
+    }
+
+    @Override
+    public String encryptPassword(String password) {
+        try {
+            MessageDigest m = MessageDigest.getInstance("MD5");
+            m.reset();
+            m.update(password.getBytes());
+            byte[] digest = m.digest();
+            BigInteger bigInt = new BigInteger(1,digest);
+            StringBuilder hashtext = new StringBuilder(bigInt.toString(16));
+            // Now we need to zero pad it if you actually want the full 32 chars.
+            while(hashtext.length() < 32 ){
+                hashtext.insert(0, "0" + hashtext);
+            }
+            return hashtext.toString();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return password;
     }
 
     // we need to verify if the first if is required because the AuthenticationService should prevent it
     @Override
     public void add(Agent agent) throws Exception {
+
         if(agent == null){
             throw new Exception(("must have a value"));
         }
         if(this.agents.contains(agent)){
             throw new Exception("Agent already exist!");
         }
-
-        if(agent.isVerified())
-        {
-            this.agents.add(agent);
-            agentSingletonInstance.saveSet(this.agents);
-        }
-
+        this.agents.add(agent);
+        agentSingletonInstance.saveSet(this.agents);
 
     }
 
