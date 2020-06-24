@@ -40,7 +40,7 @@ public class AgentRepositoryImpl implements AgentRepository {
             StringBuilder hashtext = new StringBuilder(bigInt.toString(16));
             // Now we need to zero pad it if you actually want the full 32 chars.
             while(hashtext.length() < 32 ){
-                hashtext.insert(0, "0" + hashtext);
+                hashtext.insert(0, "0" ).append(hashtext);
             }
             return hashtext.toString();
         } catch (NoSuchAlgorithmException e) {
