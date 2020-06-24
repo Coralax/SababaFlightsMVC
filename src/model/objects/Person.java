@@ -2,6 +2,7 @@ package model.objects;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 
@@ -28,7 +29,7 @@ public abstract class Person {
         this.lastName = lastName;
         this.email = email;
         this.id = id;
-        this.birthDateStr = birthDateStr;
+        setBirthDate(birthDateStr);
     }
 
     public String getBirthDateStr() { return this.birthDateStr; }
@@ -36,11 +37,18 @@ public abstract class Person {
     public String getLastName() { return this.lastName; }
     public String getEmail() { return this.email; }
     public LocalDate getBirthDate() { return this.birthDate; }
+    public long getId() { return this.id; }
     public void setBirthDateStr(String birthDateStr) { this.birthDateStr = birthDateStr; }
     public void setFirstName(String firstName) { this.firstName = firstName; }
     public void setLastName(String lastName) { this.lastName = lastName; }
     public void setEmail(String email) { this.email = email; }
-    public void setBirthDate(LocalDate birthDate) { this.birthDate = birthDate; }
+
+    public void setBirthDate(String birthDateStr)  {
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        formatter.parse(birthDateStr);
+        this.birthDate = LocalDate.parse(birthDateStr, formatter);
+    }
     public void setId(long id) { this.id = id; }
 
     @Override
@@ -66,7 +74,3 @@ public abstract class Person {
         return Objects.hash(id);
     }
 }
-     /* if(!(validateJavaDate(birthDateString)))
-              throw new IllegalArgumentException("Invalid date of birth");
-              if(!(isValidEmail(email)))
-              throw new IllegalArgumentException("Invalid email address");*/

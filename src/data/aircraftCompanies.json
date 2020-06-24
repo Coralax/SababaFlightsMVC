@@ -1,16 +1,22 @@
 [ {
   "companyName" : "Israir",
-  "companyClass" : "regular"
+  "companyClass" : "Regular"
 }, {
   "companyName" : "WowAir",
-  "companyClass" : "Low-cost"
+  "companyClass" : "Low cost"
 }, {
   "companyName" : "El-Al",
-  "companyClass" : "regular"
+  "companyClass" : "Regular"
 }, {
   "companyName" : "WizzAir",
-  "companyClass" : "Low-cost"
+  "companyClass" : "Low cost"
 }, {
   "companyName" : "Aegan Airlines",
-  "companyClass" : "Low-cost"
+  "companyClass" : "Low cost"
+}, {
+  "companyName" : "Norwegian Air",
+  "companyClass" : "Low cost"
+}, {
+  "companyName" : "Lufthansa",
+  "companyClass" : "Regular"
 } ]
