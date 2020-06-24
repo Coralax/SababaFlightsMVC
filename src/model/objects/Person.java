@@ -20,6 +20,15 @@ public abstract class Person {
     protected String email;
     protected LocalDate birthDate;
 
+    public Person() {}
+
+    public Person(String firstName, String lastName, String email, long id) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.id = id;
+    }
+
     public String getFirstName() { return this.firstName; }
     public String getLastName() { return this.lastName; }
     public String getEmail() { return this.email; }

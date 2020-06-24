@@ -9,12 +9,12 @@ public class Agent extends Person {
     private boolean isVerified;
     private int permissionLevel;
 
-    public Agent() {}
+    public Agent() {
+        super();
+    }
 
-    public Agent(String firstName, String lastName, String email, String userName, String password, int agentCode) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
+    public Agent(long id, String firstName, String lastName, String email, String userName, String password, int agentCode) {
+        super(firstName, lastName, email, id);
         this.userName = userName;
         this.password = password;
         this.agentCode = agentCode;

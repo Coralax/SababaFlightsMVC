@@ -32,7 +32,8 @@ public class SababaFlightsProgram {
 
         Set<Agent> agents = this.loadData(Agent.class, "src/data/agents.json");
         Set<AircraftCompany> aircraftCompanies = this.loadData(AircraftCompany.class, "src/data/aircraftCompanies.json");
-        System.out.println(aircraftCompanies.toString());
+
+        System.out.println(agents.toString());
         sabbaSearch.search();
 
     }
@@ -44,7 +45,7 @@ public class SababaFlightsProgram {
         return data;
     }
 
-    private<T> boolean saveData(Set<T> data, String fileName) {
+    private <T> boolean saveData(Set<T> data, String fileName) {
         FileManager<T> fileManager = new FileManager<>(fileName);
         return fileManager.saveObj(data);
     }

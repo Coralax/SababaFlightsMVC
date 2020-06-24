@@ -83,14 +83,4 @@ public class FileManager<T> {
         /* Return List<T> */
         return null;
     }
-
-//    public void write(Set<T> object){
-//        try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(this.fileName))) {
-//            objectOutputStream.writeObject(object);
-//        }
-//        catch(IOException e)
-//        {
-//            System.out.println("Cannot write to the file");
-//        }
-//   }
 }

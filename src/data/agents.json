@@ -1,18 +1,24 @@
 [
   {
+    "id": "313225344",
     "firstName": "dan",
     "lastName": "cohen",
     "email": "dann@gmail.com",
     "userName": "aaaddd",
     "password": "1cczzdddds",
-    "agentCode": 0
+    "agentCode": 0,
+    "isVerified": false,
+    "permissionLevel": 2
   },
   {
+    "id": "313220402",
     "firstName": "omer",
     "lastName": "sha",
     "email": "superomsha@gmail.com",
     "userName": "asdf",
     "password": "asdf",
-    "agentCode": 1
+    "agentCode": 1,
+    "isVerified": false,
+    "permissionLevel": 3
   }
 ]
