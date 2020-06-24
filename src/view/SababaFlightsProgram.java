@@ -34,14 +34,17 @@ public class SababaFlightsProgram {
         Set<Airport> airports = AirportSingleton.getInstance().airportSet;
         Set<Flight> flights = FlightSingleton.getInstance().flightSet;
         Set<Passenger> passengers = PassengerSingleton.getInstance().passengerSet;
-
-        for (Agent agent : agents) {
-            System.out.println(agent.getPassword());
-        }
-
-        sabbaSearch.search();
-
+        Set<Destination> destinations = DestinationSingleton.getInstance().destinationSet;
+        System.out.println(destinations.toString());
+        //System.out.println(agents.toString());
     }
+       // for (Agent agent : agents) {
+      //      System.out.println(agent.getPassword());
+     //   }
+
+      //  sabbaSearch.search();
+
+  //  }
 
 //    private <T> Set<T> loadData(Class<T> classType, String fileName) {
 //        Set<T> data;

@@ -44,7 +44,6 @@ public abstract class Person {
     public void setEmail(String email) { this.email = email; }
 
     public void setBirthDate(String birthDateStr)  {
-
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         formatter.parse(birthDateStr);
         this.birthDate = LocalDate.parse(birthDateStr, formatter);
