@@ -58,12 +58,9 @@ public class AgentRepositoryImpl implements AgentRepository {
     //check if there is a shorter way to find agent by agent code if this is a set
     @Override
     public Agent find(int agentCode) {
-        if(this.agents.contains(agentCode))
-        {
-            for (Agent agent : agents)
-            {
-                if(agent.getAgentCode() == agentCode)
-                    return agent;
+        for (Agent agent : this.agents) {
+            if (agent.getAgentCode() == agentCode) {
+                return agent;
             }
         }
         return null;
