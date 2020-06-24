@@ -15,16 +15,13 @@ public class SearchService {
     private AircraftCompanyRepository aircraftCompanyRepo;
     private Destination dest;
 
+    /*Does destination exists in file? */
+    // throws IOException, ClassNotFoundException {
+    public void validateSearch(Search search)  {
 
-    public void validateSearch(Search search) throws IOException, ClassNotFoundException {
+     System.out.println("Nothing in here yet");
 
-        /*Does destination exists in file? */
-        dest = new Destination();
-               for (String destination : dest.readDestination()) {
-                if (!(destination.toLowerCase().contains(search.getDestination()))) {
-                    System.out.println("Destination does not exists");
-                }
-            }
+    }
 
 //TODO: Depart date and arrival date are logical
 //TODO: Arrival date and arrival date are logical
@@ -34,7 +31,7 @@ public class SearchService {
 //TODO: Does there exist a direct flight
 //TODO: If everything is OK, call to showResults below
 
-    }
+
 
     public void showResults(Search search){
 

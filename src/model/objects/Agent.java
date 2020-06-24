@@ -20,7 +20,7 @@ public class Agent extends Person {
         this.agentCode = agentCode;
     }
 
-    // Setters (which will be used by the builder)
+    // Setters
     public void setUserName(String userName) {
         this.userName = userName;
     }
@@ -34,7 +34,6 @@ public class Agent extends Person {
     public void setIsVerified(boolean isVerified) {
         this.isVerified = isVerified;
     }
-
     public void setPermissionLevel(int permissionLevel) { this.permissionLevel = permissionLevel; }
 
     // Getters
@@ -50,18 +49,11 @@ public class Agent extends Person {
 
     @Override
     public String toString() {
-        return "Agent{" +
-                "userName='" + userName + '\'' +
-                ", password='" + password + '\'' +
-                ", agentCode=" + agentCode +
-                ", isVerified=" + isVerified +
-                ", permissionLevel=" + permissionLevel +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", id=" + id +
-                ", email='" + email + '\'' +
-                ", birthDate=" + birthDate +
-                '}';
+        return super.toString() + "\n" +
+                "User name: " + userName + "\n" +
+                "Agent code: " + agentCode + "\n" +
+                "Verified: " + isVerified + "\n" +
+                "Permission level: " + permissionLevel;
     }
 
     @Override

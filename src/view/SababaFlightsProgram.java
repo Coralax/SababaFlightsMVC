@@ -34,22 +34,24 @@ public class SababaFlightsProgram {
         Set<Airport> airports = AirportSingleton.getInstance().airportSet;
         Set<Flight> flights = FlightSingleton.getInstance().flightSet;
         Set<Passenger> passengers = PassengerSingleton.getInstance().passengerSet;
+        Set<Destination> destinations = DestinationSingleton.getInstance().destinationSet;
+        System.out.println(agents.toString());
 
-        sabbaSearch.search();
+        //sabbaSearch.search();
 
     }
 
-//    private <T> Set<T> loadData(Class<T> classType, String fileName) {
-//        Set<T> data;
-//        FileManager<T> fileManager = new FileManager<>(fileName);
-//        data = fileManager.read(classType);
-//        return data;
-//    }
-//
-//    private <T> boolean saveData(Set<T> data, String fileName) {
-//        FileManager<T> fileManager = new FileManager<>(fileName);
-//        return fileManager.saveSet(data);
-//    }
+   private <T> Set<T> loadData(Class<T> classType, String fileName) {
+       Set<T> data;
+      FileManager<T> fileManager = new FileManager<>(fileName);
+      data = fileManager.read(classType);
+       return data;
+   }
+
+   private <T> boolean saveData(Set<T> data, String fileName) {
+       FileManager<T> fileManager = new FileManager<>(fileName);
+        return fileManager.saveSet(data);
+    }
 
     public void loginScreen(){
         String op;
