@@ -1,10 +1,12 @@
 package model.repository;
 
-/*Login,Signup*/
-public class AuthenticationRepository {
+import model.singletons.LoginSingleton;
 
-        public boolean validateLoginUser(String username, String password) {
-            // read from file - > return true or false, use the login service
-            return true;
-        }
+/*Login,Signup*/
+public interface AuthenticationRepository {
+
+    boolean userNameLogin(String userName, String password);
+    void logOut();
+    boolean isLoggedin();
+
 }

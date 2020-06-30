@@ -21,7 +21,7 @@ public class AuthenticationController {
 
 
     public AuthenticationController(){
-        AuthenticationService authService = new AuthenticationService();
+        this.authService = new AuthenticationService();
     }
 
     public boolean login(String username, String password) {

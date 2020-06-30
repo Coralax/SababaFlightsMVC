@@ -6,6 +6,7 @@ import controller.SearchController;
 import controller.objects.Search;
 import model.FileManager;
 import model.objects.*;
+import model.repository.AuthenticationRepositoryImpl;
 import model.singletons.*;
 
 import java.io.IOException;
@@ -26,7 +27,7 @@ public class SababaFlightsProgram {
         this.sabbaSearch = new SababaSearch();
      }
 
-    public void startProgram() throws IOException, ClassNotFoundException {
+    public void startProgram() {
         /*CLI options*/
 
         Set<Agent> agents = AgentSingleton.getInstance().agentSet;
@@ -34,17 +35,17 @@ public class SababaFlightsProgram {
         Set<Airport> airports = AirportSingleton.getInstance().airportSet;
         Set<Flight> flights = FlightSingleton.getInstance().flightSet;
         Set<Passenger> passengers = PassengerSingleton.getInstance().passengerSet;
-        Set<Destination> destinations = DestinationSingleton.getInstance().destinationSet;
-        System.out.println(destinations.toString());
-        //System.out.println(agents.toString());
+//        Set<Destination> destinations = DestinationSingleton.getInstance().destinationSet;
+
+//        for (Agent agent : agents) {
+//            if(agent.getUserName().equals("asdf")){
+//                agent.setPassword("asdf");
+//            }
+//        }
+
+        this.loginScreen();
+
     }
-       // for (Agent agent : agents) {
-      //      System.out.println(agent.getPassword());
-     //   }
-
-      //  sabbaSearch.search();
-
-  //  }
 
 //    private <T> Set<T> loadData(Class<T> classType, String fileName) {
 //        Set<T> data;
@@ -85,12 +86,14 @@ public class SababaFlightsProgram {
     }
 
 
-    public void homePage(String username){
-        String op = null;
+    public void homePage(){
+        String op;
         do {
-            System.out.println("Welcome " + username + ",what would you like to do?");
+            Agent loggedInAgent = LoginSingleton.getInstance().loggedInAgent;
+            System.out.println("Welcome " + loggedInAgent.getFirstName() + " ,what would you like to do?");
             System.out.println("1: Search a Flight ");
             System.out.println("2: Order a flight ");
+            System.out.println("0: Logout");
             System.out.println("-1: Exit ");
             try (Scanner scanner = new Scanner((System.in))) {
                 op = scanner.nextLine();
@@ -101,28 +104,35 @@ public class SababaFlightsProgram {
                     case "2":
                         this.order();
                         break;
+                    case "0":
+                        LoginSingleton.getInstance().logOut();
+                        this.loginScreen();
+                        break;
                     case "-1":
                         break;
                     default:
+                        LoginSingleton.getInstance().logOut();
+                        this.loginScreen();
                         System.exit(0);
 
                 }
-            } catch (IOException  |ClassNotFoundException e) {
-                e.printStackTrace();
             }
         }while (!(op.equals("-1")));
     }
 
     public void login() {
         try (Scanner scanner = new Scanner(System.in)) {
-            System.out.println("username: ");
-            String username = scanner.nextLine();
-            System.out.println("password: ");
+            System.out.println("Username: ");
+            String userName = scanner.nextLine();
+            System.out.println("Password: ");
             String password = scanner.nextLine();
-            boolean login = authController.login(username, password);
+            boolean login = authController.login(userName, password);
+            if (login) {
+                this.homePage();
+            } else {
+                this.login();
+            }
             System.out.println("Login status: " + login);
-
-            homePage(username);
         }
     }
 

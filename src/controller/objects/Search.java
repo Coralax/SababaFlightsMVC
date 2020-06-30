@@ -28,46 +28,39 @@ public class Search {
     public LocalDate getDeparture() {
         return departure;
     }
+    public LocalDate getArrival() {
+        return arrival;
+    }
+    public String getDestination() {
+        return destination;
+    }
+    public int getNumberOfPassengers() {
+        return numberOfPassengers;
+    }
+    public boolean isDirectFlight() {
+        return directFlight;
+    }
+    public boolean isCabinClass() {
+        return cabinClass;
+    }
 
     public void setDeparture(LocalDate departure) {
         this.departure = departure;
     }
-
-    public LocalDate getArrival() {
-        return arrival;
-    }
-
     public void setArrival(LocalDate arrival) {
         this.arrival = arrival;
     }
-
-    public String getDestination() {
-        return destination;
-    }
-
     public void setDestination(String destination) {
         this.destination = destination;
     }
-
-    public int getNumberOfPassengers() {
-        return numberOfPassengers;
-    }
-
     public void setNumberOfPassengers(int numberOfPassengers) {
         this.numberOfPassengers = numberOfPassengers;
     }
-
-    public boolean isDirectFlight() {
-        return directFlight;
-    }
-
     public void setDirectFlight(boolean directFlight) {
         this.directFlight = directFlight;
     }
     public void setCabinClass(boolean cabinClass) {
         this.cabinClass = cabinClass;
     }
-    public boolean isCabinClass() {
-        return cabinClass;
-    }
+
 }

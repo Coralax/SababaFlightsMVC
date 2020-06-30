@@ -4,7 +4,8 @@ package model.service;
  * 2. A method to validate that an ID is a unique identifier and no other person exists with the same ID
  * 3. A method to validate that an email address is not already taken by another person*/
 
-import model.repository.AuthenticationRepository;
+import model.repository.AuthenticationRepositoryImpl;
+
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.UUID;
@@ -12,19 +13,18 @@ import java.util.regex.Pattern;
 
 public class AuthenticationService {
 
-    private AuthenticationRepository authRepository;
+    private AuthenticationRepositoryImpl authRepository;
 
     public AuthenticationService() {
-        this.authRepository = new AuthenticationRepository();
+        this.authRepository = new AuthenticationRepositoryImpl();
     }
 
-    public String login(String username, String password){
-        if(this.authRepository.validateLoginUser(username, password)){
+    public String login(String userName, String password){
+        if(this.authRepository.userNameLogin(userName, password)){
             return UUID.randomUUID().toString();
         }
         return null;
     }
-
 
     public boolean userNameValidation(String userName) {
 

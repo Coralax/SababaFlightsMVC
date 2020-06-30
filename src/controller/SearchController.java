@@ -1,5 +1,7 @@
-/* 1.Make Singleton
-   2. Can contain as many services as it needs*/
+/*
+ * 1. Make Singleton
+ * 2. Can contain as many services as it needs
+ */
 
 package controller;
 
@@ -9,11 +11,12 @@ import model.service.SearchService;
 import java.io.IOException;
 
 public class SearchController {
+
     private SearchService searchService = new SearchService();
 
-    public void searchResults(Search search) throws IOException, ClassNotFoundException {
+    public void searchResults(Search search) {
 
-        /*Validate object fields*/
+        /* Validate object fields */
         if (search.getDestination() == null || search.getDestination().trim().equals("")) {
             throw new IllegalArgumentException("Invalid destination");
         }
@@ -22,5 +25,6 @@ public class SearchController {
         searchService.validateSearch(search);
 
     }
+
 }
 

@@ -7,6 +7,7 @@ import model.objects.Agent;
 //import model.objects.Order;
 import model.FileManager;
 import model.singletons.AgentSingleton;
+import model.singletons.LoginSingleton;
 import sun.util.resources.LocaleData;
 import java.io.File;
 import java.io.ObjectInputStream;
@@ -21,13 +22,13 @@ public class AgentRepositoryImpl implements AgentRepository {
 
     private final String agentFile = "SababaFlights\\src\\data\\agents.json";
     private final String adminFile = "SababaFlights\\src\\data\\admin.json";
-    private Set<Agent> agents;
-    private AgentSingleton agentSingletonInstance;
+//    private Set<Agent> agents;
+//    private AgentSingleton agentSingletonInstance;
 
-    public AgentRepositoryImpl() {
-        this.agentSingletonInstance = AgentSingleton.getInstance();
-        this.agents = agentSingletonInstance.agentSet;
-    }
+//    public AgentRepositoryImpl() {
+//        this.agentSingletonInstance = AgentSingleton.getInstance();
+//        this.agents = agentSingletonInstance.agentSet;
+//    }
 
     @Override
     public String encryptPassword(String password) {
@@ -49,37 +50,39 @@ public class AgentRepositoryImpl implements AgentRepository {
         return password;
     }
 
-    // we need to verify if the first if is required because the AuthenticationService should prevent it
-    @Override
-    public void add(Agent agent) throws Exception {
+//     we need to verify if the first if is required because the AuthenticationService should prevent it
+//    @Override
+//    public void add(Agent agent) throws Exception {
+//
+//        Set<Agent> agents = AgentSingleton.getInstance().agentSet;
+//
+//        if(agent == null){
+//            throw new Exception(("must have a value"));
+//        }
+//        if(agents.contains(agent)){
+//            throw new Exception("Agent already exist!");
+//        }
+//        agents.add(agent);
+//        AgentSingleton.getInstance().saveSet(agents);
+//
+//    }
 
-        if(agent == null){
-            throw new Exception(("must have a value"));
-        }
-        if(this.agents.contains(agent)){
-            throw new Exception("Agent already exist!");
-        }
-        this.agents.add(agent);
-        agentSingletonInstance.saveSet(this.agents);
-
-    }
-
-    @Override
-    public void delete(int agentCode) {
-        // need to implement delete in FileManger
-    }
+//    @Override
+//    public void delete(int agentCode) {
+//         need to implement delete in FileManger
+//    }
 
     //check if there is a shorter way to find agent by agent code if this is a set
-    @Override
-    public Agent find(int agentCode) {
-        for (Agent agent : this.agents) {
-            if (agent.getAgentCode() == agentCode) {
-                return agent;
-            }
-        }
-        return null;
-
-    }
+//    @Override
+//    public Agent find(int agentCode) {
+//        for (Agent agent : this.agents) {
+//            if (agent.getAgentCode() == agentCode) {
+//                return agent;
+//            }
+//        }
+//        return null;
+//
+//    }
 
 //    @Override
 //    public List<Order> findAllOrdersForAgent(int agentCode) {

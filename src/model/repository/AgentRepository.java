@@ -10,10 +10,8 @@ import java.util.List;
 public interface AgentRepository {
 
     String encryptPassword(String password);
-
-    void add(Agent agent) throws Exception;
-    void delete(int agentCode);
-    Agent find(int agentCode);
+//    void delete(int agentCode);
+//    Agent find(int agentCode);
 //    List<Order> findAllOrdersForAgent(int agentCode);
 //    List<Order> findAllOrdersForAgentByDate(int agentCode, LocalDate begin, LocalDate end);
 
