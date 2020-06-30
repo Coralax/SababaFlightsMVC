@@ -1,0 +1,82 @@
+[
+  {
+    "flightID" : 0,
+    "departureAirpot" : {
+      "address" : "Israel, TLV",
+      "name" : "Ben-Gurion",
+      "terminals" : [ "T1", "T3" ]
+    },
+    "destinationAirport" : {
+      "address" : "New-York, JFK",
+      "name" : "JFK",
+      "terminals" : [ "1", "2", "3", "4", "5", "6", "7", "8" ]
+    },
+    "departureDate" : "31/07/2020-23:15",
+    "arrivalDate" : "01/08/2020-03:23",
+    "flightPrice" : 512.0,
+    "aircraft" : {
+      "aircraftID" : 0,
+      "aircraftCompany" : {
+        "companyName" : "El-Al",
+        "companyClass" : "regular"
+      },
+      "seatsCount" : 78,
+      "model" : "Boeing-797"
+    },
+    "isAvailable" : true
+  },
+  {
+    "flightID" : 1,
+    "departureAirpot" : {
+      "address" : "Israel, TLV",
+      "name" : "Ben-Gurion",
+      "terminals" : [ "T1", "T3" ]
+    },
+    "destinationAirport" : {
+      "address" : "Barcelona, BCN",
+      "name" : "Barcelona-El Prat",
+      "terminals" : [ "A", "B", "C", "D" ]
+    },
+    "departureDate" : "02/08/2020-17:36",
+    "arrivalDate" : "02/08/2020-22:29",
+    "flightPrice" : 436.0,
+    "aircraft" : {
+      "aircraftID": 1,
+      "aircraftCompany":
+      {
+        "companyName" : "WizzAir",
+        "companyClass" : "Low-cost"
+      },
+      "seatsCount": 78,
+      "model": "Boeing-797"
+    },
+    "isAvailable" : true
+  },
+  {
+    "flightID" : 1,
+    "departureAirpot" : {
+      "address" : "Israel, TLV",
+      "name" : "Ben-Gurion",
+      "terminals" : [ "T1", "T3" ]
+    },
+    "destinationAirport" : {
+      "address" : "New-York, JFK",
+      "name" : "JFK",
+      "terminals" : [ "1", "2", "3", "4", "5", "6", "7", "8" ]
+    },
+    "departureDate" : "01/08/2020-06:00",
+    "arrivalDate" : "01/08/2020-10:03",
+    "flightPrice" : 479.0,
+    "aircraft" : {
+      "aircraftID": 1,
+      "aircraftCompany":
+      {
+        "companyName" : "WizzAir",
+        "companyClass" : "Low-cost"
+      },
+      "seatsCount": 78,
+      "model": "Boeing-797"
+    },
+    "isAvailable" : true
+  }
+]

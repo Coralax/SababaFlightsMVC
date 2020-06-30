@@ -1,0 +1,16 @@
+[ {
+  "companyName" : "Israir",
+  "companyClass" : "regular"
+}, {
+  "companyName" : "WowAir",
+  "companyClass" : "Low-cost"
+}, {
+  "companyName" : "El-Al",
+  "companyClass" : "regular"
+}, {
+  "companyName" : "WizzAir",
+  "companyClass" : "Low-cost"
+}, {
+  "companyName" : "Aegan Airlines",
+  "companyClass" : "Low-cost"
+} ]
