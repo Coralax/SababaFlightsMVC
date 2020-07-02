@@ -11,9 +11,8 @@ public class Search {
     private boolean cabinClass;
 
 
-      public Search()
+    public Search()
     {
-
     }
     public Search(LocalDate departure, LocalDate arrival, String destination, int numberOfPassengers,boolean cabinClass,boolean directFlight) {
         this.departure = departure;
@@ -28,9 +27,7 @@ public class Search {
     public LocalDate getDeparture() {
         return departure;
     }
-    public LocalDate getArrival() {
-        return arrival;
-    }
+    public LocalDate getArrival() { return arrival; }
     public String getDestination() {
         return destination;
     }
