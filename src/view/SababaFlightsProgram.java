@@ -61,7 +61,7 @@ public class SababaFlightsProgram {
 
     public void loginScreen(){
         String op;
-        do {
+      //  do {
             System.out.println("Welcome to SababaFlight: ");
             System.out.println("1: Log in ");
             System.out.println("2: Sign up ");
@@ -82,13 +82,13 @@ public class SababaFlightsProgram {
 
                 }
             }
-        }while (!(op.equals("-1")));
+        //}while (!(op.equals("-1")));
     }
 
 
-    public void homePage(){
+    public void homePage() {
         String op;
-        do {
+        //do {
             Agent loggedInAgent = LoginSingleton.getInstance().loggedInAgent;
             System.out.println("Welcome " + loggedInAgent.getFirstName() + " ,what would you like to do?");
             System.out.println("1: Search a Flight ");
@@ -117,8 +117,10 @@ public class SababaFlightsProgram {
 
                 }
             }
-        }while (!(op.equals("-1")));
-    }
+        }
+        //while (!(op.equals("-1")));
+    //}
+
 
     public void login() {
         try (Scanner scanner = new Scanner(System.in)) {

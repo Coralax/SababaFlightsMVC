@@ -16,6 +16,13 @@ public class Airport {
         this.terminals = terminals;
     }
 
+    public void setAddress(String address) {
+        this.address = address;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getAddress() {
         return this.address;
     }
@@ -24,12 +31,6 @@ public class Airport {
     }
     public List<String> getTerminals() { return this.terminals; }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public boolean addTerminal(String terminal) {
         if(!this.terminals.contains(terminal)) {
@@ -43,8 +44,8 @@ public class Airport {
     @Override
     public String toString() {
         return
-                " Address='" + address + "\n" +
-                " Name='" + name + "\n"+
-                " Terminals=" + terminals ;
+                " Address: " + address + "\n" +
+                " Name: " + name + "\n"+
+                " Terminals: " + terminals ;
     }
 }

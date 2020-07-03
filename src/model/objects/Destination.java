@@ -21,12 +21,12 @@ public class Destination {
     public void setListOfDestinations(List<String> listOfDestinations) {
         this.listOfDestinations = listOfDestinations;
     }
-
-    @Override
-    public String toString() {
-        return "Destinations are: " + "\n"+
-                 listOfDestinations;
-    }
+//
+//    @Override
+//    public String toString() {
+//        return "Destinations are: " + "\n"+
+//                 listOfDestinations;
+//    }
 }
 
 

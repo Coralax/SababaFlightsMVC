@@ -1,17 +1,17 @@
 [ {
-  "address" : "New-York, JFK",
+  "address" : "New-York",
   "name" : "JFK",
   "terminals" : [ "1", "2", "3", "4", "5", "6", "7", "8" ]
 }, {
-  "address" : "Israel, TLV",
+  "address" : "Israel",
   "name" : "Ben-Gurion",
   "terminals" : [ "T1", "T3" ]
 }, {
-  "address" : "Germany, SXF",
+  "address" : "Germany",
   "name" : "Schonefelb",
   "terminals" : [ "A", "B", "C" ]
 }, {
-  "address" : "Barcelona, BCN",
+  "address" : "Barcelona",
   "name" : "Barcelona-El Prat",
   "terminals" : [ "A", "B", "C", "D" ]
 } ]

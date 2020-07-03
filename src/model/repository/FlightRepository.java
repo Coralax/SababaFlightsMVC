@@ -1,5 +1,10 @@
 package model.repository;
 
-public interface FlightRepository {
+import model.objects.Flight;
 
+import java.time.LocalDate;
+import java.util.List;
+
+public interface FlightRepository {
+     List<Flight> flightResults(String destination, int numOfPassengers, LocalDate departD, LocalDate returnD);
 }

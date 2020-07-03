@@ -3,31 +3,29 @@ package controller.objects;
 import java.time.LocalDate;
 
 public class Search {
-    private LocalDate departure;
-    private LocalDate arrival;
+    private LocalDate departureDate;
+    private LocalDate returnDate;
     private String destination;
     private int numberOfPassengers;
     private boolean directFlight;
-    private boolean cabinClass;
 
 
     public Search()
     {
     }
-    public Search(LocalDate departure, LocalDate arrival, String destination, int numberOfPassengers,boolean cabinClass,boolean directFlight) {
-        this.departure = departure;
-        this.arrival = arrival;
+    public Search(LocalDate departureDate, LocalDate returnDate, String destination, int numberOfPassengers,boolean directFlight) {
+        this.departureDate = departureDate;
+        this.returnDate = returnDate;
         this.destination = destination;
         this.numberOfPassengers = numberOfPassengers;
-        this.cabinClass=cabinClass;
         this.directFlight = directFlight;
     }
 
 
-    public LocalDate getDeparture() {
-        return departure;
+    public LocalDate getDepartureDate() {
+        return departureDate;
     }
-    public LocalDate getArrival() { return arrival; }
+    public LocalDate getReturnDate() { return returnDate; }
     public String getDestination() {
         return destination;
     }
@@ -37,15 +35,12 @@ public class Search {
     public boolean isDirectFlight() {
         return directFlight;
     }
-    public boolean isCabinClass() {
-        return cabinClass;
-    }
 
-    public void setDeparture(LocalDate departure) {
-        this.departure = departure;
+    public void setDepartureDate(LocalDate departureDate) {
+        this.departureDate = departureDate;
     }
-    public void setArrival(LocalDate arrival) {
-        this.arrival = arrival;
+    public void setReturnDate(LocalDate returnDate) {
+        this.returnDate = returnDate;
     }
     public void setDestination(String destination) {
         this.destination = destination;
@@ -55,9 +50,6 @@ public class Search {
     }
     public void setDirectFlight(boolean directFlight) {
         this.directFlight = directFlight;
-    }
-    public void setCabinClass(boolean cabinClass) {
-        this.cabinClass = cabinClass;
     }
 
 }
