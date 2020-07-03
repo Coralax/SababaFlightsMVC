@@ -8,7 +8,6 @@ import model.repository.AircraftCompanyRepository;
 import model.repository.FlightRepository;
 import model.repository.FlightRepositoryImpl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class SearchService {
@@ -21,7 +20,7 @@ public class SearchService {
     /*Does destination exists in file? */
     // throws IOException, ClassNotFoundException {
     public void validateSearch(Search search) {
-              List<Flight> flights=flightRepo.flightResults(search.getDestination(),search.getNumberOfPassengers(),search.getDepartureDate(),search.getReturnDate());
+              List<Flight> flights=flightRepo.flightResultOneDirection(search.getDestination(),search.getNumberOfPassengers(),search.getDepartureDate());
         if(flights==null)
             System.out.println("No flights suits your search");
         else
@@ -30,9 +29,6 @@ public class SearchService {
                 System.out.println(flight);
               showResults(search);
         }
-
-
-
 
         //TODO: Check if there are seats left in the flight. Do not show an empty flight
         //TODO: (Number of passengers) - CHECK IF THERE AR ENOUGH SEATS

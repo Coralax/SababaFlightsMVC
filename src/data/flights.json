@@ -1,7 +1,8 @@
 [
   {
     "flightID" : 0,
-    "departureAirpot" : {
+    "destination": "USA",
+    "departureAirport" : {
       "address" : "Israel",
       "name" : "Ben-Gurion",
       "terminals" : [ "T1", "T3" ]
@@ -27,7 +28,8 @@
   },
   {
     "flightID" : 1,
-    "departureAirpot" : {
+    "destination": "Spain",
+    "departureAirport" : {
       "address" : "Israel, TLV",
       "name" : "Ben-Gurion",
       "terminals" : [ "T1", "T3" ]
@@ -54,7 +56,8 @@
   },
   {
     "flightID" : 2,
-    "departureAirpot" : {
+    "destination": "USA",
+    "departureAirport" : {
       "address" : "Israel",
       "name" : "Ben-Gurion",
       "terminals" : [ "T1", "T3" ]
@@ -64,8 +67,8 @@
       "name" : "JFK",
       "terminals" : [ "1", "2", "3", "4", "5", "6", "7", "8" ]
     },
-    "departureDate" : "01/08/2020",
-    "arrivalDate" : "01/08/2020",
+    "departureDate" : "07/08/2020",
+    "arrivalDate" : "07/08/2020",
     "flightPrice" : 479.0,
     "aircraft" : {
       "aircraftID": 1,
@@ -81,7 +84,8 @@
   },
   {
     "flightID" : 3,
-    "departureAirpot" : {
+    "destination": "Israel",
+    "departureAirport" : {
       "address" : "New-York",
       "name" : "JFK",
       "terminals" :[ "1", "2", "3", "4", "5", "6", "7", "8" ]

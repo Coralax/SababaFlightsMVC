@@ -1,5 +1,4 @@
 package model.objects;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,8 +9,8 @@ public class Airport {
 
     public Airport() {}
 
-    public Airport(String address, String name, List<String> terminals) {
-        this.address = address;
+    public Airport(String countryName, String name, List<String> terminals) {
+        this.address = countryName;
         this.name = name;
         this.terminals = terminals;
     }

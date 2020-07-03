@@ -41,9 +41,9 @@ public class Aircraft {
     @Override
     public String toString() {
         return super.toString() + "\n"+
-                " Aircraft ID=" + aircraftID + "\n"+
-                " Aircraft company=" + aircraftCompany + "\n"+
-                " Seats count=" + seatsCount + "\n"+
-                " Model='" + model;
+                " Aircraft ID: " + aircraftID + "\n"+
+                " Aircraft company: " + aircraftCompany + "\n"+
+                " Seats count: " + seatsCount + "\n"+
+                " Model: " + model;
     }
 }
