@@ -52,8 +52,6 @@ public class SearchService {
 
 
 
-
-
         if (!flag) {
             System.out.println("1: Start a new search");
             System.out.println("2: Return to Home page");
