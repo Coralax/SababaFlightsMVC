@@ -1,16 +1,16 @@
 package model.objects;
 
-import model.repository.OrderRepository;
 import model.repository.OrderRepositoryImpl;
 
 import java.util.List;
+import java.util.Set;
 
 public class Order {
 
     int agentCode;
     AircraftCompany flightCompany;
     boolean roundTrip;
-    int orderID;
+    long orderID;
     double totalCost;
     long creditCard;
     List<Flight> flightTo;
@@ -45,7 +45,7 @@ public class Order {
     public int getAgentCode() { return this.agentCode; }
     public AircraftCompany getFlightCompany() { return this.flightCompany; }
     public boolean isRoundTrip() { return this.roundTrip; }
-    public int getOrderID() { return this.orderID; }
+    public long getOrderID() { return this.orderID; }
     public double getTotalCost() { return totalCost; }
     public long getCreditCard() { return this.creditCard; }
     public List<Flight> getFlightTo() { return this.flightTo; }
@@ -58,7 +58,7 @@ public class Order {
     public void setAgentCode(int agentCode) { this.agentCode = agentCode; }
     public void setFlightCompany(AircraftCompany flightCompany) { this.flightCompany = flightCompany; }
     public void setRoundTrip(boolean roundTrip) { this.roundTrip = roundTrip; }
-    public void setOrderID(int orderID) { this.orderID = orderID; }
+    public void setOrderID(long orderID) { this.orderID = orderID; }
     public void setTotalCost(double totalCost) { this.totalCost = totalCost; }
     public void setCreditCard(long creditCard) { this.creditCard = creditCard; }
     public void setFlightTo(List<Flight> flightTo) { this.flightTo = flightTo; }
@@ -68,13 +68,19 @@ public class Order {
     public void setCanceled(boolean isCanceled) { this.canceled = isCanceled; }
 
     public boolean addPassenger(Passenger newPassenger) {
-        OrderRepositoryImpl orderRepository = new OrderRepositoryImpl();
-        return orderRepository.addPassenger(this, newPassenger);
+        return new OrderRepositoryImpl().addPassenger(this, newPassenger);
     }
 
     public boolean removePassengerByID(long id) {
-        OrderRepositoryImpl orderRepository = new OrderRepositoryImpl();
-        return orderRepository.removePassengerByID(this, id);
+        return new OrderRepositoryImpl().removePassengerByID(this, id);
+    }
+
+    public void deleteOrder() {
+        new OrderRepositoryImpl().deleteOrder(this);
+    }
+
+    public void cancelOrder() {
+        new OrderRepositoryImpl().cancelOrder(this);
     }
 
     @Override

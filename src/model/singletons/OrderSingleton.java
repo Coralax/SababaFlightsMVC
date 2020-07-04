@@ -58,65 +58,6 @@ public class OrderSingleton extends Singleton<Order> {
         return ordersByPassenger;
     }
 
-    public boolean deleteOrderByID(int orderToDelete) {
-        Scanner input = new Scanner(System.in);
-        System.out.println("Are you sure you want to delete the order? (Y / N)");
-        String userInput = input.nextLine();
-        if (userInput.equals("Y") || userInput.equals("y")) {
-            Iterator<Order> iterator = orderSet.iterator();
-            while (iterator.hasNext()) {
-                Order order = iterator.next();
-                if (order.getOrderID() == orderToDelete) {
-                    iterator.remove();
-                    System.out.println("Order has been deleted");
-                    return true;
-                }
-            }
-            System.out.println("There is no order with the provided ID");
-            return false;
-        }
-        System.out.println("Done nothing");
-        return false;
-    }
-
-    public boolean cancelOrderByID(int orderToCancel) {
-        Scanner input = new Scanner(System.in);
-        System.out.println("Are you sure you want to cancel the order? (Y / N)");
-        String userInput = input.nextLine();
-        if (userInput.equals("Y") || userInput.equals("y")) {
-            for (Order order : orderSet) {
-                if (order.getOrderID() == orderToCancel) {
-                    order.setCanceled(true);
-                    System.out.println("Order has been canceled");
-                    return true;
-                }
-            }
-            System.out.println("There is no order with the provided ID");
-            return false;
-        }
-        System.out.println("Done nothing");
-        return false;
-    }
-
-    public boolean reopenOrderByID(int orderToReopen) {
-        Scanner input = new Scanner(System.in);
-        System.out.println("Are you sure you want to re-open the order? (Y / N)");
-        String userInput = input.nextLine();
-        if (userInput.equals("Y") || userInput.equals("y")) {
-            for (Order order : orderSet) {
-                if (order.getOrderID() == orderToReopen) {
-                    order.setCanceled(false);
-                    System.out.println("Order has been canceled");
-                    return true;
-                }
-            }
-            System.out.println("There is no order with the provided ID");
-            return false;
-        }
-        System.out.println("Done nothing");
-        return false;
-    }
-
 //    public Set<Order> getOrdersByDate() {
 //        Set<Order> filteredOrders = new HashSet<>();
 //    }
