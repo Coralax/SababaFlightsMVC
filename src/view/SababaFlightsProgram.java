@@ -12,11 +12,14 @@ public class SababaFlightsProgram {
     private AuthenticationController authController;
     private OrderController orderController;
     private SababaSearch sabbaSearch;
+    private SababaOrderView orderView;
 
     public SababaFlightsProgram() {
         this.authController = new AuthenticationController();
         this.orderController = new OrderController();
         this.sabbaSearch = new SababaSearch();
+        this.orderView=new SababaOrderView();
+
      }
 
     public void startProgram() {
@@ -84,8 +87,9 @@ public class SababaFlightsProgram {
                     case "-1":
                         break;
                     default:
+                        LoginSingleton.getInstance().logOut();
+                        this.loginScreen();
                         System.exit(0);
-
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -136,7 +140,7 @@ public class SababaFlightsProgram {
             Agent loggedInAgent = LoginSingleton.getInstance().loggedInAgent;
             System.out.println("Welcome " + loggedInAgent.getFirstName() + " ,what would you like to do?");
             System.out.println("1: Search a Flight ");
-            System.out.println("2: Order a flight ");
+            System.out.println("2: Orders ");
             System.out.println("0: Logout");
             System.out.println("-1: Exit ");
             try {
@@ -146,7 +150,7 @@ public class SababaFlightsProgram {
                         sabbaSearch.search();
                         break;
                     case "2":
-                        this.order();
+                        sabbaSearch.search(); //change to orderview
                         break;
                     case "0":
                         LoginSingleton.getInstance().logOut();
@@ -181,12 +185,6 @@ public class SababaFlightsProgram {
             System.out.println("Login status: " + login);
         }
     }
-
-
-    public void order(){
-
-    }
-
 
 }
 
