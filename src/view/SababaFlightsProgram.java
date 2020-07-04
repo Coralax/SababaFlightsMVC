@@ -99,8 +99,43 @@ public class SababaFlightsProgram {
     }
 
 
-    public void homePage(){
-        String op;
+    public void SignUp() {
+        //(String firstName, String lastName, long id, String email, LocalDate birthDate,
+        // boolean enabled , String userName, String password) throws IOException {
+        long id;
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter your sign up details:\n first name:");
+        String first_name = scanner.nextLine();
+        System.out.println("last name: ");
+        String last_name = scanner.nextLine();
+        System.out.println("id: ");
+        Scanner sc = new Scanner(System.in);
+        String idStr = sc.next();
+        id = Long.valueOf(idStr);
+
+        System.out.println("email: ");
+        String email = scanner.nextLine();
+
+        System.out.println("birthday: ");
+        String birthDate = scanner.nextLine();
+
+        System.out.println("username: ");
+        String username = scanner.nextLine();
+        System.out.println("password:");
+        String password = scanner.nextLine();
+
+        boolean signUpFlag = this.authController.agentSignUp(first_name, last_name, id, email, birthDate, false, username, password);
+        System.out.println("signUpFlag");
+        if(signUpFlag){
+            System.out.println("Sign up successfully");
+        }
+    }
+
+
+
+    public void homePage(String username){
+        String op = null;
         do {
             Agent loggedInAgent = LoginSingleton.getInstance().loggedInAgent;
             System.out.println("Welcome " + loggedInAgent.getFirstName() + " ,what would you like to do?");
@@ -129,6 +164,8 @@ public class SababaFlightsProgram {
                         System.exit(0);
 
                 }
+            } catch (IOException  |ClassNotFoundException e) {
+                e.printStackTrace();
             }
         }while (!(op.equals("-1")));
     }
@@ -149,11 +186,6 @@ public class SababaFlightsProgram {
         }
     }
 
-
-    public void SignUp(){
-
-
-    }
 
     public void order(){
 
