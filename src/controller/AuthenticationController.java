@@ -4,8 +4,6 @@
 package controller;
 import model.service.AuthenticationService;
 
-import java.time.LocalDate;
-
 public class AuthenticationController {
 
     private AuthenticationService authService;
@@ -34,6 +32,31 @@ public class AuthenticationController {
             return true;
         }
         return false;
+    }
+    public boolean emailValidation(String email){
+        return this.authService.isValidEmail(email);
+    }
+    public boolean passwordValidation(String pass){
+        return this.authService.passwordValidation(pass);
+    }
+
+    public boolean usernameValidation(String username){
+        //check validation
+        //check if username exist or not
+        boolean isValid = this.authService.userNameValidation(username);
+        if(isValid){
+            boolean userExist = this.authService.userExist(username);
+            if(userExist){
+                System.out.println("username is already exist, try again.");
+                return false;
+            } else // The username is ready to use (valid&not used before)
+                return true;
+        } //not a valid username
+        return false;
+    }
+
+    public boolean birthdayValidation(String date){
+        return this.authService.isDate(date);
     }
 
 }

@@ -12,12 +12,14 @@ public class SababaFlightsProgram {
     private AuthenticationController authController;
     private OrderController orderController;
     private SababaSearch sabbaSearch;
-
+    private SignUpForm signUpForm;
     public SababaFlightsProgram() {
         this.authController = new AuthenticationController();
         this.orderController = new OrderController();
         this.sabbaSearch = new SababaSearch();
+        this.signUpForm = new SignUpForm();
      }
+
 
     public void startProgram() {
         /*CLI options*/
@@ -79,7 +81,7 @@ public class SababaFlightsProgram {
                         this.login();
                         break;
                     case "2":
-                        this.SignUp();
+                        this.signUpForm.signUp();
                         break;
                     case "-1":
                         break;
@@ -94,38 +96,38 @@ public class SababaFlightsProgram {
     }
 
 
-    public void SignUp() {
-        //(String firstName, String lastName, long id, String email, LocalDate birthDate,
-        // boolean enabled , String userName, String password) throws IOException {
-        long id;
-
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter your sign up details:\n first name:");
-        String first_name = scanner.nextLine();
-        System.out.println("last name: ");
-        String last_name = scanner.nextLine();
-        System.out.println("id: ");
-        Scanner sc = new Scanner(System.in);
-        String idStr = sc.next();
-        id = Long.parseLong(idStr);
-
-        System.out.println("email: ");
-        String email = scanner.nextLine();
-
-        System.out.println("birthday: ");
-        String birthDate = scanner.nextLine();
-
-        System.out.println("username: ");
-        String username = scanner.nextLine();
-        System.out.println("password:");
-        String password = scanner.nextLine();
-
-        boolean signUpFlag = this.authController.agentSignUp(first_name, last_name, id, email, birthDate, false, username, password);
-        System.out.println("signUpFlag");
-        if(signUpFlag){
-            System.out.println("Sign up successfully");
-        }
-    }
+//    public void SignUp() {
+//        //(String firstName, String lastName, long id, String email, LocalDate birthDate,
+//        // boolean enabled , String userName, String password) throws IOException {
+//        long id;
+//
+//        Scanner scanner = new Scanner(System.in);
+//        System.out.println("Enter your sign up details:\n first name:");
+//        String first_name = scanner.nextLine();
+//        System.out.println("last name: ");
+//        String last_name = scanner.nextLine();
+//        System.out.println("id: ");
+//        Scanner sc = new Scanner(System.in);
+//        String idStr = sc.next();
+//        id = Long.parseLong(idStr);
+//
+//        System.out.println("email: ");
+//        String email = scanner.nextLine();
+//
+//        System.out.println("birthday: ");
+//        String birthDate = scanner.nextLine();
+//
+//        System.out.println("username: ");
+//        String username = scanner.nextLine();
+//        System.out.println("password:");
+//        String password = scanner.nextLine();
+//
+//        boolean signUpFlag = this.authController.agentSignUp(first_name, last_name, id, email, birthDate, false, username, password);
+//        System.out.println("signUpFlag");
+//        if(signUpFlag){
+//            System.out.println("Sign up successfully");
+//        }
+//    }
 
 
 
