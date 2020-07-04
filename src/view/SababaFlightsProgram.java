@@ -18,8 +18,7 @@ public class SababaFlightsProgram {
         this.authController = new AuthenticationController();
         this.orderController = new OrderController();
         this.sabbaSearch = new SababaSearch();
-        this.orderView=new SababaOrderView();
-
+        this.orderView = new SababaOrderView(this);
      }
 
     public void startProgram() {
@@ -132,7 +131,7 @@ public class SababaFlightsProgram {
                         sabbaSearch.search();
                         break;
                     case "2":
-                        sabbaSearch.search(); //change to orderview
+                        orderView.orderScreen();
                         break;
                     case "0":
                         LoginSingleton.getInstance().logOut();

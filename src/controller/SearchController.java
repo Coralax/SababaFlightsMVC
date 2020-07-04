@@ -7,10 +7,8 @@ package controller;
 
 import controller.objects.Search;
 import model.objects.Airport;
-import model.objects.Destination;
 import model.service.SearchService;
 import model.singletons.AirportSingleton;
-import model.singletons.DestinationSingleton;
 
 import java.time.LocalDate;
 import java.util.Calendar;
@@ -34,9 +32,7 @@ public class SearchController {
     //Validate if number of passenger is between 1 to 10
     public boolean validNumOfPassenger(int passengers)
     {
-        if(passengers<1 || passengers>10)
-            return false;
-        return true;
+        return passengers >= 1 && passengers <= 10;
     }
     //Validate if depart date year is from year.now until year.now+1, id depart date mount is not smaller then mount now, if depart date day is not before day.now
 
