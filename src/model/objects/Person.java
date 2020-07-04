@@ -29,6 +29,7 @@ public abstract class Person {
         this.birthDate = birthDateStr;
     }
 
+
     public String getBirthDate() { return this.birthDate; }
     public String getFirstName() { return this.firstName; }
     public String getLastName() { return this.lastName; }
