@@ -43,7 +43,7 @@ public class Flight {
         this.isAvailable = isAvailable;
     }
 
-    public Aircraft getAircraftID() { return this.aircraft; }
+    public Aircraft getAircraft() { return this.aircraft; }
     public int getFlightID() { return flightID; }
     public Airport getDepartureAirpot() { return this.departureAirpot; }
     public Airport getDestinationAirport() { return this.destinationAirport; }

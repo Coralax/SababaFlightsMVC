@@ -35,13 +35,26 @@ public class SababaFlightsProgram {
         Set<Airport> airports = AirportSingleton.getInstance().airportSet;
         Set<Flight> flights = FlightSingleton.getInstance().flightSet;
         Set<Passenger> passengers = PassengerSingleton.getInstance().passengerSet;
-//        Set<Destination> destinations = DestinationSingleton.getInstance().destinationSet;
+        Set<Order> orders = OrderSingleton.getInstance().orderSet;
 
-//        for (Agent agent : agents) {
-//            if(agent.getUserName().equals("asdf")){
-//                agent.setPassword("asdf");
-//            }
+//        for (Order order : orders) {
+//            System.out.println(order.getOtherPassengers().size());
 //        }
+
+        Iterator<AircraftCompany> aircraftCompanyIterator = aircraftCompanies.iterator();
+        Iterator<Flight> flightIterator = flights.iterator();
+        Iterator<Passenger> passengerIterator = passengers.iterator();
+        AircraftCompany aircraftCompany = aircraftCompanyIterator.next();
+        List<Flight> flight = new ArrayList<>();
+        flight.add(flightIterator.next());
+
+        System.out.println(OrderSingleton.getInstance().orderSet.size());
+
+        orders.add(new Order(0, aircraftCompany, false, 0, 789.0, 321321321, flight, null, passengerIterator.next(), null));
+
+//        System.out.println(OrderSingleton.getInstance().orderSet.size());
+
+//        OrderSingleton.getInstance().saveSet(orders);
 
         this.loginScreen();
 

@@ -13,7 +13,7 @@ import java.util.Objects;
 public class Agent extends Person {
 
     private String userName, password;
-    private int agentCode;
+    private long agentCode;
     private boolean isVerified;
     private int permissionLevel;
 
@@ -45,8 +45,8 @@ public class Agent extends Person {
     public void setVerified(boolean verified) {  isVerified = verified;}
 
     // Getters
-    public String getUserName() {  return this.userName;}
-    public int getAgentCode() {return this.agentCode;}
+    public String getUserName() { return this.userName; }
+    public long getAgentCode() { return this.agentCode; }
     public boolean isVerified() { return this.isVerified; }
     public int getPermissionLevel() { return this.permissionLevel; }
     public String getPassword() { return this.password; }
