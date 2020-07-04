@@ -38,6 +38,7 @@ public class SababaFlightsProgram {
         System.out.println(destinations.toString());
         //System.out.println(agents.toString());
     }
+
        // for (Agent agent : agents) {
       //      System.out.println(agent.getPassword());
      //   }
@@ -65,7 +66,7 @@ public class SababaFlightsProgram {
             System.out.println("1: Log in ");
             System.out.println("2: Sign up ");
             System.out.println("-1: Exit ");
-            try (Scanner scanner = new Scanner((System.in))) {
+                Scanner scanner = new Scanner((System.in));
                 op = scanner.nextLine();
                 switch (op) {
                     case "1":
@@ -80,9 +81,44 @@ public class SababaFlightsProgram {
                         System.exit(0);
 
                 }
-            }
+
         }while (!(op.equals("-1")));
     }
+
+
+    public void SignUp() {
+        //(String firstName, String lastName, long id, String email, LocalDate birthDate,
+        // boolean enabled , String userName, String password) throws IOException {
+        long id;
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter your sign up details:\n first name:");
+        String first_name = scanner.nextLine();
+        System.out.println("last name: ");
+        String last_name = scanner.nextLine();
+        System.out.println("id: ");
+        Scanner sc = new Scanner(System.in);
+        String idStr = sc.next();
+        id = Long.valueOf(idStr);
+
+        System.out.println("email: ");
+        String email = scanner.nextLine();
+
+        System.out.println("birthday: ");
+        String birthDate = scanner.nextLine();
+
+        System.out.println("username: ");
+        String username = scanner.nextLine();
+        System.out.println("password:");
+        String password = scanner.nextLine();
+
+        boolean signUpFlag = this.authController.agentSignUp(first_name, last_name, id, email, birthDate, false, username, password);
+        System.out.println("signUpFlag");
+        if(signUpFlag){
+            System.out.println("Sign up successfully");
+        }
+    }
+
 
 
     public void homePage(String username){
@@ -127,15 +163,12 @@ public class SababaFlightsProgram {
     }
 
 
-    public void SignUp(){
-
-
-    }
-
     public void order(){
 
     }
+    public void addCustomer(){
 
+    }
 
 }
 

@@ -10,19 +10,18 @@ public class AuthenticationController {
 
     private AuthenticationService authService;
 
-    public boolean agentSignUp(String firstName, String lastName, long id, String email, LocalDate birthDate, boolean enabled , String userName, String password){
+    public AuthenticationController(){
+        this.authService = new AuthenticationService();
+    }
+
+    public boolean agentSignUp(String firstName, String lastName, long id, String email, String birthDate, boolean enabled , String userName, String password){
 
         /*Calling to Authentication service to validate id, email, birthdate, username, password *and* enabled or not (enabled is taken from the AuthenticationRepository that
          service will call*/
+    return this.authService.signUp(firstName,lastName,id,email,birthDate,enabled,userName,password);
 
-
-        return true;
     }
 
-
-    public AuthenticationController(){
-        AuthenticationService authService = new AuthenticationService();
-    }
 
     public boolean login(String username, String password) {
         if(username==null || username.equals("")|| password == null || password.equals("")){
@@ -36,4 +35,5 @@ public class AuthenticationController {
         }
         return false;
     }
+
 }

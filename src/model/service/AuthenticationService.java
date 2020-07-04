@@ -4,7 +4,9 @@ package model.service;
  * 2. A method to validate that an ID is a unique identifier and no other person exists with the same ID
  * 3. A method to validate that an email address is not already taken by another person*/
 
-import model.repository.AuthenticationRepository;
+import model.repository.AuthenticationRepositoryImpl;
+
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.UUID;
@@ -12,19 +14,18 @@ import java.util.regex.Pattern;
 
 public class AuthenticationService {
 
-    private AuthenticationRepository authRepository;
+    private AuthenticationRepositoryImpl authRepository;
 
     public AuthenticationService() {
-        this.authRepository = new AuthenticationRepository();
+        this.authRepository = new AuthenticationRepositoryImpl();
     }
 
-    public String login(String username, String password){
-        if(this.authRepository.validateLoginUser(username, password)){
+    public String login(String userName, String password){
+        if(this.authRepository.userNameLogin(userName, password)){
             return UUID.randomUUID().toString();
         }
         return null;
     }
-
 
     public boolean userNameValidation(String userName) {
 
@@ -91,67 +92,12 @@ public class AuthenticationService {
     public boolean dateValidation(LocalDate dateOfBirth) {
         return true;
     }
+
+    public boolean signUp(String firstName, String lastName, long id, String email, String birthDate, boolean enabled , String userName, String password) {
+
+            return this.authRepository.signUp(firstName, lastName, id, email, birthDate, enabled, userName, password);
+
+    }
 }
 
-
-
-    /*public boolean validateDateFormat(String strDate)
-    {
-
-        // Check if date is 'null'
-        if (strDate.trim().equals(""))
-        {
-            System.out.println("Empty Date string");
-            return false
-        }
-        // strDate is not 'null'
-        else
-        {
-            try
-            {
-                DateTimeFormatter formatter =DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                formatter.parse(strDate);
-            }
-            // Date format is invalid
-            catch (DateTimeParseException e)
-            {
-                System.out.println("Invalid date format");
-                return false;
-            }
-            // Return true if date format is valid
-            return true;
-        }
-    }*/
-
-  /*  private boolean validateDateFormat(String strDate)
-    {
-        // Check if date is 'null'
-        if (strDate.trim().equals(""))
-        {
-            System.out.println("Empty Date string");
-            return false;
-        }
-        // Date is not 'null'
-        else
-        {
-             // Set preferred date format,
-              //In our example: dd.MM.yyyy
-            SimpleDateFormat strFormat = new SimpleDateFormat("dd/MM/yyyy");
-            strFormat.setLenient(false);
-            // Create Date object
-             // parse the string into date
-            try
-            {
-                Date javaDate = strFormat.parse(strDate);
-            }
-            // Date format is invalid
-            catch (ParseException e)
-            {
-                return false;
-            }
-            // Return true if date format is valid
-            return true;
-        }
-    }
-    */
 

@@ -1,10 +1,16 @@
 package model.repository;
 
-/*Login,Signup*/
-public class AuthenticationRepository {
+import model.FileManager;
+import model.objects.Airport;
 
-        public boolean validateLoginUser(String username, String password) {
-            // read from file - > return true or false, use the login service
-            return true;
-        }
+import java.io.IOException;
+
+/*Login,Signup*/
+public interface AuthenticationRepository {
+
+    boolean userNameLogin(String userName, String password);
+    void logOut();
+    boolean isLoggedin();
+    boolean signUp(String firstName, String lastName, long id, String email, String birthDate, boolean enabled , String userName, String password);
+
 }

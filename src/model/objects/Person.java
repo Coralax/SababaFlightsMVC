@@ -1,8 +1,5 @@
 package model.objects;
 
-import java.io.Serializable;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 
@@ -19,8 +16,8 @@ public abstract class Person {
     protected String lastName;
     protected long id;
     protected String email;
-    protected String birthDateStr;
-    protected LocalDate birthDate;
+    protected String birthDate;
+    //protected LocalDate birthDate;
 
     public Person() {}
 
@@ -29,25 +26,25 @@ public abstract class Person {
         this.lastName = lastName;
         this.email = email;
         this.id = id;
-        setBirthDate(birthDateStr);
+        this.birthDate = birthDateStr;
     }
 
-    public String getBirthDateStr() { return this.birthDateStr; }
+    public String getBirthDate() { return this.birthDate; }
     public String getFirstName() { return this.firstName; }
     public String getLastName() { return this.lastName; }
     public String getEmail() { return this.email; }
-    public LocalDate getBirthDate() { return this.birthDate; }
+   // public LocalDate getBirthDate() { return this.birthDate; }
     public long getId() { return this.id; }
-    public void setBirthDateStr(String birthDateStr) { this.birthDateStr = birthDateStr; }
+    public void setBirthDate(String birthDate) { this.birthDate = birthDate; }
     public void setFirstName(String firstName) { this.firstName = firstName; }
     public void setLastName(String lastName) { this.lastName = lastName; }
     public void setEmail(String email) { this.email = email; }
 
-    public void setBirthDate(String birthDateStr)  {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        formatter.parse(birthDateStr);
-        this.birthDate = LocalDate.parse(birthDateStr, formatter);
-    }
+//    public void setBirthDate(String birthDateStr)  {
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+//        formatter.parse(birthDateStr);
+//        this.birthDate = LocalDate.parse(birthDateStr, formatter);
+//    }
     public void setId(long id) { this.id = id; }
 
     @Override
