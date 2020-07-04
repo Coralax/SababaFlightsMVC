@@ -42,38 +42,20 @@ public class SababaFlightsProgram {
 
         System.out.println(OrderSingleton.getInstance().orderSet.size());
 
-        orders.add(new Order(0, aircraftCompany, false, 0, 789.0, 321321321, flight, null, passengerIterator.next(), null));
-
-//        System.out.println(OrderSingleton.getInstance().orderSet.size());
-
-//        OrderSingleton.getInstance().saveSet(orders);
-
         this.loginScreen();
 
     }
 
-//    private <T> Set<T> loadData(Class<T> classType, String fileName) {
-//        Set<T> data;
-//        FileManager<T> fileManager = new FileManager<>(fileName);
-//        data = fileManager.read(classType);
-//        return data;
-//    }
-//
-//    private <T> boolean saveData(Set<T> data, String fileName) {
-//        FileManager<T> fileManager = new FileManager<>(fileName);
-//        return fileManager.saveSet(data);
-//    }
-
     public void loginScreen(){
-        String op = null;
+        String op;
         Scanner scanner = new Scanner(System.in);
         do {
             System.out.println("Welcome to SababaFlight: ");
             System.out.println("1: Log in ");
             System.out.println("2: Sign up ");
             System.out.println("-1: Exit ");
+            op = scanner.nextLine();
             try {
-                op = scanner.nextLine();
                 switch (op) {
                     case "1":
                         this.login();
@@ -90,7 +72,7 @@ public class SababaFlightsProgram {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }while (!(op.equals("-1")));
+        }while (!op.equals("-1"));
     }
 
 
@@ -130,7 +112,7 @@ public class SababaFlightsProgram {
 
 
     public void homePage(){
-        String op =null;
+        String op;
         Scanner scanner = new Scanner(System.in);
         do {
             Agent loggedInAgent = LoginSingleton.getInstance().loggedInAgent;
@@ -139,8 +121,8 @@ public class SababaFlightsProgram {
             System.out.println("2: Order a flight ");
             System.out.println("0: Logout");
             System.out.println("-1: Exit ");
+            op = scanner.nextLine();
             try {
-                op = scanner.nextLine();
                 switch (op) {
                     case "1":
                         sabbaSearch.search();
@@ -153,17 +135,17 @@ public class SababaFlightsProgram {
                         this.loginScreen();
                         break;
                     case "-1":
+                        LoginSingleton.getInstance().logOut();
+                        System.exit(0);
                         break;
                     default:
-                        LoginSingleton.getInstance().logOut();
-                        this.loginScreen();
-                        System.exit(0);
+                        this.homePage();
                 }
             }
             catch (Exception e) {
                 e.printStackTrace();
             }
-        }while (!(op.equals("-1")));
+        } while (!op.equals("-1"));
     }
 
     public void login() {

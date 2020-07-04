@@ -23,17 +23,19 @@ public class AuthenticationController {
     }
 
 
-    public boolean login(String username, String password) {
-        if(username==null || username.equals("")|| password == null || password.equals("")){
+    public boolean login(String userName, String password) {
+        if(userName == null || userName.equals("")|| password == null || password.equals("")){
             throw new IllegalArgumentException("Username or password are required");
         }
 
-        String session = authService.login(username, password);
-        if(session != null){
-            System.out.println("Session token: " + session);
-            return true;
-        }
-        return false;
+        return authService.login(userName, password);
+
+//        String session = authService.login(username, password);
+//        if(session != null){
+//            System.out.println("Session token: " + session);
+//            return true;
+//        }
+//        return false;
     }
 
 }

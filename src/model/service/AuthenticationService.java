@@ -20,11 +20,8 @@ public class AuthenticationService {
         this.authRepository = new AuthenticationRepositoryImpl();
     }
 
-    public String login(String userName, String password){
-        if(this.authRepository.userNameLogin(userName, password)){
-            return UUID.randomUUID().toString();
-        }
-        return null;
+    public boolean login(String userName, String password) {
+        return this.authRepository.userNameLogin(userName, password);
     }
 
     public boolean userNameValidation(String userName) {
