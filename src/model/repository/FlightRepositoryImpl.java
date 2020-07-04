@@ -25,7 +25,7 @@ public class FlightRepositoryImpl implements FlightRepository {
                 if ((flight.convertToLocalDate(flight.getDepartureDate())).compareTo(departD) == 0 &&
                         ((flight.convertToLocalDate(flight.getDepartureDate())).compareTo(returnD) == 0)) {
 
-                    if (flight.getAircraftID().getSeatsCount() >= numOfPassengers)
+                    if (flight.getAircraft().getSeatsCount() >= numOfPassengers)
                         resultFlights.add(flight);
                 }
             }
@@ -40,7 +40,7 @@ public class FlightRepositoryImpl implements FlightRepository {
         for (Flight flight : flights) {
             if (flight.getDestination().toLowerCase().equals(destination.toLowerCase())) {
                 if ((flight.convertToLocalDate(flight.getDepartureDate())).compareTo(departD) == 0) {
-                    if (flight.getAircraftID().getSeatsCount() >= numOfPassengers)
+                    if (flight.getAircraft().getSeatsCount() >= numOfPassengers)
                         resultFlights.add(flight);
                 }
             }

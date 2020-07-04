@@ -40,8 +40,6 @@ public class Flight {
     public boolean isDirect() { return this.direct; }
     public String getDestination() { return destination; }
 
-
-
     public void setAircraft(Aircraft aircraft) { this.aircraft = aircraft; }
     public void setDepartureAirport(Airport departureAirport) { this.departureAirport = departureAirport; }
     public void setDestinationAirport(Airport destinationAirport) { this.destinationAirport = destinationAirport; }

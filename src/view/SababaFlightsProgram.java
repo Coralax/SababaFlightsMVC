@@ -65,13 +65,14 @@ public class SababaFlightsProgram {
 //    }
 
     public void loginScreen(){
-        String op;
+        String op = null;
+        Scanner scanner = new Scanner(System.in);
         do {
             System.out.println("Welcome to SababaFlight: ");
             System.out.println("1: Log in ");
             System.out.println("2: Sign up ");
             System.out.println("-1: Exit ");
-            try (Scanner scanner = new Scanner((System.in))) {
+            try {
                 op = scanner.nextLine();
                 switch (op) {
                     case "1":
@@ -86,6 +87,8 @@ public class SababaFlightsProgram {
                         System.exit(0);
 
                 }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }while (!(op.equals("-1")));
     }
@@ -127,7 +130,8 @@ public class SababaFlightsProgram {
 
 
     public void homePage(){
-        String op;
+        String op =null;
+        Scanner scanner = new Scanner(System.in);
         do {
             Agent loggedInAgent = LoginSingleton.getInstance().loggedInAgent;
             System.out.println("Welcome " + loggedInAgent.getFirstName() + " ,what would you like to do?");
@@ -135,7 +139,7 @@ public class SababaFlightsProgram {
             System.out.println("2: Order a flight ");
             System.out.println("0: Logout");
             System.out.println("-1: Exit ");
-            try (Scanner scanner = new Scanner((System.in))) {
+            try {
                 op = scanner.nextLine();
                 switch (op) {
                     case "1":
@@ -154,8 +158,10 @@ public class SababaFlightsProgram {
                         LoginSingleton.getInstance().logOut();
                         this.loginScreen();
                         System.exit(0);
-
                 }
+            }
+            catch (Exception e) {
+                e.printStackTrace();
             }
         }while (!(op.equals("-1")));
     }
