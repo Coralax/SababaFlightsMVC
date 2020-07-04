@@ -61,6 +61,7 @@ public class SababaOrderView {
                         break;
                     case "0":
                         LoginSingleton.getInstance().logOut();
+                        sababaFlightsProgram.loginScreen();
                         break;
                     case "-1":
                         LoginSingleton.getInstance().logOut();
