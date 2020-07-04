@@ -66,11 +66,12 @@ public class SababaFlightsProgram {
                         this.SignUp();
                         break;
                     case "-1":
-                        break;
-                    default:
                         LoginSingleton.getInstance().logOut();
                         this.loginScreen();
                         System.exit(0);
+                        break;
+                    default:
+                        break;
                 }
             } catch (Exception e) {
                 e.printStackTrace();
