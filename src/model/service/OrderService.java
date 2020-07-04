@@ -7,8 +7,7 @@ public class OrderService {
 
     private OrderRepository orderRepository;
 
-    public OrderService(OrderRepository orderRepository) {
+    public OrderService() {
 
-        this.orderRepository = new OrderRepositoryImpl();
     }
 }

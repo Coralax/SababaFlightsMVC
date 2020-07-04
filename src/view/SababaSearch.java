@@ -32,44 +32,51 @@ public class SababaSearch {
         }while (!flag);
 
 
+
         // Depart date and return date
         flag = false;
-        System.out.println("Please enter the depart and the return date in dd/MM/yyyy format.");
-        try{
+        System.out.println("1: For one way" +"\n" +"2: For round-trip");
+        op= scanner.nextLine();
+
+       // System.out.println("Please enter the depart and the return date in dd/MM/yyyy format.");
+        try {
             //Depart date
             do {
                 formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                System.out.print("Depart date: ");
+                System.out.print("Depart date in dd/MM/yyyy format: ");
                 departDateStr = scanner.nextLine();
                 formatter.parse(departDateStr);
                 departDate = LocalDate.parse(departDateStr, formatter);
 
                 //Check depart date: if invalid year
                 if (searchController.validateDepartDate(departDate))
-                    flag=true;
+                    flag = true;
 
-            }while(!flag);
+            } while (!flag);
 
-            flag=false;
+            flag = false;
 
-            // Return date
-            do {
-                System.out.print("Return date: ");
-                returnDateStr = scanner.nextLine();
-                formatter.parse(returnDateStr);
-                returnDate = LocalDate.parse(returnDateStr, formatter);
+            if (op.equals("2")) {
+                // Return date
+                do {
+                    System.out.print("Return date in dd/MM/yyyy format: ");
+                    returnDateStr = scanner.nextLine();
+                    formatter.parse(returnDateStr);
+                    returnDate = LocalDate.parse(returnDateStr, formatter);
 
-                //Check return date: if invalid year || if return date is before depart date
-                if (searchController.validateReturnDepartDate(returnDate, departDate))
-                    flag=true;
+                    //Check return date: if invalid year || if return date is before depart date
+                    if (searchController.validateReturnDepartDate(returnDate, departDate))
+                        flag = true;
 
 
-            }while(!flag);
+                } while (!flag);
+            }
         }
         catch(Exception e) {
             System.out.println("Returning to search");
             this.search();
         }
+
 
         //Number of passengers
         flag=false;
@@ -110,6 +117,7 @@ public class SababaSearch {
                 directFlight = true;
             }
         }
+
 
         // The search itself with all the parameters
         search=new Search(departDate,returnDate, destination,passenger, directFlight);
