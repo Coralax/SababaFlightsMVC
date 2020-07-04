@@ -23,7 +23,7 @@ public class OrderSingleton extends Singleton<Order> {
         return orderSingletonInstance;
     }
 
-    public Order getOrderByID(int id) {
+    public Order getOrderByID(long id) {
         for (Order order : this.orderSet) {
             if (order.getOrderID() == id)
                 return order;
@@ -32,7 +32,7 @@ public class OrderSingleton extends Singleton<Order> {
         return null;
     }
 
-    public Set<Order> getOrdersByAgentCode(int agentCode) {
+    public Set<Order> getOrdersByAgentCode(long agentCode) {
         Set<Order> ordersByAgent = new HashSet<>();
         for (Order order : this.orderSet) {
             if (order.getAgentCode() == agentCode) {

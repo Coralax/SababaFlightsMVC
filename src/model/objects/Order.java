@@ -3,7 +3,6 @@ package model.objects;
 import model.repository.OrderRepositoryImpl;
 
 import java.util.List;
-import java.util.Set;
 
 public class Order {
 
@@ -80,21 +79,20 @@ public class Order {
     }
 
     public void cancelOrder() {
-        new OrderRepositoryImpl().cancelOrder(this);
+        new OrderRepositoryImpl().deactivate(this);
     }
 
     @Override
     public String toString() {
-        return "Order{" +
+        return "Order:\n" +
                 "flightCompany=" + flightCompany +
-                ", roundTrip=" + roundTrip +
-                ", orderID=" + orderID +
-                ", totalCost=" + totalCost +
-                ", creditCard=" + creditCard +
-                ", flightTo=" + flightTo +
-                ", flightFrom=" + flightFrom +
-                ", ownerPassenger=" + ownerPassenger +
-                ", otherPassengers=" + otherPassengers +
-                '}';
+                "\nroundTrip=" + roundTrip +
+                "\norderID=" + orderID +
+                "\ntotalCost=" + totalCost +
+                "\ncreditCard=" + creditCard +
+                "\nflightTo=" + flightTo +
+                "\nflightFrom=" + flightFrom +
+                "\nownerPassenger=" + ownerPassenger +
+                "\notherPassengers=" + otherPassengers;
     }
 }

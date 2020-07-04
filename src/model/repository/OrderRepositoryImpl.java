@@ -4,6 +4,7 @@ import model.objects.Order;
 import model.FileManager;
 import model.objects.Passenger;
 import model.singletons.OrderSingleton;
+import model.singletons.PassengerSingleton;
 
 import java.util.*;
 
@@ -29,31 +30,53 @@ public class OrderRepositoryImpl implements OrderRepository {
     }
 
     @Override
-    public boolean addPassenger(Order order, Passenger newPassenger) {
-        if (order.getOwnerPassenger() == newPassenger) {
+    public boolean addPassenger(Order order, long passengerID) {
+        if (order.getOwnerPassenger().getId() == passengerID) {
             System.out.println("The provided passenger is the order's owner");
             return false;
         } else {
-            for (Passenger passenger : order.getOtherPassengers()) {
-                if (passenger == newPassenger) {
-                    System.out.println("Passenger is already in order");
-                    return false;
+            if (order.getOtherPassengers() == null) {
+                List<Passenger> passengers = Arrays.asList(PassengerSingleton.getInstance().getPassengerByID(passengerID));
+                order.setOtherPassengers(passengers);
+                System.out.println("Successfully added passenger to order");
+                return true;
+            } else {
+                for (Passenger passenger : order.getOtherPassengers()) {
+                    if (passenger.getId() == passengerID) {
+                        System.out.println("Passenger is already in order");
+                        return false;
+                    }
                 }
+                List<Passenger> newPassengersList = order.getOtherPassengers();
+                newPassengersList.add(PassengerSingleton.getInstance().getPassengerByID(passengerID));
+                order.setOtherPassengers(newPassengersList);
+                return true;
             }
-            List<Passenger> newPassengersList = order.getOtherPassengers();
-            newPassengersList.add(newPassenger);
-            order.setOtherPassengers(newPassengersList);
         }
-        return false;
+    }
+
+    @Override
+    public boolean addPassenger(Order order, Passenger newPassenger) {
+        return this.addPassenger(order, newPassenger.getId());
     }
 
     @Override
     public boolean removePassengerByID(Order order, long passengerToRemove) {
+        boolean successfullyRemoved = false;
         Scanner input = new Scanner(System.in);
         System.out.println("Sure? (Y / N)");
         String userInput = input.nextLine();
         if (userInput.equals("Y") || userInput.equals("y")) {
-            if (order.getOtherPassengers().removeIf(passenger -> passenger.getId() == passengerToRemove)) {
+            List<Passenger> p = new ArrayList<>();
+            for (Passenger passenger : order.getOtherPassengers()) {
+                if (passenger.getId() == passengerToRemove) {
+                    successfullyRemoved = true;
+                    continue;
+                }
+                p.add(passenger);
+            }
+            if (successfullyRemoved) {
+                order.setOtherPassengers(p);
                 System.out.println("Successfully removed passenger from order");
                 return true;
             } else {
@@ -88,7 +111,7 @@ public class OrderRepositoryImpl implements OrderRepository {
     }
 
     @Override
-    public boolean cancelOrder(Order orderToCancel) {
+    public boolean deactivate(Order orderToCancel) {
         Scanner input = new Scanner(System.in);
         System.out.println("Are you sure you want to cancel the order? (Y / N)");
         String userInput = input.nextLine();
@@ -96,7 +119,7 @@ public class OrderRepositoryImpl implements OrderRepository {
             for (Order order : this.orders) {
                 if (order.getOrderID() == orderToCancel.getOrderID()) {
                     order.setCanceled(true);
-                    System.out.println("Order has been canceled");
+                    System.out.println("Order has been deactivated");
                     return true;
                 }
             }
@@ -108,7 +131,7 @@ public class OrderRepositoryImpl implements OrderRepository {
     }
 
     @Override
-    public boolean reopenOrder(Order orderToReopen) {
+    public boolean activate(Order orderToReopen) {
         Scanner input = new Scanner(System.in);
         System.out.println("Are you sure you want to re-open the order? (Y / N)");
         String userInput = input.nextLine();
