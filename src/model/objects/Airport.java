@@ -4,29 +4,29 @@ import java.util.List;
 
 public class Airport {
 
-    private String address, name;
+    private String country, airportName;
     private List<String> terminals = new ArrayList<>();
 
     public Airport() {}
 
-    public Airport(String countryName, String name, List<String> terminals) {
-        this.address = countryName;
-        this.name = name;
+    public Airport(String country, String airportName, List<String> terminals) {
+        this.country = country;
+        this.airportName = airportName;
         this.terminals = terminals;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setCountry(String country) {
+        this.country = country;
     }
-    public void setName(String name) {
-        this.name = name;
+    public void setAirportName(String airportName) {
+        this.airportName = airportName;
     }
 
-    public String getAddress() {
-        return this.address;
+    public String getCountry() {
+        return this.country;
     }
-    public String getName() {
-        return this.name;
+    public String getAirportName() {
+        return this.airportName;
     }
     public List<String> getTerminals() { return this.terminals; }
 
@@ -43,8 +43,8 @@ public class Airport {
     @Override
     public String toString() {
         return
-                " Address: " + address + "\n" +
-                " Name: " + name + "\n"+
+                " Country name: " + country + "\n" +
+                " Airport name: " + airportName + "\n"+
                 " Terminals: " + terminals ;
     }
 }

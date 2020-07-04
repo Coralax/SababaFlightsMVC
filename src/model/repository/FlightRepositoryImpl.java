@@ -38,7 +38,6 @@ public class FlightRepositoryImpl implements FlightRepository {
     public List<Flight> flightResultOneDirection(String destination, int numOfPassengers, LocalDate departD) {
         List<Flight> resultFlights = new ArrayList<>();
         for (Flight flight : flights) {
-
             if (flight.getDestination().toLowerCase().equals(destination.toLowerCase())) {
                 if ((flight.convertToLocalDate(flight.getDepartureDate())).compareTo(departD) == 0) {
                     if (flight.getAircraftID().getSeatsCount() >= numOfPassengers)

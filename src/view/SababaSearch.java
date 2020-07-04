@@ -11,7 +11,6 @@ import java.util.Scanner;
 public class SababaSearch {
     private SearchController searchController= new SearchController();
 
-
     public void search() {
 
         Search search;
@@ -72,7 +71,6 @@ public class SababaSearch {
             this.search();
         }
 
-
         //Number of passengers
         flag=false;
         do {
@@ -111,9 +109,7 @@ public class SababaSearch {
             if (op.toLowerCase().equals("yes")) {
                 directFlight = true;
             }
-
         }
-
 
         // The search itself with all the parameters
         search=new Search(departDate,returnDate, destination,passenger, directFlight);

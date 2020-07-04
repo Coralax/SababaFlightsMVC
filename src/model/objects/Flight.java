@@ -6,14 +6,12 @@ import java.time.format.DateTimeFormatter;
 public class Flight {
     private static int staticFlightID;
     private int flightID;
-    private String flightNumber;
     private String destination;
     private Aircraft aircraft;
     private Airport departureAirport, destinationAirport;
     private String departureDate, arrivalDate;
     private double flightPrice;
     private boolean direct;
-
 
     static { staticFlightID = 0; }
 
@@ -22,7 +20,6 @@ public class Flight {
     public Flight(Aircraft aircraft, Airport departureAirport, Airport destinationAirport,
                   String departureDate, String arrivalDate, double flightPrice, boolean direct,String destination) {
         this.flightID = staticFlightID++;
-        this.flightNumber = randomizeFlightNumber(5);
         this.aircraft = aircraft;
         this.departureAirport = departureAirport;
         this.destinationAirport = destinationAirport;
@@ -32,21 +29,6 @@ public class Flight {
         this.direct = direct;
         this.destination=destination;
     }
-
-    public Flight(String flightNumber, Aircraft aircraft, Airport departureAirport, Airport destinationAirport,
-                  String departureDate, String arrivalDate, double flightPrice, boolean direct,String destination) {
-        this.flightID = staticFlightID++;
-        this.flightNumber = flightNumber;
-        this.aircraft = aircraft;
-        this.departureAirport = departureAirport;
-        this.destinationAirport = destinationAirport;
-        this.departureDate = departureDate;
-        this.arrivalDate = arrivalDate;
-        this.flightPrice = flightPrice;
-        this.direct = direct;
-        this.destination=destination;
-    }
-
 
     public Aircraft getAircraftID() { return this.aircraft; }
     public int getFlightID() { return flightID; }
@@ -57,6 +39,7 @@ public class Flight {
     public double getFlightPrice() { return this.flightPrice; }
     public boolean isDirect() { return this.direct; }
     public String getDestination() { return destination; }
+
 
 
     public void setAircraft(Aircraft aircraft) { this.aircraft = aircraft; }
@@ -70,26 +53,26 @@ public class Flight {
     public void setDestination(String destination) { this.destination = destination; }
 
 
-    // function to generate a random string of length n
-    static String randomizeFlightNumber(int n)
-    {
-        // chose a Character random from this String
-        String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                + "0123456789";
-        // create StringBuffer size of AlphaNumericString
-        StringBuilder sb = new StringBuilder(n);
-        for (int i = 0; i < n; i++) {
-            // generate a random number between
-            // 0 to AlphaNumericString variable length
-            int index
-                    = (int)(AlphaNumericString.length()
-                    * Math.random());
-            // add Character one by one in end of sb
-            sb.append(AlphaNumericString
-                    .charAt(index));
-        }
-        return sb.toString();
-    }
+//    // function to generate a random string of length n
+//    static String randomizeFlightNumber(int n)
+//    {
+//        // chose a Character random from this String
+//        String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+//                + "0123456789";
+//        // create StringBuffer size of AlphaNumericString
+//        StringBuilder sb = new StringBuilder(n);
+//        for (int i = 0; i < n; i++) {
+//            // generate a random number between
+//            // 0 to AlphaNumericString variable length
+//            int index
+//                    = (int)(AlphaNumericString.length()
+//                    * Math.random());
+//            // add Character one by one in end of sb
+//            sb.append(AlphaNumericString
+//                    .charAt(index));
+//        }
+//        return sb.toString();
+//    }
     //make global
     public LocalDate convertToLocalDate(String date){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -101,7 +84,6 @@ public class Flight {
     public String toString() {
         return
                 " Flight ID: " + flightID + "\n"+
-                " Flight number: '" + flightNumber + "\n"+
                 " Aircraft: " + aircraft + "\n" +
                 " Destination: "+ destination +"\n"+
                 " Departure airport: " + departureAirport + "\n" +

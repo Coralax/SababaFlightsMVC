@@ -21,11 +21,10 @@ public class SearchController {
 
     private SearchService searchService = new SearchService();
 
-
     public boolean validDestination(String destination) {
-        Set<Destination> destinationSet = DestinationSingleton.getInstance().destinationSet;
-        for (Destination dest : destinationSet) {
-            if (dest.destCountry.toLowerCase().equals(destination.toLowerCase()))
+        Set<Airport> airportSet = AirportSingleton.getInstance().airportSet;
+        for (Airport airport : airportSet) {
+            if (airport.getCountry().toLowerCase().equals(destination.toLowerCase()))
                 return true;
         }
         System.out.println("Destination not found");
