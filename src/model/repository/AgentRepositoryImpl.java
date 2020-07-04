@@ -1,22 +1,10 @@
 package model.repository;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
-import jdk.nashorn.internal.ir.debug.JSONWriter;
-import model.objects.Agent;
-//import model.objects.Order;
-import model.FileManager;
-import model.singletons.AgentSingleton;
-import model.singletons.LoginSingleton;
-import sun.util.resources.LocaleData;
-import java.io.File;
-import java.io.ObjectInputStream;
-import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
-import java.nio.charset.StandardCharsets;
-import java.time.LocalDate;
-import java.util.*;
-import java.security.*;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+//import model.objects.Order;
 
 public class AgentRepositoryImpl implements AgentRepository {
 

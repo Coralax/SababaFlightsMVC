@@ -2,17 +2,9 @@ package view;
 
 import controller.AuthenticationController;
 import controller.OrderController;
-import controller.SearchController;
-import controller.objects.Search;
-import model.FileManager;
 import model.objects.*;
-import model.repository.AuthenticationRepositoryImpl;
 import model.singletons.*;
 
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.*;
 
 public class SababaFlightsProgram {
@@ -112,7 +104,7 @@ public class SababaFlightsProgram {
         System.out.println("id: ");
         Scanner sc = new Scanner(System.in);
         String idStr = sc.next();
-        id = Long.valueOf(idStr);
+        id = Long.parseLong(idStr);
 
         System.out.println("email: ");
         String email = scanner.nextLine();
@@ -134,8 +126,8 @@ public class SababaFlightsProgram {
 
 
 
-    public void homePage(String username){
-        String op = null;
+    public void homePage(){
+        String op;
         do {
             Agent loggedInAgent = LoginSingleton.getInstance().loggedInAgent;
             System.out.println("Welcome " + loggedInAgent.getFirstName() + " ,what would you like to do?");
@@ -164,8 +156,6 @@ public class SababaFlightsProgram {
                         System.exit(0);
 
                 }
-            } catch (IOException  |ClassNotFoundException e) {
-                e.printStackTrace();
             }
         }while (!(op.equals("-1")));
     }
