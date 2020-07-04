@@ -9,11 +9,13 @@ import java.util.Scanner;
 
 public class SababaSearch {
     private SearchController searchController= new SearchController();
+
+
     public void search() {
 
         Search search;
-        String destination, departDate, returnDate, filters, op;
-        LocalDate departObj, returnObj;
+        String destination, departDateStr, returnDateStr, filters, op;
+        LocalDate departDate, returnDate;
         boolean cabinClass = false, directFlight = false;
         String numOfPass;
         Scanner scanner = new Scanner(System.in);
@@ -28,18 +30,19 @@ public class SababaSearch {
 
         // Depart date
         System.out.print("Depart date: ");
-        departDate = scanner.nextLine();
-        formatter.parse(departDate);
-        departObj = LocalDate.parse(departDate,formatter);
+        departDateStr = scanner.nextLine();
+        formatter.parse(departDateStr);
+        departDate = LocalDate.parse(departDateStr,formatter);
+
 
         // Return date
         System.out.print("Return date: ");
-        returnDate = scanner.nextLine();
-        formatter.parse(returnDate);
-        returnObj = LocalDate.parse(returnDate,formatter);
+        returnDateStr = scanner.nextLine();
+        formatter.parse(returnDateStr);
+        returnDate = LocalDate.parse(returnDateStr,formatter);
 
         // Passengers count
-        System.out.print("Number of passengers: ");
+        System.out.print("Number of passengers (up to 10): ");
         numOfPass = scanner.nextLine();
         int passenger= Integer.parseInt(numOfPass);
 
@@ -68,7 +71,7 @@ public class SababaSearch {
         }
 
         // The search itself with all the parameters
-        search=new Search(departObj,returnObj, destination,passenger,cabinClass, directFlight);
+        search=new Search(departDate,returnDate, destination,passenger,cabinClass, directFlight);
         searchController.searchResults(search);
 
     }
