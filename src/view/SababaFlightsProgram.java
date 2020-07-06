@@ -17,7 +17,7 @@ public class SababaFlightsProgram {
     public SababaFlightsProgram() {
         this.authController = new AuthenticationController();
         this.orderController = new OrderController();
-        this.sabbaSearch = new SababaSearch();
+        this.sabbaSearch = new SababaSearch(this);
         this.orderView = new SababaOrderView(this);
      }
 
@@ -141,8 +141,6 @@ public class SababaFlightsProgram {
                         LoginSingleton.getInstance().logOut();
                         System.exit(0);
                         break;
-                    default:
-                        this.homePage();
                 }
             }
             catch (Exception e) {

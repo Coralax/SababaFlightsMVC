@@ -22,25 +22,21 @@ public class SearchService {
     // throws IOException, ClassNotFoundException {
     public void validateSearch(Search search) {
         List<Flight> flights;
-        if(search.getReturnDate()==null) {
+        if (search.getReturnDate() == null) {
             flights = flightRepo.flightResultOneDirection(search.getDestination(), search.getNumberOfPassengers(), search.getDepartureDate());
-            System.out.println("inside one way");
-            //IF(NULL)
-            //System.out.println("No flights suits your search");
-
+        } else {
+            flights = flightRepo.flightResultsRoundTrip(search.getDestination(), search.getNumberOfPassengers(), search.getDepartureDate(), search.getReturnDate());
         }
-        else {
-            flights=flightRepo.flightResultsRoundTrip(search.getDestination(),search.getNumberOfPassengers(),search.getDepartureDate(),search.getReturnDate());
-            System.out.println("inside round trip");
-            //IF(null)
-            //System.out.println("No flights suits your search");
+        if (flights == null)
+            System.out.println("No flights suits your search");
 
-        }
+    }
 
 
-            for(Flight flight: flights)
-                System.out.println(flight);
-              showResults(search);
+
+//        for(Flight flight: flights)
+//            System.out.println(flight);
+//              showResults(search);
 
         //TODO: Check if there are seats left in the flight. Do not show an empty flight
         //TODO: (Number of passengers) - CHECK IF THERE AR ENOUGH SEATS
@@ -48,6 +44,9 @@ public class SearchService {
         //TODO: Does there exist a direct flight
         //TODO: If everything is OK, call to showResults below
 
+    public void makeAnOrder(){
+        System.out.println("make order inside search service 777777");
+        System.out.println(flightRepo);
     }
 
     public void showResults(Search search){

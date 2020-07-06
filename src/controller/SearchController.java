@@ -68,5 +68,9 @@ public class SearchController {
         searchService.validateSearch(search);
     }
 
+
+    public void makeAnOrder(){
+        searchService.makeAnOrder();
+    }
 }
 

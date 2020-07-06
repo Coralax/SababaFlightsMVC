@@ -22,8 +22,6 @@ public class FlightRepositoryImpl implements FlightRepository {
         int i = 1;
         List<Flight> resultFlights = new ArrayList<>();
         for (Flight flight : flights) {
-            // System.out.println(flight.convertToLocalDate(flight.getDepartureDate()).compareTo(departD));
-
             if (flight.getDestination().toLowerCase().equals(destination.toLowerCase())) {
                 if ((flight.convertToLocalDate(flight.getDepartureDate())).compareTo(departD) == 0)
 
@@ -32,20 +30,20 @@ public class FlightRepositoryImpl implements FlightRepository {
                     if(flightreturn.getDestinationAirport().getCountry().equals(flight.getDepartureAirport().getCountry()))
                         // check if the depart date from depart country is equal to return date
                         if((flightreturn.convertToLocalDate(flightreturn.getDepartureDate())).compareTo(returnD) == 0){
-                            System.out.println("This is the results " + i);
-                            System.out.println("flight to destination" + flight);
+                            System.out.println("This is the results " + "flight number #" + i);
+                            System.out.println("FLIGHT OUT" + "\n" + flight);
                             resultFlights.add(flight);
-                            System.out.println("return flight" + flightreturn);
+                            System.out.println("RETURN FLIGHT" + "\n" + flightreturn);
                             resultFlights.add(flightreturn);
                             i++;
-
                             }
                     }
-
             }
         }
         return resultFlights;
     }
+
+
 
     public List<Flight> flightResultOneDirection(String destination, int numOfPassengers, LocalDate departD) {
         List<Flight> resultFlights = new ArrayList<>();
