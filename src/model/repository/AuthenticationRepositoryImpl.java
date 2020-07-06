@@ -9,7 +9,8 @@ import java.io.IOException;
 import java.util.Set;
 
 public class AuthenticationRepositoryImpl implements AuthenticationRepository {
-
+    AgentSingleton agentSingleton;
+    Set<Agent> agents;
     @Override
     public boolean userNameLogin(String userName, String password) {
 
@@ -50,24 +51,26 @@ public class AuthenticationRepositoryImpl implements AuthenticationRepository {
     @Override
     public boolean signUp(String firstName, String lastName, long id, String email, String birthDate,
                           boolean enabled, String userName, String password) {
+
+            Agent newAgent = new Agent(id, firstName, lastName, email, userName, password, 1, birthDate);
+            newAgent.setEncryptedPassword(password);
+            agents.add(newAgent);
+            agentSingleton.saveSet(agents);
+            return true;
+        }
+
+
+    public boolean userExist(String username) {
         //JSON parser object to parse read file
-        AgentSingleton agentSingleton = AgentSingleton.getInstance();
-        Set<Agent> agents = agentSingleton.agentSet;
-        boolean foundUserName = false;
+        agentSingleton = AgentSingleton.getInstance();
+        agents = agentSingleton.agentSet;
 
         for (Agent agent : agents) {
-            if (agent.getUserName().equals(userName)) {
-                foundUserName = true;
+            if (agent.getUserName().equals(username)) {
                 System.out.println("User already exists");
-                return false;
+                return true;
             }
         }
-        // if user not in the db,then create it.
-
-        Agent newAgent = new Agent(id, firstName, lastName, email, userName, password, 1, birthDate);
-        newAgent.setEncryptedPassword(password);
-        agents.add(newAgent);
-        agentSingleton.saveSet(agents);
-        return true;
+        return false;
     }
 }

@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.UUID;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class AuthenticationService {
@@ -26,7 +27,7 @@ public class AuthenticationService {
 
     public boolean userNameValidation(String userName) {
 
-        if (!userName.matches("^[a-zA-Z]*$")) {
+        if (!userName.matches("^[a-zA-Z]*[0-9]*$")) {
             System.out.println("User name must consist of only English alphanumeric characters!");
             return false;
         }
@@ -66,8 +67,6 @@ public class AuthenticationService {
             return false;
         return pat.matcher(email).matches();
     }
-
-
     public boolean passportValidation(String passport) {
         if (!(passport.matches("[A-Za-z0-9_]+"))) {
             System.out.println("Passport must consist of English alphanumeric characters and digits only!");
@@ -75,6 +74,14 @@ public class AuthenticationService {
         }
         return true;
     }
+
+    public boolean passwordValidation(String password) {
+        if (!(password.matches("^(?=.*[0-9])(?=.*[a-zA-Z]).{8,32}$"))) {
+            return this.passwordStrength(password);
+        }
+        return true;
+    }
+
 
     public boolean minimumAge(LocalDate dateOfBirth) {
 
@@ -90,10 +97,18 @@ public class AuthenticationService {
         return true;
     }
 
-    public boolean signUp(String firstName, String lastName, long id, String email, String birthDate, boolean enabled , String userName, String password) {
+    public boolean signUp(String firstName, String lastName, long id, String email, String birthDate, boolean enabled, String userName, String password) {
 
-            return this.authRepository.signUp(firstName, lastName, id, email, birthDate, enabled, userName, password);
+        return this.authRepository.signUp(firstName, lastName, id, email, birthDate, enabled, userName, password);
+    }
 
+    public boolean userExist(String username) {
+        return this.authRepository.userExist(username);
+    }
+    public boolean isDate(String date){
+        Pattern pattern = Pattern.compile("\\d{2}/\\d{2}/\\d{4}");
+        Matcher matcher = pattern.matcher(date);
+        return matcher.matches();
     }
 }
 
