@@ -20,15 +20,18 @@ public class AircraftCompany {
         this.companyClass = companyClass;
     }
 
-    @Override
-    public String toString() {
-        return "AircraftCompany{" +
-                "companyName='" + companyName + '\'' +
-                ", companyClass='" + companyClass + '\'' +
-                '}';
-    }
 
     public String getCompanyName() { return this.companyName; }
     public String getCompanyClass() { return this.companyClass; }
 
+
+    public void setCompanyName(String companyName) { this.companyName = companyName; }
+    public void setCompanyClass(String companyClass) { this.companyClass = companyClass; }
+
+    @Override
+    public String toString() {
+        return
+                " Company name: " + companyName + "\n" +
+                " Company class: " + companyClass;
+    }
 }

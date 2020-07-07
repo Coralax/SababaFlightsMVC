@@ -2,6 +2,7 @@
   {
     "flightID" : 0,
     "destination": "New york",
+    "seatsLeft": 50,
     "departureAirport" : {
       "country" : "Israel",
       "airportName" : "Ben-Gurion",
@@ -21,7 +22,7 @@
         "companyName" : "El-Al",
         "companyClass" : "regular"
       },
-      "seatsCount" : 78,
+      "seatsCount" : 100,
       "model" : "Boeing-797"
     },
     "direct" : false
@@ -29,6 +30,7 @@
   {
     "flightID" : 1,
     "destination": "Spain",
+    "seatsLeft": 50,
     "departureAirport" : {
       "country" : "Israel, TLV",
       "airportName" : "Ben-Gurion",
@@ -49,7 +51,7 @@
         "companyName" : "WizzAir",
         "companyClass" : "Low-cost"
       },
-      "seatsCount": 78,
+      "seatsCount": 100,
       "model": "Boeing-797"
     },
     "direct" : true
@@ -57,6 +59,7 @@
   {
     "flightID" : 2,
     "destination": "New york",
+    "seatsLeft": 50,
     "departureAirport" : {
       "country" : "Israel",
       "airportName" : "Ben-Gurion",
@@ -77,7 +80,7 @@
         "companyName" : "El-Al",
         "companyClass" : "Low-cost"
       },
-      "seatsCount": 78,
+      "seatsCount": 100,
       "model": "Boeing-797"
     },
     "direct" : true
@@ -85,6 +88,7 @@
   {
     "flightID" : 3,
     "destination": "Israel",
+    "seatsLeft": 50,
     "departureAirport" : {
       "country" : "New York",
       "airportName" : "JFK",
@@ -103,9 +107,38 @@
       "aircraftCompany":
       {
         "companyName" : "El-Al",
-        "companyClass" : "Low-cost"
+        "companyClass" : "regular"
       },
-      "seatsCount": 78,
+      "seatsCount": 100,
+      "model": "Boeing-797"
+    },
+    "direct" : true
+  },
+  {
+    "flightID" : 4,
+    "destination": "Israel",
+    "seatsLeft": 60,
+    "departureAirport" : {
+      "country" : "New York",
+      "airportName" : "JFK",
+      "terminals" :[ "1", "2", "3", "4", "5", "6", "7", "8" ]
+    },
+    "destinationAirport" : {
+      "country" : "Israel",
+      "airportName" : "TLV",
+      "terminals" : [ "T1", "T3"]
+    },
+    "departureDate" : "10/08/2020",
+    "arrivalDate" : "11/08/2020",
+    "flightPrice" : 348.0,
+    "aircraft" : {
+      "aircraftID": 1,
+      "aircraftCompany":
+      {
+        "companyName" : "United Airlines",
+        "companyClass" : "regular"
+      },
+      "seatsCount": 100,
       "model": "Boeing-797"
     },
     "direct" : true
