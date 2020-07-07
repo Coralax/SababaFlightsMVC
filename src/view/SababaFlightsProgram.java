@@ -126,6 +126,7 @@ public class SababaFlightsProgram {
             System.out.println("Welcome " + loggedInAgent.getFirstName() + " ,what would you like to do?");
             System.out.println("1: Search a Flight ");
             System.out.println("2: Orders ");
+            System.out.println("3: Set currency");
             System.out.println("0: Logout");
             System.out.println("-1: Exit ");
             op = scanner.nextLine();
@@ -136,6 +137,17 @@ public class SababaFlightsProgram {
                         break;
                     case "2":
                         orderView.orderScreen();
+                        break;
+                    case "3":
+                        System.out.println("Please choose USD or ILS");
+                        String currencyInput = scanner.nextLine();
+                        if (currencyInput.toLowerCase().equals("usd")) {
+                            FlightSingleton.getInstance().setCurrency(0);
+                        } else if (currencyInput.toLowerCase().equals("ils")) {
+                            FlightSingleton.getInstance().setCurrency(1);
+                        } else {
+                            System.out.println("Please choose one of the options (USD/ILS)");
+                        }
                         break;
                     case "0":
                         LoginSingleton.getInstance().logOut();

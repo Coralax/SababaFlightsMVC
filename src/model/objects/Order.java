@@ -1,6 +1,8 @@
 package model.objects;
 
+import model.adapter.OrderCurrencyAdapterImpl;
 import model.repository.OrderRepositoryImpl;
+import model.singletons.FlightSingleton;
 
 import java.util.List;
 
@@ -45,7 +47,7 @@ public class Order {
     public AircraftCompany getFlightCompany() { return this.flightCompany; }
     public boolean isRoundTrip() { return this.roundTrip; }
     public long getOrderID() { return this.orderID; }
-    public double getTotalCost() { return totalCost; }
+    public double getTotalCost() { return this.totalCost; }
     public long getCreditCard() { return this.creditCard; }
     public List<Flight> getFlightTo() { return this.flightTo; }
     public List<Flight> getFlightFrom() { return this.flightFrom; }
@@ -84,6 +86,20 @@ public class Order {
 
     @Override
     public String toString() {
+        int currency = FlightSingleton.getInstance().getCurrency();
+        if (currency == 1) {
+            OrderCurrencyAdapterImpl orderCurrencyAdapter = new OrderCurrencyAdapterImpl(this);
+            return "Order:\n" +
+                    "flightCompany=" + flightCompany +
+                    "\nroundTrip=" + roundTrip +
+                    "\norderID=" + orderID +
+                    "\ntotalCost=" + orderCurrencyAdapter.getTotalCost() +
+                    "\ncreditCard=" + creditCard +
+                    "\nflightTo=" + flightTo +
+                    "\nflightFrom=" + flightFrom +
+                    "\nownerPassenger=" + ownerPassenger +
+                    "\notherPassengers=" + otherPassengers;
+        }
         return "Order:\n" +
                 "flightCompany=" + flightCompany +
                 "\nroundTrip=" + roundTrip +
