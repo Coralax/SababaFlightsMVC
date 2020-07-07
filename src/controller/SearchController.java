@@ -7,11 +7,14 @@ package controller;
 
 import controller.objects.Search;
 import model.objects.Airport;
+import model.objects.Flight;
 import model.service.SearchService;
 import model.singletons.AirportSingleton;
 
 import java.time.LocalDate;
 import java.util.Calendar;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class SearchController {
@@ -64,9 +67,30 @@ public class SearchController {
 
     }
 
-    public void searchResults(Search search)  {
-        searchService.validateSearch(search);
+    public int searchResultsOneDirection(Search search)
+    {
+        int res;
+        res=searchService.validateSearchOneDirection(search);
+        return res;
     }
+
+    public int[] searchResultsRoundTrip(Search search)  {
+        int[] res;
+        res=searchService.validateSearchRoundTrip(search);
+        return res;
+    }
+//    public List<Flight> searchResultsOneDirection(Search search)
+//    {
+//        List<Flight> res;
+//        res=searchService.validateSearchOneDirection(search);
+//        return res;
+//    }
+//
+//    public Map<Integer,List<Flight>> searchResultsRoundTrip(Search search)  {
+//        Map<Integer,List<Flight>> res;
+//        res=searchService.validateSearchRoundTrip(search);
+//        return res;
+//    }
 
 }
 

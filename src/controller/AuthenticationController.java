@@ -20,20 +20,17 @@ public class AuthenticationController {
 
     }
 
-
+    public boolean validName(String name)
+    {
+        return name != null && !name.trim().equals("");
+    }
     public boolean login(String userName, String password) {
-        if(userName == null || userName.equals("")|| password == null || password.equals("")){
+        if(userName == null || userName.trim().equals("")|| password == null || password.trim().equals("")){
             throw new IllegalArgumentException("Username or password are required");
         }
 
         return authService.login(userName, password);
 
-//        String session = authService.login(username, password);
-//        if(session != null){
-//            System.out.println("Session token: " + session);
-//            return true;
-//        }
-//        return false;
     }
     public boolean emailValidation(String email){
         return this.authService.isValidEmail(email);
@@ -41,7 +38,6 @@ public class AuthenticationController {
     public boolean passwordValidation(String pass){
         return this.authService.passwordValidation(pass);
     }
-
     public boolean usernameValidation(String username){
         //check validation
         //check if username exist or not
@@ -56,7 +52,13 @@ public class AuthenticationController {
         } //not a valid username
         return false;
     }
-
+    public boolean passportValidation(String passport) {
+        if (!(passport.matches("[A-Za-z0-9_]+"))) {
+            System.out.println("Passport must consist of English alphanumeric characters and digits only!");
+            return false;
+        }
+        return true;
+    }
     public boolean birthdayValidation(String date){
         return this.authService.isDate(date);
     }

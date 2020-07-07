@@ -3,9 +3,13 @@
 
 package controller;
 
+import model.objects.Flight;
 import model.objects.Order;
+import model.objects.Passenger;
 import model.service.OrderService;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class OrderController {
@@ -23,6 +27,15 @@ public class OrderController {
 
     public Set<Order> getOrdersByPassengerID(long passengerID) {
         return orderService.getOrdersByPassengerID(passengerID);
+    }
+
+    public boolean makeAnOrder(int flightID, Passenger passenger){
+        orderService.makeNewOrder(flightID, passenger);
+        return true;
+    }
+    public boolean makeAnOrder(int[] flightID, Passenger passenger){
+        orderService.makeNewOrder(flightID, passenger);
+        return true;
     }
 
     public boolean searchByDate() {

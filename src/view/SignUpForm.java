@@ -9,6 +9,7 @@ public class SignUpForm {
     private AuthenticationController authController;
 
     public SignUpForm(){
+
         this.authController = new AuthenticationController();
     }
 

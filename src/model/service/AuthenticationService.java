@@ -53,7 +53,6 @@ public class AuthenticationService {
             System.out.println("Password must contain at least one letter! ");
             return false;
         }
-
         return true;
     }
 
@@ -75,6 +74,7 @@ public class AuthenticationService {
         return true;
     }
 
+//"[0-9]+"
     public boolean passwordValidation(String password) {
         if (!(password.matches("^(?=.*[0-9])(?=.*[a-zA-Z]).{8,32}$"))) {
             return this.passwordStrength(password);

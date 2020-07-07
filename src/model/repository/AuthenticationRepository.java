@@ -12,5 +12,4 @@ public interface AuthenticationRepository {
     void logOut();
     boolean isLoggedin();
     boolean signUp(String firstName, String lastName, long id, String email, String birthDate, boolean enabled , String userName, String password);
-
 }

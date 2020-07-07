@@ -19,7 +19,7 @@ public class SababaFlightsProgram {
     public SababaFlightsProgram() {
         this.authController = new AuthenticationController();
         this.orderController = new OrderController();
-        this.sabbaSearch = new SababaSearch();
+        this.sabbaSearch = new SababaSearch(this);
         this.signUpForm = new SignUpForm();
         this.orderView = new SababaOrderView(this);
      }

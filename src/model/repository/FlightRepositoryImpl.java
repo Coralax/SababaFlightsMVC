@@ -12,24 +12,16 @@ public class FlightRepositoryImpl implements FlightRepository {
 
     Set<Flight> flights = FlightSingleton.getInstance().flightSet;
 
-    public Flight getFlightByID(int id)
-    {
-        for(Flight flight: flights)
-        {
-            if(flight.getId() == id)
-                return flight;
-        }
-        return null;
-    }
+    //FINISH IMPLEMENTATIONS
     public Map<Integer, List<Flight>> flightResultsRoundTrip(String destination, int numOfPassengers, LocalDate departD, LocalDate returnD) {
-            List<Flight> resultOneWay = new ArrayList<>();
-            Map<Integer,List<Flight>> resultTwoWayMapping = new HashMap<>();
-            List<Flight> flightBackFound = new ArrayList<>();
-            boolean twoWay=false;
-            int i = 0;
-             for (Flight flight : flights) {
-                if (flight.getDestination().toLowerCase().equals(destination.toLowerCase())) {
-                  if ((flight.convertToLocalDate(flight.getDepartureDate())).compareTo(departD) == 0) {
+        List<Flight> resultOneWay = new ArrayList<>();
+        Map<Integer,List<Flight>> resultTwoWayMapping = new HashMap<>();
+        List<Flight> flightBackFound = new ArrayList<>();
+        boolean twoWay=false;
+        int i = 0;
+        for (Flight flight : flights) {
+            if (flight.getDestination().toLowerCase().equals(destination.toLowerCase())) {
+                if ((flight.convertToLocalDate(flight.getDepartureDate())).compareTo(departD) == 0) {
                     if (flight.getSeatsLeft() >= numOfPassengers) {
                         resultOneWay.add(flight);
                         i++;
@@ -37,31 +29,31 @@ public class FlightRepositoryImpl implements FlightRepository {
                 }
             }
         }
-            if(i>=1) {
-                for (Flight foundOneWay : resultOneWay) {
-                    flightBackFound.clear();
-                    for (Flight flightReturn : flights) {
-                        if (flightReturn.getDestination().toLowerCase().equals(foundOneWay.getDepartureAirport().getCountry().toLowerCase()))
-                        {
-                            if((flightReturn.convertToLocalDate(flightReturn.getDepartureDate())).compareTo(returnD)==0)
-                                if(flightReturn.getSeatsLeft()>=numOfPassengers)
-                                {
-                                    flightBackFound.add(flightReturn);
-                                    twoWay=true;
-                                }
-                        }
+        if(i>=1) {
+            for (Flight foundOneWay : resultOneWay) {
+                flightBackFound.clear();
+                for (Flight flightReturn : flights) {
+                    if (flightReturn.getDestination().toLowerCase().equals(foundOneWay.getDepartureAirport().getCountry().toLowerCase()))
+                    {
+                        if((flightReturn.convertToLocalDate(flightReturn.getDepartureDate())).compareTo(returnD)==0)
+                            if(flightReturn.getSeatsLeft()>=numOfPassengers)
+                            {
+                                flightBackFound.add(flightReturn);
+                                twoWay=true;
+                            }
                     }
-                    resultTwoWayMapping.put((foundOneWay.getId()),flightBackFound);
                 }
-                if(!twoWay) //no return flight found
-                {
-                    System.out.println("No return flight found");
-                    return null;
-                }
+                resultTwoWayMapping.put((foundOneWay.getId()),flightBackFound);
             }
-            //No flights at all, not even depart flight
-           else
+            if(!twoWay) //no return flight found
+            {
+                System.out.println("No return flight found");
                 return null;
+            }
+        }
+        //No flights at all, not even depart flight
+        else
+            return null;
         return resultTwoWayMapping;
     }
 
@@ -79,8 +71,31 @@ public class FlightRepositoryImpl implements FlightRepository {
             return resultFlights;
         return null;
     }
+    public List<Flight> flightResultsOneDirectionInRange(String destination, int numOfPassengers, LocalDate departD){
+
+        return null;
+    }
+
+    public Map<Integer, List<Flight>> flightResultsRoundTripInRange(String destination, int numOfPassengers, LocalDate departD, LocalDate returnD){
+        return null;
+    }
+
+    public boolean deleteFlightFromFile(int id){
+        return true;
+    }
+    public boolean addFlightToFile(Flight flight){
+        return true;
+    }
+    public Flight getFlightByID(int id)
+    {
+        for(Flight flight: flights)
+        {
+            if(flight.getId() == id)
+                return flight;
+        }
+        return null;
+    }
+
+
+
 }
-
-//    public List<Flight> findByDestination(String destination, int numOfPassengers, LocalDate departD,LocalDate returnD) {
-//    }
-

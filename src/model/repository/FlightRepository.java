@@ -9,5 +9,10 @@ import java.util.Map;
 public interface FlightRepository {
      Map<Integer, List<Flight>> flightResultsRoundTrip(String destination, int numOfPassengers, LocalDate departD, LocalDate returnD);
      List<Flight> flightResultOneDirection(String destination, int numOfPassengers, LocalDate departD);
+     List<Flight> flightResultsOneDirectionInRange(String destination, int numOfPassengers, LocalDate departD);
+     Map<Integer, List<Flight>> flightResultsRoundTripInRange(String destination, int numOfPassengers, LocalDate departD, LocalDate returnD);
      Flight getFlightByID(int id);
-     }
+     boolean deleteFlightFromFile(int id);
+     boolean addFlightToFile(Flight flight);
+
+}

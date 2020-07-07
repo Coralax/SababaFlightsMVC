@@ -86,6 +86,7 @@ public class Flight {
             FlightCurrencyAdapterImpl currencyAdapter = new FlightCurrencyAdapterImpl(this);
             return
                     " Flight ID: " + id + "\n"+
+                    " Seats left: " +seatsLeft +"\n"+
                     " Aircraft: " + aircraftID + "\n" +
                     " Destination: "+ destination +"\n"+
                     " Departure airport: " + departureAirport + "\n" +
@@ -97,6 +98,7 @@ public class Flight {
         } else {
             return
                     " Flight ID: " + id + "\n"+
+                    " Seats left: "+seatsLeft +"\n"+
                     " Aircraft: " + aircraftID + "\n" +
                     " Destination: "+ destination +"\n"+
                     " Departure airport: " + departureAirport + "\n" +

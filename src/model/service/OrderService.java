@@ -1,21 +1,40 @@
 package model.service;
 
+import model.objects.Flight;
 import model.objects.Order;
+import model.objects.Passenger;
+import model.repository.FlightRepositoryImpl;
 import model.repository.OrderRepositoryImpl;
 import model.singletons.OrderSingleton;
 
+import java.util.List;
 import java.util.Set;
 
 public class OrderService {
 
     private OrderRepositoryImpl orderRepository;
     private OrderSingleton orderSingletonInstance;
+    private FlightRepositoryImpl flightRepository;
     private Set<Order> orders;
 
     public OrderService() {
         orderSingletonInstance = OrderSingleton.getInstance();
         orders = orderSingletonInstance.orderSet;
         orderRepository = new OrderRepositoryImpl();
+        flightRepository=new FlightRepositoryImpl();
+    }
+
+
+    //FINISH THIS ORDER
+    public void makeNewOrder(int filghtID, Passenger passenger)
+    {
+        System.out.println("Got into Order service makeNewOrder");
+        Flight flight=flightRepository.getFlightByID(filghtID);
+    }
+    public void makeNewOrder(int[] filghtID, Passenger passenger)
+    {
+        System.out.println("Got into Order service makeNewOrder");
+
     }
 
     public Order getOrderByID(long orderID) {

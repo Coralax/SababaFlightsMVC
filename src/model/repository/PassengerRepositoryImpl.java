@@ -5,6 +5,5 @@ import model.FileManager;
 
 public class PassengerRepositoryImpl implements PassengerRepository {
 
-    private FileManager<Passenger> fileManager;
 
 }
