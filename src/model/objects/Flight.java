@@ -1,12 +1,16 @@
 package model.objects;
 
+import model.adapter.FlightCurrencyAdapterImpl;
+import model.singletons.FlightSingleton;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class Flight {
+
     private static int staticFlightID;
-    private int flightID;
+    private int id;
     private String destination;
     private Aircraft aircraft;
     private Airport departureAirport, destinationAirport;
@@ -17,11 +21,11 @@ public class Flight {
 
     static { staticFlightID = 0; }
 
-    public Flight() {}
+    public Flight() { staticFlightID++; }
 
     public Flight(Aircraft aircraft, Airport departureAirport, Airport destinationAirport,
                   String departureDate, String arrivalDate, double flightPrice, boolean direct,String destination, int seatsLeft) {
-        this.flightID = staticFlightID++;
+        this.id = staticFlightID++;
         this.aircraft = aircraft;
         this.departureAirport = departureAirport;
         this.destinationAirport = destinationAirport;
@@ -34,7 +38,7 @@ public class Flight {
     }
 
     public Aircraft getAircraft() { return this.aircraft; }
-    public int getFlightID() { return flightID; }
+    public int getId() { return id; }
     public Airport getDepartureAirport() { return this.departureAirport; }
     public Airport getDestinationAirport() { return this.destinationAirport; }
     public String getDepartureDate() { return this.departureDate; }
@@ -51,7 +55,7 @@ public class Flight {
     public void setArrivalDate(String arrivalDate) { this.arrivalDate = arrivalDate; }
     public void setFlightPrice(double flightPrice) { this.flightPrice = flightPrice; }
     public void setDirect(boolean direct) { this.direct = direct; }
-    public void setFlightID(int flightID) { this.flightID = flightID; }
+    public void setId(int id) { this.id = id; }
     public void setDestination(String destination) { this.destination = destination; }
     public void setSeatsLeft(int seatsLeft) { this.seatsLeft = seatsLeft; }
 
@@ -98,16 +102,30 @@ public class Flight {
 
     @Override
     public String toString() {
-        return
-                " Flight ID: " + flightID + "\n"+
-                        " Aircraft details" +"\n"+"["+ aircraft + "]"+"\n"+
-                        " Destination: "+ destination +"\n"+
-                        " Departure airport details " + "\n"+"["+ departureAirport + "]"+"\n" +
-                        " Destination airport details " + "\n"+"["+destinationAirport + "]"+ "\n" +
-                        " Departure date: " + departureDate + "\n" +
-                        " Arrival date: " + arrivalDate + "\n" +
-                        " Flight price: " + flightPrice + "\n" +
-                        " Is direct: " + direct + "\n"  +
-                        " Seats left: " +seatsLeft;
+        int currency = FlightSingleton.getInstance().getCurrency();
+        if (currency == 1) {
+            FlightCurrencyAdapterImpl currencyAdapter = new FlightCurrencyAdapterImpl(this);
+            return
+                    " Flight ID: " + id + "\n"+
+                    " Aircraft: " + aircraft + "\n" +
+                    " Destination: "+ destination +"\n"+
+                    " Departure airport: " + departureAirport + "\n" +
+                    " Destination airport: " + destinationAirport + "\n" +
+                    " Departure date: " + departureDate + "\n" +
+                    " Arrival date: " + arrivalDate + "\n" +
+                    " Flight price: " + currencyAdapter.getFlightPrice() + "\n" +
+                    " Is direct: " + direct + "\n" ;
+        } else {
+            return
+                    " Flight ID: " + id + "\n"+
+                    " Aircraft: " + aircraft + "\n" +
+                    " Destination: "+ destination +"\n"+
+                    " Departure airport: " + departureAirport + "\n" +
+                    " Destination airport: " + destinationAirport + "\n" +
+                    " Departure date: " + departureDate + "\n" +
+                    " Arrival date: " + arrivalDate + "\n" +
+                    " Flight price: " + flightPrice + "\n" +
+                    " Is direct: " + direct + "\n" ;
+        }
     }
 }

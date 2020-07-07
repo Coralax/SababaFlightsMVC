@@ -2,8 +2,6 @@ package model.singletons;
 
 import model.objects.Order;
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Scanner;
 import java.util.Set;
 
 public class OrderSingleton extends Singleton<Order> {
@@ -25,10 +23,10 @@ public class OrderSingleton extends Singleton<Order> {
 
     public Order getOrderByID(long id) {
         for (Order order : this.orderSet) {
-            if (order.getOrderID() == id)
+            if (order.getId() == id)
                 return order;
         }
-        System.out.println("Could not find an order with the provided id");
+        System.out.println("Could not find an order with this id");
         return null;
     }
 

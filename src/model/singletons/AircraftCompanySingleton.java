@@ -20,4 +20,14 @@ public class AircraftCompanySingleton extends Singleton<AircraftCompany> {
         return aircraftCompanySingleton;
     }
 
+    public AircraftCompany getAircraftCompanyById(int id) {
+        for (AircraftCompany aircraftCompany : this.aircraftCompanySet) {
+            if (aircraftCompany.getId() == id) {
+                return aircraftCompany;
+            }
+        }
+        System.out.println("Could not find an aircraft company with this id");
+        return null;
+    }
+
 }

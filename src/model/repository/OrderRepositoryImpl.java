@@ -19,17 +19,6 @@ public class OrderRepositoryImpl implements OrderRepository {
     }
 
     @Override
-    public long generateOrderID() {
-        Set<Order> orders = OrderSingleton.getInstance().orderSet;
-        long highestOrderId = 0;
-        for (Order order : orders) {
-            if (order.getOrderID() > highestOrderId)
-                highestOrderId = order.getOrderID();
-        }
-        return highestOrderId++;
-    }
-
-    @Override
     public boolean addPassenger(Order order, long passengerID) {
         if (order.getOwnerPassenger().getId() == passengerID) {
             System.out.println("The provided passenger is the order's owner");
@@ -97,7 +86,7 @@ public class OrderRepositoryImpl implements OrderRepository {
             Iterator<Order> iterator = orders.iterator();
             while (iterator.hasNext()) {
                 Order order = iterator.next();
-                if (order.getOrderID() == orderToDelete.getOrderID()) {
+                if (order.getId() == orderToDelete.getId()) {
                     iterator.remove();
                     System.out.println("Order has been deleted");
                     return true;
@@ -117,7 +106,7 @@ public class OrderRepositoryImpl implements OrderRepository {
         String userInput = input.nextLine();
         if (userInput.equals("Y") || userInput.equals("y")) {
             for (Order order : this.orders) {
-                if (order.getOrderID() == orderToCancel.getOrderID()) {
+                if (order.getId() == orderToCancel.getId()) {
                     order.setCanceled(true);
                     System.out.println("Order has been deactivated");
                     return true;
@@ -137,7 +126,7 @@ public class OrderRepositoryImpl implements OrderRepository {
         String userInput = input.nextLine();
         if (userInput.equals("Y") || userInput.equals("y")) {
             for (Order order : this.orders) {
-                if (order.getOrderID() == orderToReopen.getOrderID()) {
+                if (order.getId() == orderToReopen.getId()) {
                     order.setCanceled(false);
                     System.out.println("Order has been canceled");
                     return true;

@@ -1,12 +1,8 @@
 package model.objects;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
 public class Aircraft {
     private static int aircraftsCount;
-    private int aircraftID;
+    private int id;
     private AircraftCompany aircraftCompany;
     private int seatsCount;
     private String model;
@@ -15,16 +11,18 @@ public class Aircraft {
         aircraftsCount = 0;
     }
 
-    public Aircraft() {}
+    public Aircraft() {
+        aircraftsCount++;
+    }
 
     public Aircraft(AircraftCompany aircraftCompany, int seatsCount, String model) {
-        this.aircraftID = aircraftsCount++;
+        this.id = aircraftsCount++;
         this.aircraftCompany = aircraftCompany;
         this.seatsCount = seatsCount;
         this.model = model;
     }
 
-    public int getAircraftID() { return this.aircraftID; }
+    public int getId() { return this.id; }
     public AircraftCompany getAircraftCompany() { return this.aircraftCompany; }
     public int getSeatsCount() { return this.seatsCount; }
     public String getModel() { return this.model; }
@@ -41,7 +39,7 @@ public class Aircraft {
     @Override
     public String toString() {
         return
-                " Aircraft ID: " + aircraftID + " ," +
+                " Aircraft ID: " + id + " ," +
                 " Aircraft Company: " + aircraftCompany + " ," +
                 " Seats Count: " + seatsCount + " ," +
                 " Model: " + model;

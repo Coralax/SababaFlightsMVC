@@ -1,6 +1,6 @@
 [
   {
-    "aircraftID": 0,
+    "id": 0,
     "aircraftCompany":
     {
       "companyName" : "El-Al",
@@ -10,7 +10,7 @@
     "model": "Boeing-797"
   },
   {
-    "aircraftID": 1,
+    "id": 1,
     "aircraftCompany":
     {
       "companyName" : "WizzAir",

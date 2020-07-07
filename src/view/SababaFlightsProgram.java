@@ -121,6 +121,7 @@ public class SababaFlightsProgram {
     public void homePage(){
         String op;
         Scanner scanner = new Scanner(System.in);
+        Aircraft aircraft = new Aircraft(new AircraftCompany("El-Al"),78,"Model");
         do {
             Agent loggedInAgent = LoginSingleton.getInstance().loggedInAgent;
             System.out.println("Welcome " + loggedInAgent.getFirstName() + " ,what would you like to do?");

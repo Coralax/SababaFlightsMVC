@@ -1,5 +1,6 @@
 package model.singletons;
 
+import model.objects.Aircraft;
 import model.objects.Airport;
 import java.util.Set;
 
@@ -18,6 +19,16 @@ public class AirportSingleton extends Singleton<Airport> {
             airportSingletonInstance = new AirportSingleton();
 
         return airportSingletonInstance;
+    }
+
+    public Airport getAirportById(int id) {
+        for (Airport airport : this.airportSet) {
+            if (airport.getId() == id) {
+                return airport;
+            }
+        }
+        System.out.println("Could not find an airport with this id");
+        return null;
     }
 
 }

@@ -8,10 +8,11 @@ import java.util.List;
 
 public class Order {
 
+    static int ordersCount;
     int agentCode;
     AircraftCompany flightCompany;
     boolean roundTrip;
-    long orderID;
+    long id;
     double totalCost;
     long creditCard;
     List<Flight> flightTo;
@@ -20,19 +21,16 @@ public class Order {
     List<Passenger> otherPassengers;
     boolean canceled;
 
-    public Order() {}
+    static { ordersCount = 0; }
 
-    public Order(int agentCode, AircraftCompany flightCompany, boolean roundTrip, int orderID, double totalCost, long creditCard,
+    public Order() { ordersCount++; }
+
+    public Order(int agentCode, AircraftCompany flightCompany, boolean roundTrip, double totalCost, long creditCard,
                  List<Flight> flightTo, List<Flight> flightFrom, Passenger ownerPassenger, List<Passenger> otherPassengers) {
         this.agentCode = agentCode;
         this.flightCompany = flightCompany;
         this.roundTrip = roundTrip;
-        if (orderID == 0) {
-            OrderRepositoryImpl orderRepository = new OrderRepositoryImpl();
-            this.orderID = orderRepository.generateOrderID();
-        } else {
-            this.orderID = orderID;
-        }
+        this.id = ordersCount++;
         this.totalCost = totalCost;
         this.creditCard = creditCard;
         this.flightTo = flightTo;
@@ -46,7 +44,7 @@ public class Order {
     public int getAgentCode() { return this.agentCode; }
     public AircraftCompany getFlightCompany() { return this.flightCompany; }
     public boolean isRoundTrip() { return this.roundTrip; }
-    public long getOrderID() { return this.orderID; }
+    public long getId() { return this.id; }
     public double getTotalCost() { return this.totalCost; }
     public long getCreditCard() { return this.creditCard; }
     public List<Flight> getFlightTo() { return this.flightTo; }
@@ -59,7 +57,7 @@ public class Order {
     public void setAgentCode(int agentCode) { this.agentCode = agentCode; }
     public void setFlightCompany(AircraftCompany flightCompany) { this.flightCompany = flightCompany; }
     public void setRoundTrip(boolean roundTrip) { this.roundTrip = roundTrip; }
-    public void setOrderID(long orderID) { this.orderID = orderID; }
+    public void setId(long id) { this.id = id; }
     public void setTotalCost(double totalCost) { this.totalCost = totalCost; }
     public void setCreditCard(long creditCard) { this.creditCard = creditCard; }
     public void setFlightTo(List<Flight> flightTo) { this.flightTo = flightTo; }
@@ -92,7 +90,7 @@ public class Order {
             return "Order:\n" +
                     "flightCompany=" + flightCompany +
                     "\nroundTrip=" + roundTrip +
-                    "\norderID=" + orderID +
+                    "\norderID=" + id +
                     "\ntotalCost=" + orderCurrencyAdapter.getTotalCost() +
                     "\ncreditCard=" + creditCard +
                     "\nflightTo=" + flightTo +
@@ -103,7 +101,7 @@ public class Order {
         return "Order:\n" +
                 "flightCompany=" + flightCompany +
                 "\nroundTrip=" + roundTrip +
-                "\norderID=" + orderID +
+                "\norderID=" + id +
                 "\ntotalCost=" + totalCost +
                 "\ncreditCard=" + creditCard +
                 "\nflightTo=" + flightTo +
