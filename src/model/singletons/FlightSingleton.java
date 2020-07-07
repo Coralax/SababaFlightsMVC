@@ -22,6 +22,16 @@ public class FlightSingleton extends Singleton<Flight> {
         return flightSingletonInstance;
     }
 
+    public Flight getFlightById(int id) {
+        for (Flight flight : this.flightSet) {
+            if (flight.getId() == id) {
+                return flight;
+            }
+        }
+        System.out.println("Could not find a flight with this id");
+        return null;
+    }
+
     public void setCurrency(int currency) {
         this.currency = currency;
     }

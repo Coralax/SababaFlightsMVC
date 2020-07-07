@@ -26,7 +26,7 @@ public class PassengerSingleton extends Singleton<Passenger> {
                 return passenger;
             }
         }
-        System.out.println("Could not find a passenger with provided id");
+        System.out.println("Could not find a passenger with this id");
         return null;
     }
 

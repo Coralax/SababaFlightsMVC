@@ -4,12 +4,17 @@ import java.util.List;
 
 public class Airport {
 
+    static int airportsCount;
+    private int id;
     private String country, airportName;
     private List<String> terminals = new ArrayList<>();
 
-    public Airport() {}
+    static { airportsCount = 0; }
+
+    public Airport() { airportsCount++; }
 
     public Airport(String country, String airportName, List<String> terminals) {
+        this.id = airportsCount++;
         this.country = country;
         this.airportName = airportName;
         this.terminals = terminals;
@@ -21,6 +26,7 @@ public class Airport {
     public void setAirportName(String airportName) {
         this.airportName = airportName;
     }
+    public void setId(int id) { this.id = id; }
 
     public String getCountry() {
         return this.country;
@@ -29,6 +35,7 @@ public class Airport {
         return this.airportName;
     }
     public List<String> getTerminals() { return this.terminals; }
+    public int getId() { return this.id; }
 
 
     public boolean addTerminal(String terminal) {

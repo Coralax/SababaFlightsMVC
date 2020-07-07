@@ -5,13 +5,13 @@
     "companyClass" : "Low cost"
   },
   "roundTrip" : false,
-  "orderID" : 80734,
+  "id" : 80734,
   "totalCost" : 789.0,
   "creditCard" : 321321321,
   "flightTo" : [ {
-    "flightID" : 1,
+    "id" : 1,
     "aircraft" : {
-      "aircraftID" : 1,
+      "id" : 1,
       "aircraftCompany" : {
         "companyName" : "WizzAir",
         "companyClass" : "Low-cost"
@@ -53,13 +53,13 @@
     "companyClass" : "Regular"
   },
   "roundTrip" : false,
-  "orderID" : 80734,
+  "id" : 80734,
   "totalCost" : 559.0,
   "creditCard" : 1234567890123456,
   "flightTo" : [ {
-    "flightID" : 0,
+    "id" : 0,
     "aircraft" : {
-      "aircraftID" : 0,
+      "id" : 0,
       "aircraftCompany" : {
         "companyName" : "El-Al",
         "companyClass" : "regular"

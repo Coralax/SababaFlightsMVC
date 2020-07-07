@@ -1,6 +1,6 @@
 [
   {
-    "flightID" : 0,
+    "id" : 0,
     "destination": "New york",
     "departureAirport" : {
       "country" : "Israel",
@@ -16,7 +16,7 @@
     "arrivalDate" : "01/08/2020",
     "flightPrice" : 512.0,
     "aircraft" : {
-      "aircraftID" : 0,
+      "id" : 0,
       "aircraftCompany" : {
         "companyName" : "El-Al",
         "companyClass" : "regular"
@@ -27,7 +27,7 @@
     "direct" : false
   },
   {
-    "flightID" : 1,
+    "id" : 1,
     "destination": "Spain",
     "departureAirport" : {
       "country" : "Israel, TLV",
@@ -43,7 +43,7 @@
     "arrivalDate" : "02/08/2020",
     "flightPrice" : 436.0,
     "aircraft" : {
-      "aircraftID": 1,
+      "id": 1,
       "aircraftCompany":
       {
         "companyName" : "WizzAir",
@@ -55,7 +55,7 @@
     "direct" : true
   },
   {
-    "flightID" : 2,
+    "id" : 2,
     "destination": "New york",
     "departureAirport" : {
       "country" : "Israel",
@@ -71,7 +71,7 @@
     "arrivalDate" : "07/08/2020",
     "flightPrice" : 479.0,
     "aircraft" : {
-      "aircraftID": 1,
+      "id": 1,
       "aircraftCompany":
       {
         "companyName" : "El-Al",
@@ -83,7 +83,7 @@
     "direct" : true
   },
   {
-    "flightID" : 3,
+    "id" : 3,
     "destination": "Israel",
     "departureAirport" : {
       "country" : "New York",
@@ -99,7 +99,7 @@
     "arrivalDate" : "11/08/2020",
     "flightPrice" : 453.0,
     "aircraft" : {
-      "aircraftID": 1,
+      "id": 1,
       "aircraftCompany":
       {
         "companyName" : "El-Al",

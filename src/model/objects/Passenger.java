@@ -3,22 +3,28 @@ package model.objects;
 import java.util.Objects;
 
 public class Passenger extends Person {
+
+    static int passengersCount;
     private String passport;
     private boolean suitcase, meals;
 
-    public Passenger() { super(); }
+    static { passengersCount = 0; }
+
+    public Passenger() {
+        super();
+        passengersCount++;
+    }
 
     public Passenger(
             String firstName,
             String lastName,
-            long id,
             String email,
             String birthDateStr,
             String passport,
             boolean hasSuitcase,
             boolean hasMeals
         ) {
-        super(firstName, lastName, email, id, birthDateStr);
+        super(firstName, lastName, email, passengersCount++, birthDateStr);
         this.passport = passport;
         this.suitcase = hasSuitcase;
         this.meals = hasMeals;

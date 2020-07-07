@@ -13,14 +13,21 @@ import java.util.Objects;
 public class Agent extends Person {
 
     private String userName, password;
+    static int agentsCount;
     private long agentCode;
     private boolean isVerified;
     private int permissionLevel;
 
-    public Agent() { super(); }
+    static { agentsCount = 0; }
+
+    public Agent() {
+        super();
+        agentsCount++;
+    }
 
     public Agent(long id, String firstName, String lastName, String email, String userName, String password, int agentCode, String birthDateStr) {
         super(firstName, lastName, email, id, birthDateStr);
+        this.id = agentsCount++;
         this.userName = userName;
         this.setPassword(password);
         this.agentCode = agentCode;
