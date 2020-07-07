@@ -9,10 +9,10 @@ import java.util.Objects;
 
 public class Flight {
 
-    private static int staticFlightID;
+    static int staticFlightID;
     private int id;
     private String destination;
-    private Aircraft aircraft;
+    private int aircraftID;
     private Airport departureAirport, destinationAirport;
     private String departureDate, arrivalDate;
     private double flightPrice;
@@ -23,10 +23,10 @@ public class Flight {
 
     public Flight() { staticFlightID++; }
 
-    public Flight(Aircraft aircraft, Airport departureAirport, Airport destinationAirport,
+    public Flight(int aircraftID, Airport departureAirport, Airport destinationAirport,
                   String departureDate, String arrivalDate, double flightPrice, boolean direct,String destination, int seatsLeft) {
         this.id = staticFlightID++;
-        this.aircraft = aircraft;
+        this.aircraftID = aircraftID;
         this.departureAirport = departureAirport;
         this.destinationAirport = destinationAirport;
         this.departureDate = departureDate;
@@ -34,10 +34,10 @@ public class Flight {
         this.flightPrice = flightPrice;
         this.direct = direct;
         this.destination=destination;
-        this.seatsLeft=seatsLeft;
+        this.seatsLeft = seatsLeft;
     }
 
-    public Aircraft getAircraft() { return this.aircraft; }
+    public int getAircraftID() { return this.aircraftID; }
     public int getId() { return id; }
     public Airport getDepartureAirport() { return this.departureAirport; }
     public Airport getDestinationAirport() { return this.destinationAirport; }
@@ -48,7 +48,7 @@ public class Flight {
     public String getDestination() { return destination; }
     public int getSeatsLeft() { return seatsLeft; }
 
-    public void setAircraft(Aircraft aircraft) { this.aircraft = aircraft; }
+    public void setAircraftID(int aircraftID) { this.aircraftID = aircraftID; }
     public void setDepartureAirport(Airport departureAirport) { this.departureAirport = departureAirport; }
     public void setDestinationAirport(Airport destinationAirport) { this.destinationAirport = destinationAirport; }
     public void setDepartureDate(String departureDate) { this.departureDate = departureDate; }
@@ -59,27 +59,6 @@ public class Flight {
     public void setDestination(String destination) { this.destination = destination; }
     public void setSeatsLeft(int seatsLeft) { this.seatsLeft = seatsLeft; }
 
-
-    //    // function to generate a random string of length n
-//    static String randomizeFlightNumber(int n)
-//    {
-//        // chose a Character random from this String
-//        String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-//                + "0123456789";
-//        // create StringBuffer size of AlphaNumericString
-//        StringBuilder sb = new StringBuilder(n);
-//        for (int i = 0; i < n; i++) {
-//            // generate a random number between
-//            // 0 to AlphaNumericString variable length
-//            int index
-//                    = (int)(AlphaNumericString.length()
-//                    * Math.random());
-//            // add Character one by one in end of sb
-//            sb.append(AlphaNumericString
-//                    .charAt(index));
-//        }
-//        return sb.toString();
-//    }
     //make global
     public LocalDate convertToLocalDate(String date){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -92,12 +71,12 @@ public class Flight {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Flight flight = (Flight) o;
-        return flightID == flight.flightID;
+        return id == flight.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(flightID);
+        return Objects.hash(id);
     }
 
     @Override
@@ -107,7 +86,7 @@ public class Flight {
             FlightCurrencyAdapterImpl currencyAdapter = new FlightCurrencyAdapterImpl(this);
             return
                     " Flight ID: " + id + "\n"+
-                    " Aircraft: " + aircraft + "\n" +
+                    " Aircraft: " + aircraftID + "\n" +
                     " Destination: "+ destination +"\n"+
                     " Departure airport: " + departureAirport + "\n" +
                     " Destination airport: " + destinationAirport + "\n" +
@@ -118,7 +97,7 @@ public class Flight {
         } else {
             return
                     " Flight ID: " + id + "\n"+
-                    " Aircraft: " + aircraft + "\n" +
+                    " Aircraft: " + aircraftID + "\n" +
                     " Destination: "+ destination +"\n"+
                     " Departure airport: " + departureAirport + "\n" +
                     " Destination airport: " + destinationAirport + "\n" +

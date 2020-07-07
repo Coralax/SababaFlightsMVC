@@ -3,7 +3,7 @@ package model.objects;
 public class Aircraft {
     private static int aircraftsCount;
     private int id;
-    private AircraftCompany aircraftCompany;
+    private int aircraftCompanyID;
     private int seatsCount;
     private String model;
 
@@ -15,19 +15,19 @@ public class Aircraft {
         aircraftsCount++;
     }
 
-    public Aircraft(AircraftCompany aircraftCompany, int seatsCount, String model) {
+    public Aircraft(int aircraftCompanyID, int seatsCount, String model) {
         this.id = aircraftsCount++;
-        this.aircraftCompany = aircraftCompany;
+        this.aircraftCompanyID = aircraftCompanyID;
         this.seatsCount = seatsCount;
         this.model = model;
     }
 
     public int getId() { return this.id; }
-    public AircraftCompany getAircraftCompany() { return this.aircraftCompany; }
+    public int getAircraftCompany() { return this.aircraftCompanyID; }
     public int getSeatsCount() { return this.seatsCount; }
     public String getModel() { return this.model; }
 
-    public void setAircraftCompany(AircraftCompany aircraftCompany) { this.aircraftCompany = aircraftCompany; }
+    public void setAircraftCompany(int aircraftCompanyID) { this.aircraftCompanyID = aircraftCompanyID; }
     public void setSeatsCount(int seatsCount) { this.seatsCount = seatsCount; }
     public void setModel(String model) { this.model = model; }
 
@@ -40,7 +40,7 @@ public class Aircraft {
     public String toString() {
         return
                 " Aircraft ID: " + id + " ," +
-                " Aircraft Company: " + aircraftCompany + " ," +
+                " Aircraft Company: " + aircraftCompanyID + " ," +
                 " Seats Count: " + seatsCount + " ," +
                 " Model: " + model;
     }

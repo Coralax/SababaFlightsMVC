@@ -100,7 +100,7 @@ public class SababaOrderView {
                         orderController.addPassengerToOrder(order, Long.parseLong(scanner.nextLine()));
                         break;
                     case "3":
-                        if (order.getOtherPassengers() == null) {
+                        if (order.getOtherPassengersIDs() == null) {
                             System.out.println("This order has no additional passengers - nothing to remove");
                             break;
                         }

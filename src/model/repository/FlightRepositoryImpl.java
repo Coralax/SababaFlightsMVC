@@ -1,6 +1,7 @@
 package model.repository;
 import model.objects.Flight;
 
+import model.singletons.AircraftSingleton;
 import model.singletons.FlightSingleton;
 
 import java.time.LocalDate;
@@ -15,7 +16,7 @@ public class FlightRepositoryImpl implements FlightRepository {
     {
         for(Flight flight: flights)
         {
-            if(flight.getFlightID()==id)
+            if(flight.getId() == id)
                 return flight;
         }
         return null;
@@ -50,7 +51,7 @@ public class FlightRepositoryImpl implements FlightRepository {
                                 }
                         }
                     }
-                    resultTwoWayMapping.put((foundOneWay.getFlightID()),flightBackFound);
+                    resultTwoWayMapping.put((foundOneWay.getId()),flightBackFound);
                 }
                 if(!twoWay) //no return flight found
                 {
@@ -79,3 +80,7 @@ public class FlightRepositoryImpl implements FlightRepository {
         return null;
     }
 }
+
+//    public List<Flight> findByDestination(String destination, int numOfPassengers, LocalDate departD,LocalDate returnD) {
+//    }
+

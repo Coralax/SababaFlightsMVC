@@ -20,25 +20,26 @@ public class OrderRepositoryImpl implements OrderRepository {
 
     @Override
     public boolean addPassenger(Order order, long passengerID) {
-        if (order.getOwnerPassenger().getId() == passengerID) {
+        if (order.getOwnerPassengerID() == passengerID) {
             System.out.println("The provided passenger is the order's owner");
             return false;
         } else {
-            if (order.getOtherPassengers() == null) {
-                List<Passenger> passengers = Arrays.asList(PassengerSingleton.getInstance().getPassengerByID(passengerID));
-                order.setOtherPassengers(passengers);
+            if (order.getOtherPassengersIDs() == null) {
+                List<Long> passengersIDs = new ArrayList<>();
+                passengersIDs.add(passengerID);
+                order.setOtherPassengersIDs(passengersIDs);
                 System.out.println("Successfully added passenger to order");
                 return true;
             } else {
-                for (Passenger passenger : order.getOtherPassengers()) {
-                    if (passenger.getId() == passengerID) {
+                for (long pID : order.getOtherPassengersIDs()) {
+                    if (pID == passengerID) {
                         System.out.println("Passenger is already in order");
                         return false;
                     }
                 }
-                List<Passenger> newPassengersList = order.getOtherPassengers();
-                newPassengersList.add(PassengerSingleton.getInstance().getPassengerByID(passengerID));
-                order.setOtherPassengers(newPassengersList);
+                List<Long> newPassengersList = order.getOtherPassengersIDs();
+                newPassengersList.add(passengerID);
+                order.setOtherPassengersIDs(newPassengersList);
                 return true;
             }
         }
@@ -56,16 +57,16 @@ public class OrderRepositoryImpl implements OrderRepository {
         System.out.println("Sure? (Y / N)");
         String userInput = input.nextLine();
         if (userInput.equals("Y") || userInput.equals("y")) {
-            List<Passenger> p = new ArrayList<>();
-            for (Passenger passenger : order.getOtherPassengers()) {
-                if (passenger.getId() == passengerToRemove) {
+            List<Long> p = new ArrayList<>();
+            for (Long passengerIDs : order.getOtherPassengersIDs()) {
+                if (passengerIDs == passengerToRemove) {
                     successfullyRemoved = true;
                     continue;
                 }
-                p.add(passenger);
+                p.add(passengerIDs);
             }
             if (successfullyRemoved) {
-                order.setOtherPassengers(p);
+                order.setOtherPassengersIDs(p);
                 System.out.println("Successfully removed passenger from order");
                 return true;
             } else {

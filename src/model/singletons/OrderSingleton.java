@@ -46,7 +46,7 @@ public class OrderSingleton extends Singleton<Order> {
     public Set<Order> getOrdersByPassengerID(long passengerID) {
         Set<Order> ordersByPassenger = new HashSet<>();
         for (Order order : this.orderSet) {
-            if (order.getOwnerPassenger().getId() == passengerID) {
+            if (order.getOwnerPassengerID() == passengerID) {
                 ordersByPassenger.add(order);
             }
         }

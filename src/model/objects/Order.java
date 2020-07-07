@@ -10,60 +10,60 @@ public class Order {
 
     static int ordersCount;
     int agentCode;
-    AircraftCompany flightCompany;
+    int flightCompanyID;
     boolean roundTrip;
     long id;
     double totalCost;
     long creditCard;
-    List<Flight> flightTo;
-    List<Flight> flightFrom;
-    Passenger ownerPassenger;
-    List<Passenger> otherPassengers;
+    List<Long> flightToIDs;
+    List<Long> flightFromIDs;
+    int ownerPassengerID;
+    List<Long> otherPassengersIDs;
     boolean canceled;
 
     static { ordersCount = 0; }
 
     public Order() { ordersCount++; }
 
-    public Order(int agentCode, AircraftCompany flightCompany, boolean roundTrip, double totalCost, long creditCard,
-                 List<Flight> flightTo, List<Flight> flightFrom, Passenger ownerPassenger, List<Passenger> otherPassengers) {
+    public Order(int agentCode, int flightCompanyID, boolean roundTrip, double totalCost, long creditCard,
+                 List<Long> flightToIDs, List<Long> flightFromIDs, int ownerPassengerID, List<Long> otherPassengersIDs) {
         this.agentCode = agentCode;
-        this.flightCompany = flightCompany;
+        this.flightCompanyID = flightCompanyID;
         this.roundTrip = roundTrip;
         this.id = ordersCount++;
         this.totalCost = totalCost;
         this.creditCard = creditCard;
-        this.flightTo = flightTo;
-        this.flightFrom = flightFrom;
-        this.ownerPassenger = ownerPassenger;
-        this.otherPassengers = otherPassengers;
+        this.flightToIDs = flightToIDs;
+        this.flightFromIDs = flightFromIDs;
+        this.ownerPassengerID = ownerPassengerID;
+        this.otherPassengersIDs = otherPassengersIDs;
         this.canceled = false;
     }
 
     // Getters
     public int getAgentCode() { return this.agentCode; }
-    public AircraftCompany getFlightCompany() { return this.flightCompany; }
+    public int getFlightCompany() { return this.flightCompanyID; }
     public boolean isRoundTrip() { return this.roundTrip; }
     public long getId() { return this.id; }
     public double getTotalCost() { return this.totalCost; }
     public long getCreditCard() { return this.creditCard; }
-    public List<Flight> getFlightTo() { return this.flightTo; }
-    public List<Flight> getFlightFrom() { return this.flightFrom; }
-    public Passenger getOwnerPassenger() { return this.ownerPassenger; }
-    public List<Passenger> getOtherPassengers() { return this.otherPassengers; }
+    public List<Long> getFlightTo() { return this.flightToIDs; }
+    public List<Long> getFlightFrom() { return this.flightFromIDs; }
+    public int getOwnerPassengerID() { return this.ownerPassengerID; }
+    public List<Long> getOtherPassengersIDs() { return this.otherPassengersIDs; }
     public boolean isCanceled() { return canceled; }
 
     // Setters
     public void setAgentCode(int agentCode) { this.agentCode = agentCode; }
-    public void setFlightCompany(AircraftCompany flightCompany) { this.flightCompany = flightCompany; }
+    public void setFlightCompany(int flightCompanyID) { this.flightCompanyID = flightCompanyID; }
     public void setRoundTrip(boolean roundTrip) { this.roundTrip = roundTrip; }
     public void setId(long id) { this.id = id; }
     public void setTotalCost(double totalCost) { this.totalCost = totalCost; }
     public void setCreditCard(long creditCard) { this.creditCard = creditCard; }
-    public void setFlightTo(List<Flight> flightTo) { this.flightTo = flightTo; }
-    public void setFlightFrom(List<Flight> flightFrom) { this.flightFrom = flightFrom; }
-    public void setOwnerPassenger(Passenger ownerPassenger) { this.ownerPassenger = ownerPassenger; }
-    public void setOtherPassengers(List<Passenger> otherPassengers) { this.otherPassengers = otherPassengers; }
+    public void setFlightTo(List<Long> flightToIDs) { this.flightToIDs = flightToIDs; }
+    public void setFlightFrom(List<Long> flightFromIDs) { this.flightFromIDs = flightFromIDs; }
+    public void setOwnerPassengerID(int ownerPassengerID) { this.ownerPassengerID = ownerPassengerID; }
+    public void setOtherPassengersIDs(List<Long> otherPassengersIDs) { this.otherPassengersIDs = otherPassengersIDs; }
     public void setCanceled(boolean isCanceled) { this.canceled = isCanceled; }
 
     public boolean addPassenger(Passenger newPassenger) {
@@ -88,25 +88,25 @@ public class Order {
         if (currency == 1) {
             OrderCurrencyAdapterImpl orderCurrencyAdapter = new OrderCurrencyAdapterImpl(this);
             return "Order:\n" +
-                    "flightCompany=" + flightCompany +
+                    "flightCompany=" + flightCompanyID +
                     "\nroundTrip=" + roundTrip +
                     "\norderID=" + id +
                     "\ntotalCost=" + orderCurrencyAdapter.getTotalCost() +
                     "\ncreditCard=" + creditCard +
-                    "\nflightTo=" + flightTo +
-                    "\nflightFrom=" + flightFrom +
-                    "\nownerPassenger=" + ownerPassenger +
-                    "\notherPassengers=" + otherPassengers;
+                    "\nflightTo=" + flightToIDs +
+                    "\nflightFrom=" + flightFromIDs +
+                    "\nownerPassenger=" + ownerPassengerID +
+                    "\notherPassengers=" + otherPassengersIDs;
         }
         return "Order:\n" +
-                "flightCompany=" + flightCompany +
+                "flightCompany=" + flightCompanyID +
                 "\nroundTrip=" + roundTrip +
                 "\norderID=" + id +
                 "\ntotalCost=" + totalCost +
                 "\ncreditCard=" + creditCard +
-                "\nflightTo=" + flightTo +
-                "\nflightFrom=" + flightFrom +
-                "\nownerPassenger=" + ownerPassenger +
-                "\notherPassengers=" + otherPassengers;
+                "\nflightTo=" + flightToIDs +
+                "\nflightFrom=" + flightFromIDs +
+                "\nownerPassenger=" + ownerPassengerID +
+                "\notherPassengers=" + otherPassengersIDs;
     }
 }

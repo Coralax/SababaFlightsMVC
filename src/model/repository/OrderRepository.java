@@ -7,7 +7,6 @@ import java.util.Set;
 
 public interface OrderRepository {
 
-    long generateOrderID();
     boolean addPassenger(Order order, long passengerID);
     boolean addPassenger(Order order, Passenger newPassenger);
     boolean removePassengerByID(Order order, long passengerToRemove);

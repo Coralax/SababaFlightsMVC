@@ -16,15 +16,7 @@
     "departureDate" : "31/07/2020",
     "arrivalDate" : "01/08/2020",
     "flightPrice" : 512.0,
-    "aircraft" : {
-      "id" : 0,
-      "aircraftCompany" : {
-        "companyName" : "El-Al",
-        "companyClass" : "regular"
-      },
-      "seatsCount" : 100,
-      "model" : "Boeing-797"
-    },
+    "aircraftID" : 0,
     "direct" : false
   },
   {
@@ -44,16 +36,7 @@
     "departureDate" : "02/08/2020",
     "arrivalDate" : "02/08/2020",
     "flightPrice" : 436.0,
-    "aircraft" : {
-      "id": 1,
-      "aircraftCompany":
-      {
-        "companyName" : "WizzAir",
-        "companyClass" : "Low-cost"
-      },
-      "seatsCount": 100,
-      "model": "Boeing-797"
-    },
+    "aircraftID" : 0,
     "direct" : true
   },
   {
@@ -73,16 +56,7 @@
     "departureDate" : "07/08/2020",
     "arrivalDate" : "07/08/2020",
     "flightPrice" : 479.0,
-    "aircraft" : {
-      "id": 1,
-      "aircraftCompany":
-      {
-        "companyName" : "El-Al",
-        "companyClass" : "Low-cost"
-      },
-      "seatsCount": 100,
-      "model": "Boeing-797"
-    },
+    "aircraftID" : 1,
     "direct" : true
   },
   {
@@ -102,20 +76,11 @@
     "departureDate" : "10/08/2020",
     "arrivalDate" : "11/08/2020",
     "flightPrice" : 453.0,
-    "aircraft" : {
-      "id": 1,
-      "aircraftCompany":
-      {
-        "companyName" : "El-Al",
-        "companyClass" : "regular"
-      },
-      "seatsCount": 100,
-      "model": "Boeing-797"
-    },
+    "aircraftID" : 1,
     "direct" : true
   },
   {
-    "flightID" : 4,
+    "id" : 4,
     "destination": "Israel",
     "seatsLeft": 60,
     "departureAirport" : {
@@ -131,16 +96,7 @@
     "departureDate" : "10/08/2020",
     "arrivalDate" : "11/08/2020",
     "flightPrice" : 348.0,
-    "aircraft" : {
-      "aircraftID": 1,
-      "aircraftCompany":
-      {
-        "companyName" : "United Airlines",
-        "companyClass" : "regular"
-      },
-      "seatsCount": 100,
-      "model": "Boeing-797"
-    },
+    "aircraftID" : 1,
     "direct" : true
   }
 ]
