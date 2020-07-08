@@ -19,6 +19,7 @@ public class Flight {
     private boolean direct;
     private int seatsLeft;
 
+
     static { staticFlightID = 0; }
 
     public Flight() { staticFlightID++; }
