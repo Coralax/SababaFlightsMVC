@@ -12,10 +12,48 @@ public class OrderRepositoryImpl implements OrderRepository {
 
     private Map<Integer, Order> allOrders;
     private FileManager<Order> fileManager;
-    private Set<Order> orders;
+    private Set<Order> orderSet;
 
     public OrderRepositoryImpl(){
-        orders = OrderSingleton.getInstance().orderSet;
+        orderSet = OrderSingleton.getInstance().orderSet;
+    }
+
+    @Override
+    public Order getOrderById(long id) {
+        for (Order order : this.orderSet) {
+            if (order.getId() == id)
+                return order;
+        }
+        System.out.println("Could not find an order with this id");
+        return null;
+    }
+
+    @Override
+    public Set<Order> getOrdersByAgentCode(long agentCode) {
+        Set<Order> ordersByAgent = new HashSet<>();
+        for (Order order : this.orderSet) {
+            if (order.getAgentCode() == agentCode) {
+                ordersByAgent.add(order);
+            }
+        }
+        if (ordersByAgent.size() == 0)
+            System.out.println("Could not find orders created by provided agent");
+
+        return ordersByAgent;
+    }
+
+    @Override
+    public Set<Order> getOrdersByPassengerID(long passengerID) {
+        Set<Order> ordersByPassenger = new HashSet<>();
+        for (Order order : this.orderSet) {
+            if (order.getOwnerPassengerID() == passengerID) {
+                ordersByPassenger.add(order);
+            }
+        }
+        if (ordersByPassenger.size() == 0)
+            System.out.println("Could not find orders associated with provided passenger");
+
+        return ordersByPassenger;
     }
 
     @Override
@@ -84,7 +122,7 @@ public class OrderRepositoryImpl implements OrderRepository {
         System.out.println("Are you sure you want to delete the order? (Y / N)");
         String userInput = input.nextLine();
         if (userInput.equals("Y") || userInput.equals("y")) {
-            Iterator<Order> iterator = orders.iterator();
+            Iterator<Order> iterator = orderSet.iterator();
             while (iterator.hasNext()) {
                 Order order = iterator.next();
                 if (order.getId() == orderToDelete.getId()) {
@@ -106,7 +144,7 @@ public class OrderRepositoryImpl implements OrderRepository {
         System.out.println("Are you sure you want to cancel the order? (Y / N)");
         String userInput = input.nextLine();
         if (userInput.equals("Y") || userInput.equals("y")) {
-            for (Order order : this.orders) {
+            for (Order order : this.orderSet) {
                 if (order.getId() == orderToCancel.getId()) {
                     order.setCanceled(true);
                     System.out.println("Order has been deactivated");
@@ -126,7 +164,7 @@ public class OrderRepositoryImpl implements OrderRepository {
         System.out.println("Are you sure you want to re-open the order? (Y / N)");
         String userInput = input.nextLine();
         if (userInput.equals("Y") || userInput.equals("y")) {
-            for (Order order : this.orders) {
+            for (Order order : this.orderSet) {
                 if (order.getId() == orderToReopen.getId()) {
                     order.setCanceled(false);
                     System.out.println("Order has been canceled");

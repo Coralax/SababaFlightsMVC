@@ -20,14 +20,4 @@ public class AircraftSingleton extends Singleton<Aircraft> {
         return aircraftSingletonInstance;
     }
 
-    public Aircraft getAircraftById(int id) {
-        for (Aircraft aircraft : this.aircraftSet) {
-            if (aircraft.getId() == id) {
-                return aircraft;
-            }
-        }
-        System.out.println("Could not find an aircraft with this id");
-        return null;
-    }
-
 }

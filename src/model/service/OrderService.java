@@ -38,15 +38,15 @@ public class OrderService {
     }
 
     public Order getOrderByID(long orderID) {
-        return orderSingletonInstance.getOrderByID(orderID);
+        return orderRepository.getOrderById(orderID);
     }
 
     public Set<Order> getOrdersByAgentCode(long agentCode) {
-        return orderSingletonInstance.getOrdersByAgentCode(agentCode);
+        return orderRepository.getOrdersByAgentCode(agentCode);
     }
 
     public Set<Order> getOrdersByPassengerID(long passengerID) {
-        return orderSingletonInstance.getOrdersByPassengerID(passengerID);
+        return orderRepository.getOrdersByPassengerID(passengerID);
     }
 
     public boolean addPassengerToOrder(Order order, long passengerID) {
