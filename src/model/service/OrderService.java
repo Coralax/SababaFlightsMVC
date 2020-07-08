@@ -5,7 +5,9 @@ import model.objects.Order;
 import model.objects.Passenger;
 import model.repository.FlightRepositoryImpl;
 import model.repository.OrderRepositoryImpl;
+import model.singletons.FlightSingleton;
 import model.singletons.OrderSingleton;
+import model.singletons.PassengerSingleton;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -63,14 +65,13 @@ public class OrderService {
                              Passenger ownerPassenger, List<Passenger> otherPassengers, boolean isMeal, boolean isSuitcase, int numOfPassegers) {
 
         // Process order data
-        boolean roundTrip = false;
         double totalPrice = 0;
-        if (flightToIDs.size() > 0) {
-            if (flightFromIDs != null && flightFromIDs.size() != 0)
-                roundTrip = true;
-        }
         for (long flightID : flightToIDs)
             totalPrice += flightRepository.getFlightPriceById(flightID);
+        if (flightFromIDs != null) {
+            for (long flightId : flightFromIDs)
+                totalPrice += flightRepository.getFlightPriceById(flightId);
+        }
         if (isMeal)
             totalPrice += 25;
         if(isSuitcase)
@@ -85,10 +86,18 @@ public class OrderService {
         // Decrease amount of remaining seats
         for (long flightID : flightToIDs)
             flightRepository.decreaseSeats(flightID, seatsCount);
+        if (flightFromIDs != null) {
+            for (long flightId : flightFromIDs)
+                flightRepository.decreaseSeats(flightId, seatsCount);
+        }
 
         // Create the order itself
-        Order newOrder = new Order(agentCode, creditCard, totalPrice, flightToIDs, flightFromIDs, ownerPassengerID, otherPassengersIDs);
-        System.out.println(newOrder.toString());
+        Order newOrder = new Order(agentCode, creditCard, totalPrice, flightToIDs, flightFromIDs, ownerPassengerID, otherPassengersIDs,isMeal,isSuitcase);
+        OrderSingleton.getInstance().orderSet.add(newOrder);
+
+        PassengerSingleton.getInstance().saveSet(PassengerSingleton.getInstance().passengerSet);
+        FlightSingleton.getInstance().saveSet(FlightSingleton.getInstance().flightSet);
+        OrderSingleton.getInstance().saveSet(OrderSingleton.getInstance().orderSet);
 
     }
 

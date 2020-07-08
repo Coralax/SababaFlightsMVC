@@ -4,7 +4,9 @@ package model.service;
  * 2. A method to validate that an ID is a unique identifier and no other person exists with the same ID
  * 3. A method to validate that an email address is not already taken by another person*/
 
+import model.objects.Passenger;
 import model.repository.AuthenticationRepositoryImpl;
+import model.repository.PassengerRepositoryImpl;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -19,6 +21,7 @@ public class AuthenticationService {
 
     public AuthenticationService() {
         this.authRepository = new AuthenticationRepositoryImpl();
+
     }
 
     public boolean login(String userName, String password) {
@@ -31,6 +34,11 @@ public class AuthenticationService {
 
     public boolean userExist(String username) {
         return authRepository.userExist(username);
+    }
+
+    public Passenger passengerExists(long id){
+         PassengerRepositoryImpl passengerRepository= new PassengerRepositoryImpl();
+        return passengerRepository.getPassengerByID(id);
     }
 
 }

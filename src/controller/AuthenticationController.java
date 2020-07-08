@@ -2,6 +2,7 @@
    2. Can contain as many services as it needs*/
 
 package controller;
+import model.objects.Passenger;
 import model.service.AuthenticationService;
 
 import java.time.LocalDate;
@@ -16,6 +17,9 @@ public class AuthenticationController {
     public AuthenticationController(){
         this.authService = new AuthenticationService();
     }
+
+    public Passenger passengerExists(long id ) {
+        return authService.passengerExists(id); }
 
     public boolean usernameValidation(String userName){
         boolean isValid=true;

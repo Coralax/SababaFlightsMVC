@@ -30,10 +30,11 @@ public class FlightRepositoryImpl implements FlightRepository {
             }
         }
         if(i>=1) {
+            AirportRepositoryImpl airportRepository = new AirportRepositoryImpl();
             for (Flight foundOneWay : resultOneWay) {
                 flightBackFound.clear();
                 for (Flight flightReturn : flights) {
-                    if (flightReturn.getDestination().toLowerCase().equals(foundOneWay.getDepartureAirport().getCountry().toLowerCase()))
+                    if (flightReturn.getDestination().toLowerCase().equals(airportRepository.getAirportById(foundOneWay.getDepartureAirportID()).getCountry().toLowerCase()))
                     {
                         if((flightReturn.convertToLocalDate(flightReturn.getDepartureDate())).compareTo(returnD)==0)
                             if(flightReturn.getSeatsLeft()>=numOfPassengers)

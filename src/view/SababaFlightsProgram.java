@@ -61,7 +61,7 @@ public class SababaFlightsProgram {
         Scanner scanner = new Scanner(System.in);
         Aircraft aircraft = new Aircraft(0,78,"Model");
         do {
-            Agent loggedInAgent = LoginSingleton.getInstance().loggedInAgent;
+            Agent loggedInAgent = LoginSingleton.getInstance().getLoggedInAgent();
             System.out.println("Welcome " + loggedInAgent.getFirstName() + " ,what would you like to do?");
             System.out.println("1: Search a Flight ");
             System.out.println("2: Orders ");

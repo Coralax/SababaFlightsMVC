@@ -6,12 +6,10 @@ public class Passenger extends Person {
 
     static int passengersCount;
     private String passport;
-    private int ID;
-    static { passengersCount = 0; }
+    private long id;
 
     public Passenger() {
         super();
-        passengersCount++;
     }
 
     public Passenger(
@@ -19,9 +17,10 @@ public class Passenger extends Person {
             String lastName,
             String email,
             String birthDateStr,
-            String passport
+            String passport,
+            long id
         ) {
-        super(firstName, lastName, email, passengersCount++, birthDateStr);
+        super(firstName, lastName, email, id, birthDateStr);
         this.passport = passport;
     }
 

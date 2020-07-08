@@ -53,11 +53,10 @@ public class OrderController {
         return orderService.deleteOrder(order);
     }
 
-    public boolean makeAnOrder(long agentCode,String creditCard, List<Long> flightToIDs, List<Long> flightFromIDs, int seatsCount,
-                               Passenger ownerPassenger, List<Passenger> otherPassengers, boolean isMeal, boolean isSuitcase, int numOfPassenger){
+    public boolean makeAnOrder(long agentCode, String creditCard, List<Long> flightToIDs, List<Long> flightFromIDs, int seatsCount,
+                               Passenger ownerPassenger, List<Passenger> otherPassengers, boolean isMeal, boolean isSuitcase, int numOfPassenger) {
         orderService.makeNewOrder(agentCode, creditCard, flightToIDs, flightFromIDs, seatsCount, ownerPassenger, otherPassengers, isMeal, isSuitcase, numOfPassenger);
         return true;
     }
 
-
-    }
+}

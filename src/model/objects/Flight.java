@@ -13,7 +13,7 @@ public class Flight {
     private int id;
     private String destination;
     private int aircraftID;
-    private Airport departureAirport, destinationAirport;
+    private long departureAirportID, destinationAirportID;
     private String departureDate, arrivalDate;
     private double flightPrice;
     private boolean direct;
@@ -24,12 +24,12 @@ public class Flight {
 
     public Flight() { staticFlightID++; }
 
-    public Flight(int aircraftID, Airport departureAirport, Airport destinationAirport,
+    public Flight(int aircraftID, long departureAirportID, long destinationAirportID,
                   String departureDate, String arrivalDate, double flightPrice, boolean direct,String destination, int seatsLeft) {
         this.id = staticFlightID++;
         this.aircraftID = aircraftID;
-        this.departureAirport = departureAirport;
-        this.destinationAirport = destinationAirport;
+        this.departureAirportID = departureAirportID;
+        this.destinationAirportID = destinationAirportID;
         this.departureDate = departureDate;
         this.arrivalDate = arrivalDate;
         this.flightPrice = flightPrice;
@@ -40,8 +40,8 @@ public class Flight {
 
     public int getAircraftID() { return this.aircraftID; }
     public int getId() { return id; }
-    public Airport getDepartureAirport() { return this.departureAirport; }
-    public Airport getDestinationAirport() { return this.destinationAirport; }
+    public long getDepartureAirportID() { return this.departureAirportID; }
+    public long getDestinationAirportID() { return this.destinationAirportID; }
     public String getDepartureDate() { return this.departureDate; }
     public String getArrivalDate() { return this.arrivalDate; }
     public double getFlightPrice() { return this.flightPrice; }
@@ -50,8 +50,8 @@ public class Flight {
     public int getSeatsLeft() { return seatsLeft; }
 
     public void setAircraftID(int aircraftID) { this.aircraftID = aircraftID; }
-    public void setDepartureAirport(Airport departureAirport) { this.departureAirport = departureAirport; }
-    public void setDestinationAirport(Airport destinationAirport) { this.destinationAirport = destinationAirport; }
+    public void setDepartureAirport(long departureAirportID) { this.departureAirportID = departureAirportID; }
+    public void setDestinationAirport(long destinationAirportID) { this.destinationAirportID = destinationAirportID; }
     public void setDepartureDate(String departureDate) { this.departureDate = departureDate; }
     public void setArrivalDate(String arrivalDate) { this.arrivalDate = arrivalDate; }
     public void setFlightPrice(double flightPrice) { this.flightPrice = flightPrice; }
@@ -89,8 +89,8 @@ public class Flight {
                     " Seats left: " +seatsLeft +"\n"+
                     " Aircraft: " + aircraftID + "\n" +
                     " Destination: "+ destination +"\n"+
-                    " Departure airport: " + departureAirport + "\n" +
-                    " Destination airport: " + destinationAirport + "\n" +
+                    " Departure airport: " + departureAirportID + "\n" +
+                    " Destination airport: " + destinationAirportID + "\n" +
                     " Departure date: " + departureDate + "\n" +
                     " Arrival date: " + arrivalDate + "\n" +
                     " Flight price: " + currencyAdapter.getFlightPrice() + "\n" +
@@ -101,8 +101,8 @@ public class Flight {
                     " Seats left: "+seatsLeft +"\n"+
                     " Aircraft: " + aircraftID + "\n" +
                     " Destination: "+ destination +"\n"+
-                    " Departure airport: " + departureAirport + "\n" +
-                    " Destination airport: " + destinationAirport + "\n" +
+                    " Departure airport: " + departureAirportID + "\n" +
+                    " Destination airport: " + destinationAirportID + "\n" +
                     " Departure date: " + departureDate + "\n" +
                     " Arrival date: " + arrivalDate + "\n" +
                     " Flight price: " + flightPrice + "\n" +

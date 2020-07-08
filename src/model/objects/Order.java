@@ -27,14 +27,22 @@ public class Order {
 
     public Order() { ordersCount++; }
 
-    public Order(long agentCode, String creditCard, double totalCost, List<Long> flightToIDs, List<Long> flightFromIDs, long ownerPassengersID, List<Long> otherPassengersIDs) {
+    public Order(long agentCode, String creditCard, double totalCost, List<Long> flightToIDs, List<Long> flightFromIDs,
+                 long ownerPassengersID, List<Long> otherPassengersIDs,boolean isMeals, boolean isSuitcase) {
+        this.id = ordersCount++;
         this.agentCode = agentCode;
         this.creditCard = creditCard;
         this.totalCost = totalCost;
         this.flightToIDs = flightToIDs;
         this.flightFromIDs = flightFromIDs;
+        if (flightToIDs.size() > 0) {
+            if (flightFromIDs != null && flightFromIDs.size() != 0)
+                this.roundTrip = true;
+        }
         this.ownerPassengerID = ownerPassengersID;
         this.otherPassengersIDs = otherPassengersIDs;
+        this.isSuitcase=isSuitcase;
+        this.isMeals=isMeals;
     }
 
     public Order(long agentCode, int flightCompanyID, boolean roundTrip, double totalCost, String creditCard,
@@ -107,8 +115,8 @@ public class Order {
                     "\nCredit card number: " + creditCard +
                     "\nDeparture flight ID: " + flightToIDs +
                     "\nReturn flight ID: " + flightFromIDs +
-                    "\nMain passenger: " + ownerPassengerID +
-                    "\nOther passengers: " + otherPassengersIDs +
+                    "\nMain passenger ID: " + ownerPassengerID +
+                    "\nOther passengers ID's: " + otherPassengersIDs +
                     "\nMeal:  " + isMeals +
                     "\nSuitcase: " + isSuitcase +"\n";
 
@@ -120,8 +128,8 @@ public class Order {
                 "\nCredit card number: " + creditCard +
                 "\nDeparture flight ID: "+ flightToIDs +
                 "\nReturn flight ID: " + flightFromIDs +
-                "\nMain passenger: " + ownerPassengerID +
-                "\nOther passengers: " + otherPassengersIDs +
+                "\nMain passenger ID: " + ownerPassengerID +
+                "\nOther passengers ID's: " + otherPassengersIDs +
                 "\nMeal:  " + isMeals +
                 "\nSuitcase: " + isSuitcase +"\n";
     }
