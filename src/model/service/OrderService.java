@@ -24,19 +24,6 @@ public class OrderService {
         flightRepository=new FlightRepositoryImpl();
     }
 
-
-    //FINISH THIS ORDER
-    public void makeNewOrder(int filghtID, Passenger passenger)
-    {
-        System.out.println("Got into Order service makeNewOrder");
-        Flight flight=flightRepository.getFlightByID(filghtID);
-    }
-    public void makeNewOrder(int[] filghtID, Passenger passenger)
-    {
-        System.out.println("Got into Order service makeNewOrder");
-
-    }
-
     public Order getOrderByID(long orderID) {
         return orderRepository.getOrderById(orderID);
     }
@@ -69,4 +56,22 @@ public class OrderService {
         return orderRepository.deleteOrder(order);
     }
 
+
+
+    //FINISH THIS ORDER
+    public void makeNewOrder(int filghtID, Passenger passenger)
+    {
+
+        System.out.println("Got into Order service makeNewOrder");
+        Flight flight=flightRepository.getFlightByID(filghtID);
+
+    }
+    public void makeNewOrder(int[] filghtID, Passenger passenger)
+    {
+        System.out.println("Got into Order service makeNewOrder");
+    }
+    public void makeNewOrder(int[] filghtID, List<Passenger> passenger)
+    {
+        System.out.println("Got into Order service makeNewOrder");
+    }
 }

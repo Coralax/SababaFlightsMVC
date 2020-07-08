@@ -29,15 +29,6 @@ public class OrderController {
         return orderService.getOrdersByPassengerID(passengerID);
     }
 
-    public boolean makeAnOrder(int flightID, Passenger passenger){
-        orderService.makeNewOrder(flightID, passenger);
-        return true;
-    }
-    public boolean makeAnOrder(int[] flightID, Passenger passenger){
-        orderService.makeNewOrder(flightID, passenger);
-        return true;
-    }
-
     public boolean searchByDate() {
         return false;
     }
@@ -60,6 +51,19 @@ public class OrderController {
 
     public boolean deleteOrder(Order order) {
         return orderService.deleteOrder(order);
+    }
+
+    public boolean makeAnOrder(int flightID, Passenger passenger){
+        orderService.makeNewOrder(flightID, passenger);
+        return true;
+    }
+    public boolean makeAnOrder(int[] flightID, Passenger passenger){
+        orderService.makeNewOrder(flightID, passenger);
+        return true;
+    }
+    public boolean makeAnOrder(int[] flightID, List<Passenger> passenger){
+        orderService.makeNewOrder(flightID, passenger);
+        return true;
     }
 
 }

@@ -15,13 +15,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-public class SababaSearch {
+public class SababaSearchView {
     private SearchController searchController;
     private OrderController orderController;
     private AuthenticationController authenticationController;
     public SababaFlightsProgram sababaFlightsProgram;
 
-    public SababaSearch(SababaFlightsProgram referer) {
+    public SababaSearchView(SababaFlightsProgram referer) {
         this.searchController= new SearchController();
         this.orderController=new OrderController();
         this.authenticationController=new AuthenticationController();
@@ -44,12 +44,10 @@ public class SababaSearch {
         Map<Integer, List<Flight>> roundTrip = null;
 
 
-        // Depart date and return date
-        // System.out.println("Please enter the depart and the return date in dd/MM/yyyy format.");
         try {
             //Depart date
             do {
-                System.out.println("1: For one way" + "\n" + "2: For round-trip");
+                System.out.println(  "Welcome to search page! " + "\n" +"1: For one way trip" + "\n" + "2: For round-trip");
                 op = scanner.nextLine();
                 formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                 System.out.print("Depart date in dd/MM/yyyy format: ");
@@ -108,18 +106,19 @@ public class SababaSearch {
         } while (!flag);
 
         // Additional filters
-        System.out.print("Would you like to have additional filters? yes/no: ");
+        System.out.print("Would you like to have additional filters? Y/N: ");
         filters = scanner.nextLine();
 
-        if (filters.toLowerCase().equals("yes")) {
+        if (filters.toLowerCase().equals("y")) {
             // Direct flights
-            System.out.print("Search for direct flights only? yes/no: ");
+            System.out.print("Search for direct flights only? Y/N: ");
             op = scanner.nextLine();
 
-            if (op.toLowerCase().equals("yes")) {
+            if (op.toLowerCase().equals("y")) {
                 directFlight = true;
             }
         }
+
         // The search itself with all the parameters
         search = new Search(departDate, returnDate, destination, passenger, directFlight);
         if (returnDate == null) {
@@ -127,7 +126,7 @@ public class SababaSearch {
             if(idDeparture!=-1)
                 orderController.makeAnOrder(idDeparture,newPassenger());
             else{
-                System.out.println("1. Start a new search" + "\n" + "2. Return to home page");
+                System.out.println("What would you like to do? "+"\n" + "1. Start a new search" + "\n" + "2. Return to home page");
                 op = scanner.nextLine();
                 if (op.equals("1"))
                     this.search();
@@ -141,7 +140,7 @@ public class SababaSearch {
                orderController.makeAnOrder(idDepartReturn,newPassenger());
             // roundTrip = searchController.searchResultsRoundTrip(search);
             else{
-                System.out.println("1. Start a new search" + "\n" + "2. Return to home page");
+                System.out.println("Thank you for your time what would you like to do? "+"\n" + "1. Start a new search" + "\n" + "2. Return to home page");
             op = scanner.nextLine();
             if (op.equals("1"))
                 this.search();

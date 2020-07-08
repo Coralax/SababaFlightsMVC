@@ -22,94 +22,17 @@ public class AuthenticationService {
     }
 
     public boolean login(String userName, String password) {
-        return this.authRepository.userNameLogin(userName, password);
-    }
-
-    public boolean userNameValidation(String userName) {
-
-        if (!userName.matches("^[a-zA-Z]*[0-9]*$")) {
-            System.out.println("User name must consist of only English alphanumeric characters!");
-            return false;
-        }
-        if (userName.length() < 6 || userName.length() > 20) {
-            System.out.println("User name must be between 6 and 20 characters long");
-            return false;
-        }
-        return true;
-    }
-
-    public boolean passwordStrength(String password) {
-        if (password.length() < 8 || password.length() > 32) {
-            System.out.println("Password must be between 8 and 32 characters long");
-            return false;
-        }
-
-        if (!(password.matches("(?=.*[0-9]).*"))) {
-            System.out.println("Password must contain at least one digit! ");
-            return false;
-        }
-
-        if (!(password.matches("(?=.*[a-zA-Z]).*"))) {
-            System.out.println("Password must contain at least one letter! ");
-            return false;
-        }
-        return true;
-    }
-
-    public boolean isValidEmail(String email) {
-        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\." +
-                "[a-zA-Z0-9_+&*-]+)*@" +
-                "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
-                "A-Z]{2,7}$";
-        Pattern pat = Pattern.compile(emailRegex);
-        if (email == null)
-            return false;
-        return pat.matcher(email).matches();
-    }
-    public boolean passportValidation(String passport) {
-        if (!(passport.matches("[A-Za-z0-9_]+"))) {
-            System.out.println("Passport must consist of English alphanumeric characters and digits only!");
-            return false;
-        }
-        return true;
-    }
-
-//"[0-9]+"
-    public boolean passwordValidation(String password) {
-        if (!(password.matches("^(?=.*[0-9])(?=.*[a-zA-Z]).{8,32}$"))) {
-            return this.passwordStrength(password);
-        }
-        return true;
-    }
-
-
-    public boolean minimumAge(LocalDate dateOfBirth) {
-
-        Period period = Period.between(LocalDate.now(), dateOfBirth);
-        if (period.getYears() < 18) {
-            System.out.println("Agent must be above 18 years old");
-            return false;
-        }
-        return true;
-    }
-
-    public boolean dateValidation(LocalDate dateOfBirth) {
-        return true;
+        return authRepository.userNameLogin(userName, password);
     }
 
     public boolean signUp(String firstName, String lastName, long id, String email, String birthDate, boolean enabled, String userName, String password) {
-
-        return this.authRepository.signUp(firstName, lastName, id, email, birthDate, enabled, userName, password);
+        return authRepository.signUp(firstName, lastName, id, email, birthDate, enabled, userName, password);
     }
 
     public boolean userExist(String username) {
-        return this.authRepository.userExist(username);
+        return authRepository.userExist(username);
     }
-    public boolean isDate(String date){
-        Pattern pattern = Pattern.compile("\\d{2}/\\d{2}/\\d{4}");
-        Matcher matcher = pattern.matcher(date);
-        return matcher.matches();
-    }
+
 }
 
 

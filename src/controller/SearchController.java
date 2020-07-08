@@ -19,7 +19,6 @@ import java.util.Set;
 
 public class SearchController {
 
-
     private SearchService searchService = new SearchService();
 
     public boolean validDestination(String destination) {
@@ -33,12 +32,11 @@ public class SearchController {
     }
 
     //Validate if number of passenger is between 1 to 10
-    public boolean validNumOfPassenger(int passengers)
-    {
+    public boolean validNumOfPassenger(int passengers) {
         return passengers >= 1 && passengers <= 10;
     }
-    //Validate if depart date year is from year.now until year.now+1, id depart date mount is not smaller then mount now, if depart date day is not before day.now
 
+    //Validate if depart date year is from year.now until year.now+1, id depart date mount is not smaller then mount now, if depart date day is not before day.now
     public boolean validateDepartDate(LocalDate departDate) {
         int dt = departDate.getYear();
         if (departDate.isBefore(LocalDate.now())) {
@@ -64,7 +62,6 @@ public class SearchController {
             return false;
         }
         return true;
-
     }
 
     public int searchResultsOneDirection(Search search)
@@ -79,18 +76,6 @@ public class SearchController {
         res=searchService.validateSearchRoundTrip(search);
         return res;
     }
-//    public List<Flight> searchResultsOneDirection(Search search)
-//    {
-//        List<Flight> res;
-//        res=searchService.validateSearchOneDirection(search);
-//        return res;
-//    }
-//
-//    public Map<Integer,List<Flight>> searchResultsRoundTrip(Search search)  {
-//        Map<Integer,List<Flight>> res;
-//        res=searchService.validateSearchRoundTrip(search);
-//        return res;
-//    }
 
 }
 

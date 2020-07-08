@@ -60,6 +60,7 @@ public int showResultOneWay(List<Flight> oneWay) {
     }
     else
         idDeparture=-1;
+
     return idDeparture;
 }
     public int[] showResultRoundTrip(Map<Integer,List<Flight>> mappingResults){
@@ -97,76 +98,4 @@ public int showResultOneWay(List<Flight> oneWay) {
         }
         return arr;
     }
-
-//    public void showResultRoundTrip(Map<Integer,List<Flight>> mappingResults){
-//        int i=1, j=1;
-//        for(Map.Entry<Integer,List<Flight>> e :mappingResults.entrySet())
-//        {
-//            System.out.println("\n" + "Departure flights result:" + "\n\n"
-//                    +"("+i+")"+flightRepo.getFlightByID(e.getKey()).toString());
-//
-//            System.out.println("\n"+"Return flights result: " +"\n");
-//            for(Flight flights: e.getValue())
-//            {
-//                System.out.println("("+i+"."+j+")" + flights.toString()+"\n");
-//                j++;
-//            }
-//            i++;
-//            j=1;
-//        }
-//    }
-
-    //    public List<Flight> validateSearchOneDirection(Search search) {
-//        List<Flight> flights;
-//        flights = flightRepo.flightResultOneDirection(search.getDestination(), search.getNumberOfPassengers(), search.getDepartureDate());
-//        if (flights == null) {
-//            System.out.println("No flights suits your search, good-bye! " + "\n");
-//            return null;
-//        }
-//        else {
-//            showResultOneWay(flights);
-//            return flights;
-//        }
-//    }
-
-    //    public Map<Integer,List<Flight>> validateSearchRoundTrip(Search search) {
-//        Map<Integer, List<Flight>> mappingFlights;
-//        mappingFlights = flightRepo.flightResultsRoundTrip(search.getDestination(), search.getNumberOfPassengers(), search.getDepartureDate(), search.getReturnDate());
-//        if (mappingFlights == null) {
-//            System.out.println("No flights suits your search, good-bye! " + "\n");
-//            return null;
-//        } else {
-//            showResultRoundTrip(mappingFlights);
-//            return mappingFlights;
-//        }
-//    }
-//    public void validateSearch(Search search) {
-//        List<Flight> flights;
-//        Map<Integer,List<Flight>> mappingFlights;
-//        if(search.getReturnDate()==null) {
-//            flights = flightRepo.flightResultOneDirection(search.getDestination(), search.getNumberOfPassengers(), search.getDepartureDate());
-//            if(flights==null)
-//                System.out.println("No flights suits your search, good-bye! "+"\n");
-//            else
-//                showResultOneWay(flights);
-//
-//        }
-//        else {
-//            mappingFlights=flightRepo.flightResultsRoundTrip(search.getDestination(),search.getNumberOfPassengers(),search.getDepartureDate(),search.getReturnDate());
-//            if(mappingFlights==null)
-//                System.out.println("No flights suits your search, good-bye! "+"\n");
-//            else
-//                showResultRoundTrip(mappingFlights);
-//        }
-//
-//    }
-//    public void showResultOneWay(List<Flight> oneWay) {
-//        int i=1;
-//        System.out.println("\n" + "Departure flights result" + "\n");
-//        for(Flight flights: oneWay)
-//        {
-//            System.out.println("("+i+") "+ oneWay.toString());
-//            i++;
-//        }
-//    }
 }

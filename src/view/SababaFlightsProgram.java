@@ -11,16 +11,16 @@ public class SababaFlightsProgram {
 
     private AuthenticationController authController;
     private OrderController orderController;
-    private SababaSearch sabbaSearch;
+    private SababaSearchView sabbaSearch;
     private SababaOrderView orderView;
 
-    private SignUpForm signUpForm;
+    private SignUpFormView signUpForm;
 
     public SababaFlightsProgram() {
         this.authController = new AuthenticationController();
         this.orderController = new OrderController();
-        this.sabbaSearch = new SababaSearch(this);
-        this.signUpForm = new SignUpForm();
+        this.sabbaSearch = new SababaSearchView(this);
+        this.signUpForm = new SignUpFormView();
         this.orderView = new SababaOrderView(this);
      }
 

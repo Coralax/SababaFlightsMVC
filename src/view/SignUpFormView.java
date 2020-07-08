@@ -4,11 +4,11 @@ import controller.AuthenticationController;
 
 import java.util.Scanner;
 
-public class SignUpForm {
+public class SignUpFormView {
 
     private AuthenticationController authController;
 
-    public SignUpForm(){
+    public SignUpFormView(){
 
         this.authController = new AuthenticationController();
     }
@@ -22,11 +22,11 @@ public class SignUpForm {
         String email;
         String birthDate;
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter your sign up details:");
+        System.out.println("Welcome to sign up page!"+"\n");
 
         //username validation
         do{
-            System.out.println("username: ");
+            System.out.println("User name: ");
             username = scanner.nextLine();
             validFlag = this.authController.usernameValidation(username);
 //            if(!validFlag)
@@ -35,13 +35,12 @@ public class SignUpForm {
 
         //password validation
         do{
-            System.out.println("Password:");
+            System.out.println("Password: ");
             if(passwordRequirements){
-                System.out.println(" (Password must consist at least one english letter" +
-                        ", one digit and length of 8-32 characters)");
+                System.out.println(" Password must consist at least one english letter" +
+                        ", one digit and length of 8-32 characters");
                 passwordRequirements = false;
             }
-
             password = scanner.nextLine();
             validFlag = this.authController.passwordValidation(password);
 //            if(!validFlag)
@@ -54,7 +53,7 @@ public class SignUpForm {
             email = scanner.nextLine();
             validFlag = this.authController.emailValidation(email);
             if(!validFlag)
-                System.out.println("The email is not valid. please try again");
+                System.out.println("Invalid email. Please try again");
 
         }    while(!validFlag) ;
 
@@ -69,16 +68,16 @@ public class SignUpForm {
 
         //Birthday validation
         do{
-            System.out.println("Birthday: ");
+            System.out.println("Birthday in dd/MM/yyyy format: ");
             birthDate = scanner.nextLine();
             validFlag = this.authController.birthdayValidation(birthDate);
             if(!validFlag)
-                System.out.println("The Date is not valid. please try again");
+                System.out.println("Invalid birth date string. Please try again");
         }    while(!validFlag) ;
 
         boolean signUpFlag = this.authController.agentSignUp(first_name, last_name, id, email, birthDate, false, username, password);
         if(signUpFlag){
-            System.out.println("Sign up successfully");
+            System.out.println("Sign up successfully!");
         }
     }
 
