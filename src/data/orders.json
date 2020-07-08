@@ -8,35 +8,9 @@
   "otherPassengersIDs" : null,
   "canceled" : false,
   "suitcase" : false,
-  "flightTo" : [ 1 ],
+  "meals" : false,
   "flightFrom" : null,
-  "meals" : false
-}, {
-  "agentCode" : 1,
-  "roundTrip" : false,
-  "id" : 2,
-  "totalCost" : 1770.0,
-  "creditCard" : "1122334455667788",
-  "ownerPassengerID" : 2121144,
-  "otherPassengersIDs" : [ 1212102 ],
-  "canceled" : false,
-  "suitcase" : true,
-  "flightTo" : [ 0 ],
-  "flightFrom" : [ 4 ],
-  "meals" : false
-}, {
-  "agentCode" : 1,
-  "roundTrip" : false,
-  "id" : 3,
-  "totalCost" : 537.0,
-  "creditCard" : "1122334455667788",
-  "ownerPassengerID" : 121212,
-  "otherPassengersIDs" : [ ],
-  "canceled" : false,
-  "suitcase" : true,
-  "flightTo" : [ 0 ],
-  "flightFrom" : null,
-  "meals" : false
+  "flightTo" : [ 1 ]
 }, {
   "agentCode" : 0,
   "roundTrip" : false,
@@ -47,7 +21,46 @@
   "otherPassengersIDs" : [ 654654654, 321321321 ],
   "canceled" : false,
   "suitcase" : false,
-  "flightTo" : [ 0 ],
+  "meals" : false,
   "flightFrom" : [ ],
-  "meals" : false
+  "flightTo" : [ 0 ]
+}, {
+  "agentCode" : 1,
+  "roundTrip" : false,
+  "id" : 2,
+  "totalCost" : 1770.0,
+  "creditCard" : "1122334455667788",
+  "ownerPassengerID" : 2121144,
+  "otherPassengersIDs" : [ 1212102 ],
+  "canceled" : false,
+  "suitcase" : true,
+  "meals" : false,
+  "flightFrom" : [ 4 ],
+  "flightTo" : [ 0 ]
+}, {
+  "agentCode" : 1,
+  "roundTrip" : false,
+  "id" : 3,
+  "totalCost" : 537.0,
+  "creditCard" : "1122334455667788",
+  "ownerPassengerID" : 121212,
+  "otherPassengersIDs" : [ ],
+  "canceled" : false,
+  "suitcase" : true,
+  "meals" : false,
+  "flightFrom" : null,
+  "flightTo" : [ 0 ]
+}, {
+  "agentCode" : 1,
+  "roundTrip" : false,
+  "id" : 4,
+  "totalCost" : 562.0,
+  "creditCard" : "1122334455667788",
+  "ownerPassengerID" : 8384844,
+  "otherPassengersIDs" : [ ],
+  "canceled" : false,
+  "suitcase" : true,
+  "meals" : true,
+  "flightFrom" : null,
+  "flightTo" : [ 0 ]
 } ]

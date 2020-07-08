@@ -1,10 +1,7 @@
 package model.service;
 
 import controller.objects.Search;
-import model.objects.Aircraft;
-import model.objects.Destination;
 import model.objects.Flight;
-import model.repository.AircraftCompanyRepository;
 import model.repository.FlightRepository;
 import model.repository.FlightRepositoryImpl;
 
@@ -19,7 +16,7 @@ public class SearchService {
 
     public List<Long> validateSearchRoundTrip(Search search) {
     Map<Integer, List<Flight>> mappingFlights;
-    mappingFlights = flightRepo.flightResultsRoundTrip(search.getDestination(), search.getNumberOfPassengers(), search.getDepartureDate(), search.getReturnDate());
+    mappingFlights = flightRepo.flightResultsRoundTrip(search.getDestination(), search.getNumberOfPassengers(), search.getDepartureDate(), search.getReturnDate(),search.isDirectFlight());
     if (mappingFlights == null) {
         System.out.println("No flights suits your search, good-bye! " + "\n");
         return null;
@@ -30,7 +27,7 @@ public class SearchService {
     }
     public List<Long> validateSearchOneDirection(Search search) {
         List<Flight> flights;
-        flights = flightRepo.flightResultOneDirection(search.getDestination(), search.getNumberOfPassengers(), search.getDepartureDate());
+        flights = flightRepo.flightResultOneDirection(search.getDestination(), search.getNumberOfPassengers(), search.getDepartureDate(),search.isDirectFlight());
         if (flights == null) {
             System.out.println("No flights suits your search, good-bye! " + "\n");
             return null;
@@ -62,10 +59,7 @@ public List<Long> showResultOneWay(List<Flight> oneWay) {
     }
     else
         return null;
-
-
 }
-
 
     public List<Long> showResultRoundTrip(Map<Integer,List<Flight>> mappingResults){
         int i=1, j=1;

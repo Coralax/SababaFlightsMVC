@@ -62,10 +62,14 @@ public class SababaFlightsProgram {
         Aircraft aircraft = new Aircraft(0,78,"Model");
         do {
             Agent loggedInAgent = LoginSingleton.getInstance().getLoggedInAgent();
-            System.out.println("Welcome " + loggedInAgent.getFirstName() + " ,what would you like to do?");
+            System.out.println("\n"+"Welcome " + loggedInAgent.getFirstName() + " ,what would you like to do?");
             System.out.println("1: Search a Flight ");
             System.out.println("2: Orders ");
             System.out.println("3: Set currency");
+
+            if(loggedInAgent.getPermissionLevel()==10){
+                System.out.println("4: Edit system data");
+            }
             System.out.println("0: Logout");
             System.out.println("-1: Exit ");
             op = scanner.nextLine();

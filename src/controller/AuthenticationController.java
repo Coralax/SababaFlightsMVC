@@ -69,18 +69,19 @@ public class AuthenticationController {
     }
 
     public boolean minimumAge(LocalDate dateOfBirth) {
-
-        Period period = Period.between(LocalDate.now(), dateOfBirth);
-        if (period.getYears() < 18) {
-            System.out.println("Agent must be above 18 years old");
+        Period period = Period.between(dateOfBirth, LocalDate.now());
+         if (period.getYears() < 18) {
+            System.out.println("Agent must be 18 years old or above!");
             return false;
         }
         return true;
     }
 
     public boolean isValidEmail(String email) {
-        if (email == null ||email.trim().equals(""))
+        if (email == null ||email.trim().equals("")) {
+            System.out.println("\nInvalid email!");
             return false;
+        }
         boolean exist =authService.emailExists(email);
         if(exist)
             return false;
@@ -90,7 +91,11 @@ public class AuthenticationController {
                 "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
                 "A-Z]{2,7}$";
         Pattern pat = Pattern.compile(emailRegex);
-        return pat.matcher(email).matches();
+         if(!pat.matcher(email).matches()) {
+             System.out.println("\nInvalid email format!");
+             return false;
+         }
+         return true;
     }
 
     public boolean agentSignUp(String firstName, String lastName, long id, String email, String birthDate, boolean enabled , String userName, String password) {
@@ -103,14 +108,10 @@ public class AuthenticationController {
 
     public boolean login(String userName, String password) {
         if(userName == null || userName.trim().equals("")|| password == null || password.trim().equals("")){
-            throw new IllegalArgumentException("Username and password are required!");
+            System.out.println("Username and password are required!");
+            return false;
         }
         return authService.login(userName, password);
-    }
-
-    public boolean emailValidation(String email){
-
-        return isValidEmail(email);
     }
 
     public boolean passportValidation(String passport) {

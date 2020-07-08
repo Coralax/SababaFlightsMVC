@@ -53,12 +53,11 @@ public class AircraftCompany {
 
     @Override
     public String toString() {
-        return "AircraftCompany{" +
-                "id=" + id +
-                ", companyName='" + companyName + '\'' +
-                ", companyClass='" + companyClass + '\'' +
-                ", aircrafts=" + aircrafts +
-                '}' + "\n";
+        return
+                "Aircraft ID: " + id + "\n" +
+                "Company Name='" + companyName + "\n" +
+                "Company Class='" + companyClass + "\n" +
+                "Aircrafts: " + aircrafts;
     }
 
 }

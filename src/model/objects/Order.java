@@ -108,29 +108,29 @@ public class Order {
         int currency = FlightSingleton.getInstance().getCurrency();
         if (currency == 1) {
             OrderCurrencyAdapterImpl orderCurrencyAdapter = new OrderCurrencyAdapterImpl(this);
-            return "\nOrder details:" +
-                    "\nRound trip: " + roundTrip +
-                    "\nOrder ID: " + id +
-                    "\nTotal cost: " + orderCurrencyAdapter.getTotalCost() +
-                    "\nCredit card number: " + creditCard +
-                    "\nDeparture flight ID: " + flightToIDs +
-                    "\nReturn flight ID: " + flightFromIDs +
-                    "\nMain passenger ID: " + ownerPassengerID +
-                    "\nOther passengers ID's: " + otherPassengersIDs +
-                    "\nMeal:  " + isMeals +
-                    "\nSuitcase: " + isSuitcase +"\n";
+            return  " Order details" +"\n" +
+                    " Round trip: " + roundTrip +"\n" +
+                    " Order ID: " + id +"\n" +
+                    " Total cost: " + orderCurrencyAdapter.getTotalCost() +
+                    " Credit card number: " + creditCard +"\n" +
+                    " Departure flight ID: "+ flightToIDs +"\n" +
+                    " Return flight ID: " + flightFromIDs +"\n" +
+                    " Main passenger ID: " + ownerPassengerID +"\n" +
+                    " Other passengers ID's: " + otherPassengersIDs +"\n" +
+                    " Meal:  " + isMeals +"\n" +
+                    " Suitcase: " + isSuitcase;
 
         }
-        return "\nOrder details:" +
-                "\nRound trip: " + roundTrip +
-                "\nOrder ID: " + id +
-                "\ntotalCost=" + totalCost +
-                "\nCredit card number: " + creditCard +
-                "\nDeparture flight ID: "+ flightToIDs +
-                "\nReturn flight ID: " + flightFromIDs +
-                "\nMain passenger ID: " + ownerPassengerID +
-                "\nOther passengers ID's: " + otherPassengersIDs +
-                "\nMeal:  " + isMeals +
-                "\nSuitcase: " + isSuitcase +"\n";
+        return  " Order details" +"\n" +
+                " Round trip: " + roundTrip +"\n" +
+                " Order ID: " + id +"\n" +
+                " Total cost: " + totalCost +"\n" +
+                " Credit card number: " + creditCard +"\n" +
+                " Departure flight ID: "+ flightToIDs +"\n" +
+                " Return flight ID: " + flightFromIDs +"\n" +
+                " Main passenger ID: " + ownerPassengerID +"\n" +
+                " Other passengers ID's: " + otherPassengersIDs +"\n" +
+                " Meal:  " + isMeals +"\n" +
+                " Suitcase: " + isSuitcase;
     }
 }

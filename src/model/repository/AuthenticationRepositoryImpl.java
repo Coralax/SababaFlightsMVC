@@ -24,7 +24,7 @@ public class AuthenticationRepositoryImpl implements AuthenticationRepository {
                 foundUserName = true;
                 if (agent.getPassword().equals(agentRepository.encryptPassword(password))) {
                     LoginSingleton.getInstance().logIn(agent);
-                    System.out.println("Logged in successfully");
+                    System.out.println("Logged in successfully :)");
                     return true;
                 } else {
                     System.out.println("Wrong password, please try again.");
@@ -64,8 +64,8 @@ public class AuthenticationRepositoryImpl implements AuthenticationRepository {
         agents = agentSingleton.agentSet;
 
         for (Agent agent : agents) {
-            if (agent.getUserName().equals(email)) {
-                System.out.println("Email already exists");
+            if (agent.getEmail().equals(email)) {
+                System.out.println("\nEmail already exists!");
                 return true;
             }
         }
@@ -79,7 +79,7 @@ public class AuthenticationRepositoryImpl implements AuthenticationRepository {
 
         for (Agent agent : agents) {
             if (agent.getUserName().equals(username)) {
-                System.out.println("User already exists");
+                System.out.println("\nUser name already exists!");
                 return true;
             }
         }

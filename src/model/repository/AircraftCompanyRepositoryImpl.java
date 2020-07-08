@@ -25,7 +25,7 @@ public class AircraftCompanyRepositoryImpl implements AircraftCompanyRepository 
         }
         Set<Integer> newSet = aircraftCompany.getAircrafts();
         if (newSet.add(aircraftID)) {
-            System.out.println("Aircraft addded");
+            System.out.println("Aircraft added successfully");
             aircraftCompany.setAircrafts(newSet);
             return true;
         } else {

@@ -82,7 +82,7 @@ public class SababaSearchView {
                 } while (!flag);
             }
         } catch (Exception e) {
-            System.out.println("Returning to search");
+            System.out.println("\n"+"Returning to search"+"\n");
             this.search();
         }
 
@@ -123,7 +123,7 @@ public class SababaSearchView {
             }
         }
 
-        // The search itself with all the parameters
+        // The search object with all the parameters
         search = new Search(departDate, returnDate, destination, passenger, directFlight);
 
         //Only one way flight
@@ -159,7 +159,8 @@ public class SababaSearchView {
             }
         }
 
-        System.out.println("What would you like to do? "+"\n" + "1. Start a new search" + "\n" + "2. Return to home page");
+        //User does not want to order or already ordered
+        System.out.println("\n"+"What would you like to do? "+"\n" + "1. Start a new search" + "\n" + "2. Return to home page");
         op = scanner.nextLine();
         if (op.equals("1"))
             this.search();
@@ -167,6 +168,7 @@ public class SababaSearchView {
             sababaFlightsProgram.homePage();
     }
 
+    //Add passengers to order
     public List<Passenger> getPassengerToOrder(Search search) {
         List<Passenger> otherPassengers = new ArrayList<>();
         int counter = 1;
@@ -177,6 +179,7 @@ public class SababaSearchView {
         return otherPassengers;
     }
 
+    //Add suitcase to the order
     public boolean includeSuitcase() {
         String op;
         Scanner scanner = new Scanner(System.in);
@@ -185,6 +188,7 @@ public class SababaSearchView {
         return op.toLowerCase().equals("y");
     }
 
+    //Add meal to the order
     public boolean includeMeals() {
         String op;
         Scanner scanner = new Scanner(System.in);
@@ -193,6 +197,7 @@ public class SababaSearchView {
         return op.toLowerCase().equals("y");
     }
 
+    //Add payment method
     public String orderCreditCard() {
         String creditCard;
         boolean flag;
@@ -207,6 +212,7 @@ public class SababaSearchView {
         return creditCard;
     }
 
+    //Create a passenger object for the order
     public Passenger newPassenger()
     {
         boolean validFlag;
@@ -218,9 +224,8 @@ public class SababaSearchView {
         String op;
         long id;
         boolean meals=false,suitcase=false;
-        //DateTimeFormatter formatter;
-       // LocalDate birthDate;
-
+        DateTimeFormatter formatter;
+        LocalDate birthDate;
         Scanner scanner = new Scanner(System.in);
 
          do{
@@ -229,7 +234,12 @@ public class SababaSearchView {
              validFlag = authenticationController.idValidation(Long.toString(id));
         }    while(!validFlag);
 
+            //Clean buffer
+            scanner = new Scanner(System.in);
+
+            //If there is no Passenger registered with this ID, create one
          if(authenticationController.passengerExists(id)==null) {
+
              //Name validation
              do {
                  System.out.println("First name: ");
@@ -247,25 +257,23 @@ public class SababaSearchView {
              do {
                  System.out.println("Email address :");
                  email = scanner.nextLine();
-                 validFlag = authenticationController.emailValidation(email);
-                 if (!validFlag)
-                     System.out.println("Invalid email!");
+                 validFlag = authenticationController.isValidEmail(email);
              } while (!validFlag);
 
              //Date of birth validation
-             //   do{
-             System.out.println("Date of birth in dd/MM/yyyy format: ");
-             birthDateStr = scanner.nextLine();
-//            try {
-//                formatter.parse(birthDateStr);
-//                birthDate = LocalDate.parse(birthDateStr, formatter);
-//            }
-//            catch(Exception e)
-//           {
-//               System.out.println("Invalid date of birth string");
-//            }
-//        }    while(!validFlag);
-
+             do {
+                 validFlag=true;
+                 System.out.println("Date of birth in dd/MM/yyyy format: ");
+                 birthDateStr = scanner.nextLine();
+                 try {
+                     formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                     formatter.parse(birthDateStr);
+                     birthDate = LocalDate.parse(birthDateStr, formatter);
+                 } catch (Exception e) {
+                     validFlag=false;
+                     System.out.println("Invalid date of birth format!" +"\n");
+                 }
+             }while(!validFlag);
 
              //Passport validation`
              do {

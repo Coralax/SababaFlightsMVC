@@ -12,7 +12,7 @@ public class FlightRepositoryImpl implements FlightRepository {
 
     Set<Flight> flights = FlightSingleton.getInstance().flightSet;
 
-    public Map<Integer, List<Flight>> flightResultsRoundTrip(String destination, int numOfPassengers, LocalDate departD, LocalDate returnD) {
+    public Map<Integer, List<Flight>> flightResultsRoundTrip(String destination, int numOfPassengers, LocalDate departD, LocalDate returnD,boolean direct) {
         List<Flight> resultOneWay = new ArrayList<>();
         Map<Integer,List<Flight>> resultTwoWayMapping = new HashMap<>();
         List<Flight> flightBackFound = new ArrayList<>();
@@ -22,8 +22,10 @@ public class FlightRepositoryImpl implements FlightRepository {
             if (flight.getDestination().toLowerCase().equals(destination.toLowerCase())) {
                 if ((flight.convertToLocalDate(flight.getDepartureDate())).compareTo(departD) == 0) {
                     if (flight.getSeatsLeft() >= numOfPassengers) {
-                        resultOneWay.add(flight);
-                        i++;
+                        if(flight.isDirect()==direct) {
+                            resultOneWay.add(flight);
+                            i++;
+                        }
                     }
                 }
             }
@@ -36,10 +38,11 @@ public class FlightRepositoryImpl implements FlightRepository {
                     if (flightReturn.getDestination().toLowerCase().equals(airportRepository.getAirportById(foundOneWay.getDepartureAirportID()).getCountry().toLowerCase()))
                     {
                         if((flightReturn.convertToLocalDate(flightReturn.getDepartureDate())).compareTo(returnD)==0)
-                            if(flightReturn.getSeatsLeft()>=numOfPassengers)
-                            {
-                                flightBackFound.add(flightReturn);
-                                twoWay=true;
+                            if(flightReturn.getSeatsLeft()>=numOfPassengers) {
+                                if (flightReturn.isDirect() == direct) {
+                                    flightBackFound.add(flightReturn);
+                                    twoWay = true;
+                                }
                             }
                     }
                 }
@@ -57,12 +60,13 @@ public class FlightRepositoryImpl implements FlightRepository {
         return resultTwoWayMapping;
     }
 
-    public List<Flight> flightResultOneDirection(String destination, int numOfPassengers, LocalDate departD) {
+    public List<Flight> flightResultOneDirection(String destination, int numOfPassengers, LocalDate departD,boolean direct) {
         List<Flight> resultFlights = new ArrayList<>();
         for (Flight flight : flights) {
             if (flight.getDestination().toLowerCase().equals(destination.toLowerCase())) {
                 if ((flight.convertToLocalDate(flight.getDepartureDate())).compareTo(departD) == 0) {
                     if (flight.getSeatsLeft() >= numOfPassengers)
+                        if(flight.isDirect()==direct)
                         resultFlights.add(flight);
                 }
             }

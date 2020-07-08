@@ -10,9 +10,9 @@ import java.util.Scanner;
 public class SignUpFormView {
 
     private AuthenticationController authController;
+    private SababaFlightsProgram sababaFlightsProgram;
 
     public SignUpFormView(){
-
         this.authController = new AuthenticationController();
     }
 
@@ -26,37 +26,56 @@ public class SignUpFormView {
         String firstName;
         String lastName;
         String idStr;
-        LocalDate birthDate;
+        LocalDate birthDate = null;
         DateTimeFormatter formatter ;
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Welcome to sign up page"+"\n");
+        System.out.println("Welcome to Sign up page!"+"\n");
 
-
-        //Username validation
+        //Username input and validation
         do{
             System.out.println("User name: ");
             username = scanner.nextLine();
             validFlag = this.authController.usernameValidation(username);
         }    while(!validFlag) ;
 
-        //Password validation
+        //Password input and validation
         do{
             System.out.println("Password: ");
             password = scanner.nextLine();
             validFlag = this.authController.passwordValidation(password);
         }    while(!validFlag) ;
 
-        //Email validation
-
+        //Email input and validation
         do{
             System.out.println("Email: ");
             email = scanner.nextLine();
-            validFlag = this.authController.emailValidation(email);
-            if(!validFlag)
-                System.out.println("Invalid email. Please try again");
+            validFlag = this.authController.isValidEmail(email);
+        }    while(!validFlag);
 
-        }    while(!validFlag) ;
+        //Date of birth input and validation
+        do {
+            validFlag=true;
+            System.out.println("Date of birth in dd/MM/yyyy format: ");
+            birthDateStr = scanner.nextLine();
+            try {
+                formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                formatter.parse(birthDateStr);
+                birthDate = LocalDate.parse(birthDateStr, formatter);
+            } catch (Exception e) {
+                validFlag=false;
+                System.out.println("Invalid date of birth format!" +"\n");
+            }
+        }while(!validFlag);
 
+        //Agent is below 18 years old
+        if(!authController.minimumAge(birthDate))
+        {
+            sababaFlightsProgram=new SababaFlightsProgram();
+            System.out.println("Returning..."+"\n");
+            sababaFlightsProgram.loginScreen();
+        }
+
+        //Name inputs and validations
         do {
             System.out.println("First name:");
              firstName = scanner.nextLine();
@@ -73,6 +92,7 @@ public class SignUpFormView {
                 System.out.println("Invalid last name. Please try again");
         }while(!validFlag);
 
+        //ID input and validation
         do {
             System.out.println("ID: ");
             idStr = scanner.nextLine();
@@ -80,27 +100,9 @@ public class SignUpFormView {
            }while(!validFlag);
           id = Long.parseLong(idStr);
 
-
-        //Date of birth validation
-        System.out.println("Birth date in dd/MM/yyyy format: ");
-        birthDateStr = scanner.nextLine();
-//       do {
-//            try {
-//                formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-//                formatter.parse(birthDateStr);
-//                birthDate = LocalDate.parse(birthDateStr, formatter);
-//            } catch (Exception e) {
-//            }
-//        }while(!validFlag);
-
         boolean signUpFlag = this.authController.agentSignUp(firstName, lastName, id, email, birthDateStr, false, username, password);
         if(signUpFlag){
-            System.out.println("Sign up successfully!");
+            System.out.println("\n"+"Sign up successfully!"+"\n");
         }
     }
-
-    //TODO: Check that email address does not exist already!!!!
-    //TODO: FIX BIRTHDAY VALIDATION
-
-
 }

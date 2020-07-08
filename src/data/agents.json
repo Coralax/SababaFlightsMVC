@@ -54,6 +54,17 @@
   "permissionLevel" : 0,
   "verified" : false
 }, {
+  "firstName" : "coa",
+  "lastName" : "dad",
+  "id" : 9,
+  "email" : "coral6666@mako.com",
+  "birthDate" : "12/09/1993",
+  "userName" : "co2202",
+  "password" : "cb13efcefd2e52a957ddc0c57365fccc",
+  "agentCode" : 1,
+  "permissionLevel" : 0,
+  "verified" : false
+}, {
   "firstName" : "tal",
   "lastName" : "tal",
   "id" : 12312312,
@@ -76,15 +87,15 @@
   "permissionLevel" : 0,
   "verified" : false
 }, {
-  "firstName" : "coal",
-  "lastName" : "ifergan",
+  "firstName" : "Coral",
+  "lastName" : "Ifergan",
   "id" : 7,
   "email" : "coral@gmail.com",
   "birthDate" : "12/12/1993",
   "userName" : "corala",
   "password" : "0fd0d9af376b82795e4bb0db3dbb13920fd0d9af376b82795e4bb0db3dbb1392",
   "agentCode" : 1,
-  "permissionLevel" : 0,
+  "permissionLevel" : 10,
   "verified" : false
 }, {
   "firstName" : "tal",

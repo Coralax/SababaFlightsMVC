@@ -76,7 +76,6 @@ public class Singleton<T> {
              */
             myWriter.write(this.objToJson(obj));
             myWriter.close();
-            System.out.println("Successfully wrote to the file.");
             return true;
             /* Error handling. Returns false if could not write to file. */
         } catch (IOException e) {
