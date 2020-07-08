@@ -55,9 +55,9 @@ public class Passenger extends Person {
     @Override
     public String toString() {
         return super.toString() + "\n"+
-                " Passport='" + passport + "\n" +
-                " Has suitcase=" + suitcase + "\n" +
-                " Has meals=" + meals + "\n" ;
+                " Passport: " + passport + "\n" +
+                " Has suitcase: " + suitcase + "\n" +
+                " Has meals: " + meals + "\n" ;
     }
 
     @Override

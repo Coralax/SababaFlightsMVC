@@ -32,9 +32,9 @@ public class AuthenticationController {
             if(userExist){
                 System.out.println("Username already exists, please try again.");
                 return false;
-            } else // The username is ready to use (valid&not used before)
+            } else
                 return true;
-        } //not a valid username
+        }
         return false;
     }
 
@@ -84,8 +84,6 @@ public class AuthenticationController {
         return pat.matcher(email).matches();
     }
 
-    /*Calling to Authentication service to validate id, email, birthdate, username, password *and* enabled or not (enabled is taken from the AuthenticationRepository that
-     service will call*/
     public boolean agentSignUp(String firstName, String lastName, long id, String email, String birthDate, boolean enabled , String userName, String password) {
     return authService.signUp(firstName,lastName,id,email,birthDate,enabled,userName,password);
     }
@@ -93,15 +91,16 @@ public class AuthenticationController {
     public boolean validName(String name) {
         return name != null && !name.trim().equals("");
     }
+
     public boolean login(String userName, String password) {
         if(userName == null || userName.trim().equals("")|| password == null || password.trim().equals("")){
-            throw new IllegalArgumentException("Username or password are required");
+            throw new IllegalArgumentException("Username and password are required!");
         }
-
         return authService.login(userName, password);
-
     }
+
     public boolean emailValidation(String email){
+
         return isValidEmail(email);
     }
 
@@ -112,17 +111,11 @@ public class AuthenticationController {
         }
         return true;
     }
-
-    public boolean isDate(String date){
-        Pattern pattern = Pattern.compile("\\d{2}/\\d{2}/\\d{4}");
-        Matcher matcher = pattern.matcher(date);
-        return matcher.matches();
-    }
-    public boolean birthdayValidation(String date){
-        return isDate(date);
-    }
-
-    public boolean dateValidation(LocalDate dateOfBirth) {
+    public boolean idValidation(String id) {
+        if (!(id.matches("^[0-9]+$")) ||(id.length()<5)) {
+            System.out.println("ID must contain only digits and have a minimum length of 5");
+            return false;
+        }
         return true;
     }
 

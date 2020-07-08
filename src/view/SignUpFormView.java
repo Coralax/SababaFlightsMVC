@@ -1,7 +1,10 @@
 package view;
 
+import com.sun.xml.internal.bind.v2.TODO;
 import controller.AuthenticationController;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class SignUpFormView {
@@ -16,38 +19,35 @@ public class SignUpFormView {
     public void signUp() {
         long id;
         boolean validFlag;
-        boolean passwordRequirements=true;
         String username;
         String password;
         String email;
-        String birthDate;
+        String birthDateStr;
+        String firstName;
+        String lastName;
+        String idStr;
+        LocalDate birthDate;
+        DateTimeFormatter formatter ;
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Welcome to sign up page!"+"\n");
+        System.out.println("Welcome to sign up page"+"\n");
 
-        //username validation
+
+        //Username validation
         do{
             System.out.println("User name: ");
             username = scanner.nextLine();
             validFlag = this.authController.usernameValidation(username);
-//            if(!validFlag)
-//                System.out.println("The username is not valid. please try again");
         }    while(!validFlag) ;
 
-        //password validation
+        //Password validation
         do{
             System.out.println("Password: ");
-            if(passwordRequirements){
-                System.out.println(" Password must consist at least one english letter" +
-                        ", one digit and length of 8-32 characters");
-                passwordRequirements = false;
-            }
             password = scanner.nextLine();
             validFlag = this.authController.passwordValidation(password);
-//            if(!validFlag)
-//                System.out.println("The pass is not valid. please try again");
         }    while(!validFlag) ;
 
-        //email validation
+        //Email validation
+
         do{
             System.out.println("Email: ");
             email = scanner.nextLine();
@@ -57,29 +57,50 @@ public class SignUpFormView {
 
         }    while(!validFlag) ;
 
-        System.out.println("Just a few more details");
-        System.out.println("First name:");
-        String first_name = scanner.nextLine();
-        System.out.println("Last name: ");
-        String last_name = scanner.nextLine();
-        System.out.println("Id: ");
-        String idStr = scanner.nextLine();
-        id = Long.parseLong(idStr);
+        do {
+            System.out.println("First name:");
+             firstName = scanner.nextLine();
+             validFlag=authController.validName(firstName);
+             if(!validFlag)
+                 System.out.println("Invalid first name. Please try again");
+            }while(!validFlag);
 
-        //Birthday validation
-        do{
-            System.out.println("Birthday in dd/MM/yyyy format: ");
-            birthDate = scanner.nextLine();
-            validFlag = this.authController.birthdayValidation(birthDate);
+        do {
+            System.out.println("Last name:");
+            lastName = scanner.nextLine();
+            validFlag=authController.validName(lastName);
             if(!validFlag)
-                System.out.println("Invalid birth date string. Please try again");
-        }    while(!validFlag) ;
+                System.out.println("Invalid last name. Please try again");
+        }while(!validFlag);
 
-        boolean signUpFlag = this.authController.agentSignUp(first_name, last_name, id, email, birthDate, false, username, password);
+        do {
+            System.out.println("ID: ");
+            idStr = scanner.nextLine();
+            validFlag=authController.idValidation(idStr);
+           }while(!validFlag);
+          id = Long.parseLong(idStr);
+
+
+        //Date of birth validation
+        System.out.println("Birth date in dd/MM/yyyy format: ");
+        birthDateStr = scanner.nextLine();
+//       do {
+//            try {
+//                formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+//                formatter.parse(birthDateStr);
+//                birthDate = LocalDate.parse(birthDateStr, formatter);
+//            } catch (Exception e) {
+//            }
+//        }while(!validFlag);
+
+        boolean signUpFlag = this.authController.agentSignUp(firstName, lastName, id, email, birthDateStr, false, username, password);
         if(signUpFlag){
             System.out.println("Sign up successfully!");
         }
     }
+
+    //TODO: Check that email address does not exist already!!!!
+    //TODO: FIX BIRTHDAY VALIDATION
 
 
 }

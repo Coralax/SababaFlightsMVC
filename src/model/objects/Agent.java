@@ -8,6 +8,8 @@ import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class Agent extends Person {
@@ -60,18 +62,12 @@ public class Agent extends Person {
 
     @Override
     public String toString() {
-        return "Agent{" +
-                "userName='" + userName + '\'' +
-                ", password='" + password + '\'' +
-                ", agentCode=" + agentCode +
-                ", isVerified=" + isVerified +
-                ", permissionLevel=" + permissionLevel +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", id=" + id +
-                ", email='" + email + '\'' +
-                ", birthDate='" + birthDate + '\'' +
-                '}';
+        return  super.toString() + "\n"+
+                " User name: " + userName + "\n" +
+                " Password: " + password  + "\n" +
+                " Agent code: " + agentCode + "\n" +
+                " Is verified: " + isVerified + "\n" +
+                " Permission level: " + permissionLevel;
     }
 
     @Override
@@ -86,6 +82,5 @@ public class Agent extends Person {
     public int hashCode() {
         return Objects.hash(super.hashCode(), agentCode);
     }
-
 }
 

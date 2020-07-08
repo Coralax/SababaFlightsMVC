@@ -60,7 +60,6 @@ public class Flight {
     public void setDestination(String destination) { this.destination = destination; }
     public void setSeatsLeft(int seatsLeft) { this.seatsLeft = seatsLeft; }
 
-    //make global
     public LocalDate convertToLocalDate(String date){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         formatter.parse(date);

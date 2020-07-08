@@ -3,16 +3,9 @@ import controller.AuthenticationController;
 import controller.OrderController;
 import controller.SearchController;
 import controller.objects.Search;
-import model.objects.Flight;
 import model.objects.Passenger;
-import model.singletons.LoginSingleton;
-
-import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 public class SababaSearchView {
@@ -40,14 +33,11 @@ public class SababaSearchView {
         DateTimeFormatter formatter;
         int passenger;
         boolean flag = false;
-        List<Flight> resOneWay = null;
-        Map<Integer, List<Flight>> roundTrip = null;
-
 
         try {
             //Depart date
             do {
-                System.out.println(  "Welcome to search page! " + "\n" +"1: For one way trip" + "\n" + "2: For round-trip");
+                System.out.println( "Welcome to search page! " + "\n" +"1: For one way trip" + "\n" + "2: For round-trip");
                 op = scanner.nextLine();
                 formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                 System.out.print("Depart date in dd/MM/yyyy format: ");
@@ -60,7 +50,6 @@ public class SababaSearchView {
                     flag = true;
 
             } while (!flag);
-
             flag = false;
             if (op.equals("2")) {
                 // Return date
@@ -73,8 +62,6 @@ public class SababaSearchView {
                     //Check return date: if invalid year || if return date is before depart date
                     if (searchController.validateReturnDepartDate(returnDate, departDate))
                         flag = true;
-
-
                 } while (!flag);
             }
         } catch (Exception e) {
@@ -133,14 +120,13 @@ public class SababaSearchView {
                 else
                     sababaFlightsProgram.homePage();
             }
-            // resOneWay = searchController.searchResultsOneDirection(search);
+
         } else {
             idDepartReturn=searchController.searchResultsRoundTrip(search);
             if(idDepartReturn[0]!=-1)
                orderController.makeAnOrder(idDepartReturn,newPassenger());
-            // roundTrip = searchController.searchResultsRoundTrip(search);
             else{
-                System.out.println("Thank you for your time what would you like to do? "+"\n" + "1. Start a new search" + "\n" + "2. Return to home page");
+                System.out.println("What would you like to do? "+"\n" + "1. Start a new search" + "\n" + "2. Return to home page");
             op = scanner.nextLine();
             if (op.equals("1"))
                 this.search();
@@ -148,36 +134,13 @@ public class SababaSearchView {
                 sababaFlightsProgram.homePage();
             }
         }
-//        System.out.println("Would you like to make an order? Y/N");
-//        op=scanner.nextLine();
-//        if(op.toLowerCase().equals("Y")) {
-//
-//            //If the user wants to order one way flight
-//            if(flag) {
-//                if(idDeparture!=-1)
-//                    System.out.println("ID for departure flight is: " +idDeparture);
-//               // orderController.addPassengerToOrder(idDeparture,newPassenger());
-//            }
-//
-//            else {
-//                System.out.println("round trip: "+ idDepartReturn[0]+ ", "+ idDepartReturn[1]);
-//            //    orderController.makeAnOrder(roundTrip);
-//            }
-//        }
-//        else {
-//            System.out.println("1. Start a new search" + "\n" + "2. Return to home page");
-//            op = scanner.nextLine();
-//            if (op.equals("1"))
-//                this.search();
-//            else
-//                sababaFlightsProgram.homePage();
-//        }
     }
 
     public Passenger newPassenger()
     {
-        long id;
+       // long id;
         boolean validFlag;
+       // String idStr;
         String firstName;
         String lastName;
         String email;
@@ -185,8 +148,8 @@ public class SababaSearchView {
         String passport;
         String op;
         boolean meals=false,suitcase=false;
-        DateTimeFormatter formatter = null;
-        LocalDate birthDate;
+        //DateTimeFormatter formatter;
+       // LocalDate birthDate;
 
         Scanner scanner = new Scanner(System.in);
 
@@ -212,19 +175,20 @@ public class SababaSearchView {
                 System.out.println("Invalid email!");
         }    while(!validFlag) ;
 
-        //Birthdate validation
-     //   do{
+        //Date of birth validation
+       //   do{
             System.out.println("Birth date in dd/MM/yyyy format: ");
             birthDateStr = scanner.nextLine();
 //            try {
 //                formatter.parse(birthDateStr);
 //                birthDate = LocalDate.parse(birthDateStr, formatter);
 //            }
-//            catch(NullPointerException e)
-//            {
-//                System.out.println("");
+//            catch(Exception e)
+//           {
+//               System.out.println("Invalid date of birth string");
 //            }
 //        }    while(!validFlag);
+
 
         //Passport validation`
         do{
@@ -233,11 +197,14 @@ public class SababaSearchView {
             validFlag = authenticationController.passportValidation(passport);
         }    while(!validFlag);
 
-      //  do{
-//            System.out.println("ID number: ");
-//            id=scanner.nextInt();
-           // validFlag = authenticationController.passportValidation(passport);
-       // }    while(!validFlag);
+//        //ID validation- NOT IN USE YET
+//        do{
+//            System.out.println("ID: ");
+//            idStr=scanner.nextLine();
+//            validFlag = authenticationController.idValidation(idStr);
+//        }    while(!validFlag);
+//
+     //   id = Long.parseLong(idStr);
 
         System.out.println("Would you like to have a suitcase? Y/N");
         op=scanner.nextLine();

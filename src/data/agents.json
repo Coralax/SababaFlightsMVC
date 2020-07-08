@@ -65,6 +65,28 @@
   "permissionLevel" : 0,
   "verified" : false
 }, {
+  "firstName" : "coral",
+  "lastName" : "ifergan",
+  "id" : 8,
+  "email" : "coral@gmail.com",
+  "birthDate" : "12/10/1993",
+  "userName" : "coral2",
+  "password" : "c5564f10ba96a6c8337b67f23c7174ba",
+  "agentCode" : 1,
+  "permissionLevel" : 0,
+  "verified" : false
+}, {
+  "firstName" : "coal",
+  "lastName" : "ifergan",
+  "id" : 7,
+  "email" : "coral@gmail.com",
+  "birthDate" : "12/12/1993",
+  "userName" : "corala",
+  "password" : "0fd0d9af376b82795e4bb0db3dbb13920fd0d9af376b82795e4bb0db3dbb1392",
+  "agentCode" : 1,
+  "permissionLevel" : 0,
+  "verified" : false
+}, {
   "firstName" : "tal",
   "lastName" : "ha",
   "id" : 12322232,

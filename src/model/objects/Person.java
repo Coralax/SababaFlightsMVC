@@ -20,7 +20,7 @@ public abstract class Person {
     protected long id;
     protected String email;
     protected String birthDate;
-//    protected LocalDate birthDate;
+
 
     public Person() {}
 
@@ -30,7 +30,6 @@ public abstract class Person {
         this.email = email;
         this.id = id;
         this.birthDate = birthDate;
-//        setBirthDate(birthDateStr);
     }
 
     public String getBirthDate() { return this.birthDate; }
@@ -44,11 +43,11 @@ public abstract class Person {
     public void setLastName(String lastName) { this.lastName = lastName; }
     public void setEmail(String email) { this.email = email; }
 
-//    public void setBirthDate(String birthDateStr)  {
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-//        formatter.parse(birthDateStr);
-//        this.birthDate = LocalDate.parse(birthDateStr, formatter);
-//    }
+    public LocalDate convertToLocalDate(String date){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        formatter.parse(date);
+        return (LocalDate.parse(birthDate, formatter));
+    }
     public void setId(long id) { this.id = id; }
 
     @Override

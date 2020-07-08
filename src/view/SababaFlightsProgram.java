@@ -50,6 +50,7 @@ public class SababaFlightsProgram {
                         break;
                 }
             } catch (Exception e) {
+                System.out.println("Invalid parameters");
                 e.printStackTrace();
             }
         }while (!op.equals("-1"));
