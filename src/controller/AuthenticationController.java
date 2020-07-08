@@ -21,6 +21,7 @@ public class AuthenticationController {
     public Passenger passengerExists(long id ) {
         return authService.passengerExists(id); }
 
+
     public boolean usernameValidation(String userName){
         boolean isValid=true;
         if (!userName.matches("^[a-zA-Z]*[0-9]*$")) {
@@ -78,13 +79,17 @@ public class AuthenticationController {
     }
 
     public boolean isValidEmail(String email) {
+        if (email == null ||email.trim().equals(""))
+            return false;
+        boolean exist =authService.emailExists(email);
+        if(exist)
+            return false;
+
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\." +
                 "[a-zA-Z0-9_+&*-]+)*@" +
                 "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
                 "A-Z]{2,7}$";
         Pattern pat = Pattern.compile(emailRegex);
-        if (email == null)
-            return false;
         return pat.matcher(email).matches();
     }
 

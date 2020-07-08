@@ -11,9 +11,10 @@ import java.util.Set;
 public class AuthenticationRepositoryImpl implements AuthenticationRepository {
     AgentSingleton agentSingleton;
     Set<Agent> agents;
+
+
     @Override
     public boolean userNameLogin(String userName, String password) {
-
         AgentRepositoryImpl agentRepository = new AgentRepositoryImpl();
         Set<Agent> agents = AgentSingleton.getInstance().agentSet;
 
@@ -47,18 +48,29 @@ public class AuthenticationRepositoryImpl implements AuthenticationRepository {
         return LoginSingleton.getInstance().isLoggedIn();
     }
 
-    // tal //
     @Override
     public boolean signUp(String firstName, String lastName, long id, String email, String birthDate,
                           boolean enabled, String userName, String password) {
-
             Agent newAgent = new Agent(id, firstName, lastName, email, userName, password, 1, birthDate);
             newAgent.setEncryptedPassword(password);
             agents.add(newAgent);
             agentSingleton.saveSet(agents);
             return true;
-        }
+    }
 
+    public boolean emailExists(String email) {
+        //JSON parser object to parse read file
+        agentSingleton = AgentSingleton.getInstance();
+        agents = agentSingleton.agentSet;
+
+        for (Agent agent : agents) {
+            if (agent.getUserName().equals(email)) {
+                System.out.println("Email already exists");
+                return true;
+            }
+        }
+        return false;
+    }
 
     public boolean userExist(String username) {
         //JSON parser object to parse read file

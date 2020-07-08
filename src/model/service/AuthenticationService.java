@@ -20,9 +20,7 @@ public class AuthenticationService {
     private AuthenticationRepositoryImpl authRepository;
 
     public AuthenticationService() {
-        this.authRepository = new AuthenticationRepositoryImpl();
-
-    }
+        this.authRepository = new AuthenticationRepositoryImpl(); }
 
     public boolean login(String userName, String password) {
         return authRepository.userNameLogin(userName, password);
@@ -35,7 +33,9 @@ public class AuthenticationService {
     public boolean userExist(String username) {
         return authRepository.userExist(username);
     }
-
+    public boolean emailExists(String email) {
+        return authRepository.emailExists(email);
+    }
     public Passenger passengerExists(long id){
          PassengerRepositoryImpl passengerRepository= new PassengerRepositoryImpl();
         return passengerRepository.getPassengerByID(id);

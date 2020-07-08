@@ -12,7 +12,6 @@ public class FlightRepositoryImpl implements FlightRepository {
 
     Set<Flight> flights = FlightSingleton.getInstance().flightSet;
 
-    //FINISH IMPLEMENTATIONS
     public Map<Integer, List<Flight>> flightResultsRoundTrip(String destination, int numOfPassengers, LocalDate departD, LocalDate returnD) {
         List<Flight> resultOneWay = new ArrayList<>();
         Map<Integer,List<Flight>> resultTwoWayMapping = new HashMap<>();
