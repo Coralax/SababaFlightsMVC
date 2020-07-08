@@ -6,6 +6,7 @@ package controller;
 import model.objects.Order;
 import model.service.OrderService;
 
+import java.util.Scanner;
 import java.util.Set;
 
 public class OrderController {
@@ -34,7 +35,15 @@ public class OrderController {
     }
 
     public boolean removePassengerFromOrder(Order order, long passengerID) {
-        return orderService.removePassengerByID(order, passengerID);
+        Scanner input = new Scanner(System.in);
+        System.out.println("Sure? (Y / N)");
+        String userInput = input.nextLine();
+        if (userInput.equals("Y") || userInput.equals("y"))
+            return orderService.removePassengerByID(order, passengerID);
+        else {
+            System.out.println("Done nothing");
+            return false;
+        }
     }
 
     public boolean cancelOrder(Order order) {
@@ -42,7 +51,7 @@ public class OrderController {
     }
 
     public boolean reActivateOrder(Order order) {
-        return orderService.cancelOrder(order);
+        return orderService.reActivateOrder(order);
     }
 
     public boolean deleteOrder(Order order) {

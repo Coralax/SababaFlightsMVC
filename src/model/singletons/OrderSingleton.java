@@ -24,6 +24,11 @@ public class OrderSingleton extends Singleton<Order> {
     }
 
     public Order getOrderByID(long id) {
+        /*  Tal
+                if(this.orderSet == null)
+            return null;
+         */
+
         for (Order order : this.orderSet) {
             if (order.getOrderID() == id)
                 return order;

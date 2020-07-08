@@ -40,11 +40,13 @@ public class SignUpForm {
                         ", one digit and length of 8-32 characters)");
                 passwordRequirements = false;
             }
-
             password = scanner.nextLine();
-            validFlag = this.authController.passwordValidation(password);
-//            if(!validFlag)
-//                System.out.println("The pass is not valid. please try again");
+            try {
+                validFlag = this.authController.passwordValidation(password);
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage()+", please try again");
+            }
+
         }    while(!validFlag) ;
 
         //email validation
@@ -70,9 +72,12 @@ public class SignUpForm {
         do{
             System.out.println("Birthday: ");
             birthDate = scanner.nextLine();
-            validFlag = this.authController.birthdayValidation(birthDate);
-            if(!validFlag)
-                System.out.println("The Date is not valid. please try again");
+            try {
+                validFlag = this.authController.birthdayValidation(birthDate);
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage()+", please try again");
+            }
+
         }    while(!validFlag) ;
 
         boolean signUpFlag = this.authController.agentSignUp(first_name, last_name, id, email, birthDate, false, username, password);

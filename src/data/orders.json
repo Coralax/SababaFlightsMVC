@@ -1,115 +1,25 @@
 [ {
   "agentCode" : 0,
-  "flightCompany" : {
-    "companyName" : "WowAir",
-    "companyClass" : "Low cost"
-  },
+  "flightCompany" : 0,
   "roundTrip" : false,
-  "orderID" : 80734,
+  "id" : 80734,
   "totalCost" : 789.0,
   "creditCard" : 321321321,
-  "flightTo" : [ {
-    "flightID" : 1,
-    "aircraft" : {
-      "aircraftID" : 1,
-      "aircraftCompany" : {
-        "companyName" : "WizzAir",
-        "companyClass" : "Low-cost"
-      },
-      "seatsCount" : 78,
-      "model" : "Boeing-797"
-    },
-    "departureAirport" : {
-      "country" : "Israel, TLV",
-      "airportName" : "Ben-Gurion",
-      "terminals" : [ "T1", "T3" ]
-    },
-    "destinationAirport" : {
-      "country" : "Barcelona, BCN",
-      "airportName" : "Barcelona-El Prat",
-      "terminals" : [ "A", "B", "C", "D" ]
-    },
-    "departureDate" : "02/08/2020-17:36",
-    "arrivalDate" : "02/08/2020-22:29",
-    "flightPrice" : 436.0
-  } ],
+  "flightTo" : [1],
   "flightFrom" : null,
-  "ownerPassenger" : {
-    "firstName" : "Jhon",
-    "lastName" : "Doe",
-    "id" : 0,
-    "email" : "email@gmail.com",
-    "birthDate" : "01/01/1990",
-    "passport" : "84NG74M",
-    "suitcase" : true,
-    "meals" : false
-  },
-  "otherPassengers" : null,
+  "ownerPassengerID" : 0,
+  "otherPassengersIDs" : null,
   "canceled" : false
 }, {
   "agentCode" : 0,
-  "flightCompany" : {
-    "companyName" : "Israir",
-    "companyClass" : "Regular"
-  },
+  "flightCompany" : 2,
   "roundTrip" : false,
-  "orderID" : 80734,
+  "id" : 80734,
   "totalCost" : 559.0,
   "creditCard" : 1234567890123456,
-  "flightTo" : [ {
-    "flightID" : 0,
-    "aircraft" : {
-      "aircraftID" : 0,
-      "aircraftCompany" : {
-        "companyName" : "El-Al",
-        "companyClass" : "regular"
-      },
-      "seatsCount" : 78,
-      "model" : "Boeing-797"
-    },
-    "departureAirport" : {
-      "country" : "Israel, TLV",
-      "airportName" : "Ben-Gurion",
-      "terminals" : [ "T1", "T3" ]
-    },
-    "destinationAirport" : {
-      "country" : "New-York, JFK",
-      "airportName" : "JFK",
-      "terminals" : [ "1", "2", "3", "4", "5", "6", "7", "8" ]
-    },
-    "departureDate" : "31/07/2020-23:15",
-    "arrivalDate" : "01/08/2020-03:23",
-    "flightPrice" : 512.0
-  } ],
+  "flightTo" : [0],
   "flightFrom" : [ ],
-  "ownerPassenger" : {
-    "firstName" : "Jhon",
-    "lastName" : "Doe",
-    "id" : 987987987,
-    "email" : "email@gmail.com",
-    "birthDate" : "01/01/1990",
-    "passport" : "84NG74M",
-    "suitcase" : true,
-    "meals" : false
-  },
-  "otherPassengers" : [ {
-    "firstName" : "Omer",
-    "lastName" : "Sha'ashua",
-    "id" : 654654654,
-    "email" : "superomsha@gmail.com",
-    "birthDate" : "16/09/1995",
-    "passport" : "123456789",
-    "suitcase" : true,
-    "meals" : true
-  }, {
-    "firstName" : "Jane",
-    "lastName" : "Doe",
-    "id" : 321321321,
-    "email" : "janeDoe@gmail.com",
-    "birthDate" : "30/02/1988",
-    "passport" : "ABC531D42",
-    "suitcase" : false,
-    "meals" : true
-  } ],
+  "ownerPassengerID" : 987987987,
+  "otherPassengersIDs" : [ 654654654, 321321321 ],
   "canceled" : false
 } ]

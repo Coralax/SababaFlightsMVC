@@ -1,7 +1,8 @@
 [
   {
-    "flightID" : 0,
+    "id" : 0,
     "destination": "New york",
+    "seatsLeft": 50,
     "departureAirport" : {
       "country" : "Israel",
       "airportName" : "Ben-Gurion",
@@ -15,20 +16,13 @@
     "departureDate" : "31/07/2020",
     "arrivalDate" : "01/08/2020",
     "flightPrice" : 512.0,
-    "aircraft" : {
-      "aircraftID" : 0,
-      "aircraftCompany" : {
-        "companyName" : "El-Al",
-        "companyClass" : "regular"
-      },
-      "seatsCount" : 78,
-      "model" : "Boeing-797"
-    },
+    "aircraftID" : 0,
     "direct" : false
   },
   {
-    "flightID" : 1,
+    "id" : 1,
     "destination": "Spain",
+    "seatsLeft": 50,
     "departureAirport" : {
       "country" : "Israel, TLV",
       "airportName" : "Ben-Gurion",
@@ -42,21 +36,13 @@
     "departureDate" : "02/08/2020",
     "arrivalDate" : "02/08/2020",
     "flightPrice" : 436.0,
-    "aircraft" : {
-      "aircraftID": 1,
-      "aircraftCompany":
-      {
-        "companyName" : "WizzAir",
-        "companyClass" : "Low-cost"
-      },
-      "seatsCount": 78,
-      "model": "Boeing-797"
-    },
+    "aircraftID" : 0,
     "direct" : true
   },
   {
-    "flightID" : 2,
+    "id" : 2,
     "destination": "New york",
+    "seatsLeft": 50,
     "departureAirport" : {
       "country" : "Israel",
       "airportName" : "Ben-Gurion",
@@ -70,21 +56,13 @@
     "departureDate" : "07/08/2020",
     "arrivalDate" : "07/08/2020",
     "flightPrice" : 479.0,
-    "aircraft" : {
-      "aircraftID": 1,
-      "aircraftCompany":
-      {
-        "companyName" : "El-Al",
-        "companyClass" : "Low-cost"
-      },
-      "seatsCount": 78,
-      "model": "Boeing-797"
-    },
+    "aircraftID" : 1,
     "direct" : true
   },
   {
-    "flightID" : 3,
+    "id" : 3,
     "destination": "Israel",
+    "seatsLeft": 50,
     "departureAirport" : {
       "country" : "New York",
       "airportName" : "JFK",
@@ -98,16 +76,27 @@
     "departureDate" : "10/08/2020",
     "arrivalDate" : "11/08/2020",
     "flightPrice" : 453.0,
-    "aircraft" : {
-      "aircraftID": 1,
-      "aircraftCompany":
-      {
-        "companyName" : "El-Al",
-        "companyClass" : "Low-cost"
-      },
-      "seatsCount": 78,
-      "model": "Boeing-797"
+    "aircraftID" : 1,
+    "direct" : true
+  },
+  {
+    "id" : 4,
+    "destination": "Israel",
+    "seatsLeft": 60,
+    "departureAirport" : {
+      "country" : "New York",
+      "airportName" : "JFK",
+      "terminals" :[ "1", "2", "3", "4", "5", "6", "7", "8" ]
     },
+    "destinationAirport" : {
+      "country" : "Israel",
+      "airportName" : "TLV",
+      "terminals" : [ "T1", "T3"]
+    },
+    "departureDate" : "10/08/2020",
+    "arrivalDate" : "11/08/2020",
+    "flightPrice" : 348.0,
+    "aircraftID" : 1,
     "direct" : true
   }
 ]

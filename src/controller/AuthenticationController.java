@@ -39,6 +39,10 @@ public class AuthenticationController {
         return this.authService.isValidEmail(email);
     }
     public boolean passwordValidation(String pass){
+        boolean isValid = this.authService.passwordValidation(pass);
+        if( !isValid){
+            throw new IllegalArgumentException("Password is not valid");
+        }
         return this.authService.passwordValidation(pass);
     }
 
@@ -58,7 +62,11 @@ public class AuthenticationController {
     }
 
     public boolean birthdayValidation(String date){
-        return this.authService.isDate(date);
+
+        if( !(this.authService.isDate(date))){
+            throw new IllegalArgumentException("Date is not valid,should match the pattern dd/mm/yyyy");
+        }
+        return true;
     }
 
 }

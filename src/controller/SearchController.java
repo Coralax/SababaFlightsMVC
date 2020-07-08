@@ -49,7 +49,9 @@ public class SearchController {
         return true;
     }
 
-    //Validate if return date is not before depart date, return date year is not smaller then year now or bigger then year +1
+
+    /*  Validate if return date is not before depart date,
+      return date year is not smaller then year now or bigger then year +1 */
     public boolean validateReturnDepartDate(LocalDate returnDate,LocalDate departDate){
         int dt = returnDate.getYear();
         if(dt> (Calendar.getInstance().get(Calendar.YEAR)+1)){

@@ -63,10 +63,10 @@ public class OrderRepositoryImpl implements OrderRepository {
     @Override
     public boolean removePassengerByID(Order order, long passengerToRemove) {
         boolean successfullyRemoved = false;
-        Scanner input = new Scanner(System.in);
-        System.out.println("Sure? (Y / N)");
-        String userInput = input.nextLine();
-        if (userInput.equals("Y") || userInput.equals("y")) {
+//        Scanner input = new Scanner(System.in);
+//        System.out.println("Sure? (Y / N)");
+//        String userInput = input.nextLine();
+//        if (userInput.equals("Y") || userInput.equals("y")) {
             List<Passenger> p = new ArrayList<>();
             for (Passenger passenger : order.getOtherPassengers()) {
                 if (passenger.getId() == passengerToRemove) {
@@ -83,9 +83,9 @@ public class OrderRepositoryImpl implements OrderRepository {
                 System.out.println("Could not find a passenger with the given ID in provided order");
                 return false;
             }
-        }
-        System.out.println("Done nothing");
-        return false;
+//        }
+//        System.out.println("Done nothing");
+//        return false;
     }
 
     @Override
