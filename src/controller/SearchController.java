@@ -64,15 +64,15 @@ public class SearchController {
         return true;
     }
 
-    public int searchResultsOneDirection(Search search)
+    public List<Long> searchResultsOneDirection(Search search)
     {
-        int res;
-        res=searchService.validateSearchOneDirection(search);
+        List<Long> res;
+        res = searchService.validateSearchOneDirection(search);
         return res;
     }
 
-    public int[] searchResultsRoundTrip(Search search)  {
-        int[] res;
+    public List<Long> searchResultsRoundTrip(Search search)  {
+        List<Long> res;
         res=searchService.validateSearchRoundTrip(search);
         return res;
     }

@@ -6,8 +6,7 @@ public class Passenger extends Person {
 
     static int passengersCount;
     private String passport;
-    private boolean suitcase, meals;
-
+    private int ID;
     static { passengersCount = 0; }
 
     public Passenger() {
@@ -20,44 +19,26 @@ public class Passenger extends Person {
             String lastName,
             String email,
             String birthDateStr,
-            String passport,
-            boolean hasSuitcase,
-            boolean hasMeals
+            String passport
         ) {
         super(firstName, lastName, email, passengersCount++, birthDateStr);
         this.passport = passport;
-        this.suitcase = hasSuitcase;
-        this.meals = hasMeals;
     }
 
     // Setters (which will be used by the builder)
     public void setPassport(String passport) {
         this.passport = passport;
     }
-    public void setHasSuitcase(boolean suitcase) {
-        this.suitcase = suitcase;
-    }
-    public void setHasMeals(boolean meals) {
-        this.meals = meals;
-    }
 
     // Getters
     public String getPassport() {
         return this.passport;
     }
-    public boolean isSuitcase() {
-        return this.suitcase;
-    }
-    public boolean isMeals() {
-        return this.meals;
-    }
 
     @Override
     public String toString() {
         return super.toString() + "\n"+
-                " Passport: " + passport + "\n" +
-                " Has suitcase: " + suitcase + "\n" +
-                " Has meals: " + meals + "\n" ;
+                " Passport: " + passport;
     }
 
     @Override

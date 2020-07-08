@@ -7,6 +7,8 @@ import model.repository.FlightRepositoryImpl;
 import model.repository.OrderRepositoryImpl;
 import model.singletons.OrderSingleton;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -57,21 +59,37 @@ public class OrderService {
     }
 
 
+    public void makeNewOrder(long agentCode,String creditCard, List<Long> flightToIDs, List<Long> flightFromIDs, int seatsCount,
+                             Passenger ownerPassenger, List<Passenger> otherPassengers, boolean isMeal, boolean isSuitcase, int numOfPassegers) {
 
-    //FINISH THIS ORDER
-    public void makeNewOrder(int filghtID, Passenger passenger)
-    {
+        // Process order data
+        boolean roundTrip = false;
+        double totalPrice = 0;
+        if (flightToIDs.size() > 0) {
+            if (flightFromIDs != null && flightFromIDs.size() != 0)
+                roundTrip = true;
+        }
+        for (long flightID : flightToIDs)
+            totalPrice += flightRepository.getFlightPriceById(flightID);
+        if (isMeal)
+            totalPrice += 25;
+        if(isSuitcase)
+            totalPrice += 25;
+        totalPrice *= numOfPassegers;
 
-        System.out.println("Got into Order service makeNewOrder");
-        Flight flight=flightRepository.getFlightByID(filghtID);
+        long ownerPassengerID = ownerPassenger.getId();
+        List<Long> otherPassengersIDs = new ArrayList<>();
+        for (Passenger otherPassenger : otherPassengers)
+            otherPassengersIDs.add(otherPassenger.getId());
+
+        // Decrease amount of remaining seats
+        for (long flightID : flightToIDs)
+            flightRepository.decreaseSeats(flightID, seatsCount);
+
+        // Create the order itself
+        Order newOrder = new Order(agentCode, creditCard, totalPrice, flightToIDs, flightFromIDs, ownerPassengerID, otherPassengersIDs);
+        System.out.println(newOrder.toString());
 
     }
-    public void makeNewOrder(int[] filghtID, Passenger passenger)
-    {
-        System.out.println("Got into Order service makeNewOrder");
-    }
-    public void makeNewOrder(int[] filghtID, List<Passenger> passenger)
-    {
-        System.out.println("Got into Order service makeNewOrder");
-    }
+
 }

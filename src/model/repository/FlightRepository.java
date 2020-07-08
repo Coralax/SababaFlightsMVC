@@ -11,8 +11,9 @@ public interface FlightRepository {
      List<Flight> flightResultOneDirection(String destination, int numOfPassengers, LocalDate departD);
      List<Flight> flightResultsOneDirectionInRange(String destination, int numOfPassengers, LocalDate departD);
      Map<Integer, List<Flight>> flightResultsRoundTripInRange(String destination, int numOfPassengers, LocalDate departD, LocalDate returnD);
-     Flight getFlightByID(int id);
+     Flight getFlightByID(long id);
      boolean deleteFlightFromFile(int id);
      boolean addFlightToFile(Flight flight);
-
+     double getFlightPriceById(long flightID);
+     void decreaseSeats(long flightID, int seatsAmount);
 }

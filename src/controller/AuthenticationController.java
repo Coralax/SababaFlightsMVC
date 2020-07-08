@@ -119,4 +119,12 @@ public class AuthenticationController {
         return true;
     }
 
+    public boolean creditCardValidation(String card) {
+        if (!(card.matches("^[0-9]+$")) ||(card.length()<16)) {
+            System.out.println("Credit card must contain only digits and length of 16");
+            return false;
+        }
+        return true;
+    }
+
 }

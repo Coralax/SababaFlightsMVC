@@ -1,34 +1,45 @@
 package model.objects;
 
 import model.adapter.OrderCurrencyAdapterImpl;
+import model.repository.FlightRepository;
+import model.repository.FlightRepositoryImpl;
 import model.repository.OrderRepositoryImpl;
 import model.singletons.FlightSingleton;
 
 import java.util.List;
+import java.util.Set;
 
 public class Order {
 
     static int ordersCount;
-    int agentCode;
-    int flightCompanyID;
+    long agentCode;
     boolean roundTrip;
     long id;
     double totalCost;
-    long creditCard;
+    String creditCard;
     List<Long> flightToIDs;
     List<Long> flightFromIDs;
-    int ownerPassengerID;
+    long ownerPassengerID;
     List<Long> otherPassengersIDs;
-    boolean canceled;
+    boolean canceled, isMeals,isSuitcase;
 
     static { ordersCount = 0; }
 
     public Order() { ordersCount++; }
 
-    public Order(int agentCode, int flightCompanyID, boolean roundTrip, double totalCost, long creditCard,
+    public Order(long agentCode, String creditCard, double totalCost, List<Long> flightToIDs, List<Long> flightFromIDs, long ownerPassengersID, List<Long> otherPassengersIDs) {
+        this.agentCode = agentCode;
+        this.creditCard = creditCard;
+        this.totalCost = totalCost;
+        this.flightToIDs = flightToIDs;
+        this.flightFromIDs = flightFromIDs;
+        this.ownerPassengerID = ownerPassengersID;
+        this.otherPassengersIDs = otherPassengersIDs;
+    }
+
+    public Order(long agentCode, int flightCompanyID, boolean roundTrip, double totalCost, String creditCard,
                  List<Long> flightToIDs, List<Long> flightFromIDs, int ownerPassengerID, List<Long> otherPassengersIDs) {
         this.agentCode = agentCode;
-        this.flightCompanyID = flightCompanyID;
         this.roundTrip = roundTrip;
         this.id = ordersCount++;
         this.totalCost = totalCost;
@@ -41,30 +52,32 @@ public class Order {
     }
 
     // Getters
-    public int getAgentCode() { return this.agentCode; }
-    public int getFlightCompany() { return this.flightCompanyID; }
+    public long getAgentCode() { return this.agentCode; }
     public boolean isRoundTrip() { return this.roundTrip; }
     public long getId() { return this.id; }
     public double getTotalCost() { return this.totalCost; }
-    public long getCreditCard() { return this.creditCard; }
+    public String getCreditCard() { return this.creditCard; }
     public List<Long> getFlightTo() { return this.flightToIDs; }
     public List<Long> getFlightFrom() { return this.flightFromIDs; }
-    public int getOwnerPassengerID() { return this.ownerPassengerID; }
+    public long getOwnerPassengerID() { return this.ownerPassengerID; }
     public List<Long> getOtherPassengersIDs() { return this.otherPassengersIDs; }
     public boolean isCanceled() { return canceled; }
+    public boolean isMeals() { return isMeals; }
+    public boolean isSuitcase() { return isSuitcase; }
 
     // Setters
     public void setAgentCode(int agentCode) { this.agentCode = agentCode; }
-    public void setFlightCompany(int flightCompanyID) { this.flightCompanyID = flightCompanyID; }
     public void setRoundTrip(boolean roundTrip) { this.roundTrip = roundTrip; }
     public void setId(long id) { this.id = id; }
     public void setTotalCost(double totalCost) { this.totalCost = totalCost; }
-    public void setCreditCard(long creditCard) { this.creditCard = creditCard; }
+    public void setCreditCard(String creditCard) { this.creditCard = creditCard; }
     public void setFlightTo(List<Long> flightToIDs) { this.flightToIDs = flightToIDs; }
     public void setFlightFrom(List<Long> flightFromIDs) { this.flightFromIDs = flightFromIDs; }
     public void setOwnerPassengerID(int ownerPassengerID) { this.ownerPassengerID = ownerPassengerID; }
     public void setOtherPassengersIDs(List<Long> otherPassengersIDs) { this.otherPassengersIDs = otherPassengersIDs; }
     public void setCanceled(boolean isCanceled) { this.canceled = isCanceled; }
+    public void setSuitcase(boolean suitcase) { isSuitcase = suitcase; }
+    public void setMeals(boolean meals) { isMeals = meals; }
 
     public boolean addPassenger(Passenger newPassenger) {
         return new OrderRepositoryImpl().addPassenger(this, newPassenger);
@@ -87,26 +100,29 @@ public class Order {
         int currency = FlightSingleton.getInstance().getCurrency();
         if (currency == 1) {
             OrderCurrencyAdapterImpl orderCurrencyAdapter = new OrderCurrencyAdapterImpl(this);
-            return "Order:\n" +
-                    "flightCompany=" + flightCompanyID +
-                    "\nroundTrip=" + roundTrip +
-                    "\norderID=" + id +
-                    "\ntotalCost=" + orderCurrencyAdapter.getTotalCost() +
-                    "\ncreditCard=" + creditCard +
-                    "\nflightTo=" + flightToIDs +
-                    "\nflightFrom=" + flightFromIDs +
-                    "\nownerPassenger=" + ownerPassengerID +
-                    "\notherPassengers=" + otherPassengersIDs;
+            return "\nOrder details:" +
+                    "\nRound trip: " + roundTrip +
+                    "\nOrder ID: " + id +
+                    "\nTotal cost: " + orderCurrencyAdapter.getTotalCost() +
+                    "\nCredit card number: " + creditCard +
+                    "\nDeparture flight ID: " + flightToIDs +
+                    "\nReturn flight ID: " + flightFromIDs +
+                    "\nMain passenger: " + ownerPassengerID +
+                    "\nOther passengers: " + otherPassengersIDs +
+                    "\nMeal:  " + isMeals +
+                    "\nSuitcase: " + isSuitcase +"\n";
+
         }
-        return "Order:\n" +
-                "flightCompany=" + flightCompanyID +
-                "\nroundTrip=" + roundTrip +
-                "\norderID=" + id +
+        return "\nOrder details:" +
+                "\nRound trip: " + roundTrip +
+                "\nOrder ID: " + id +
                 "\ntotalCost=" + totalCost +
-                "\ncreditCard=" + creditCard +
-                "\nflightTo=" + flightToIDs +
-                "\nflightFrom=" + flightFromIDs +
-                "\nownerPassenger=" + ownerPassengerID +
-                "\notherPassengers=" + otherPassengersIDs;
+                "\nCredit card number: " + creditCard +
+                "\nDeparture flight ID: "+ flightToIDs +
+                "\nReturn flight ID: " + flightFromIDs +
+                "\nMain passenger: " + ownerPassengerID +
+                "\nOther passengers: " + otherPassengersIDs +
+                "\nMeal:  " + isMeals +
+                "\nSuitcase: " + isSuitcase +"\n";
     }
 }

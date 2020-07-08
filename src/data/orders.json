@@ -1,6 +1,5 @@
 [ {
   "agentCode" : 0,
-  "flightCompany" : 0,
   "roundTrip" : false,
   "id" : 80734,
   "totalCost" : 789.0,
@@ -12,7 +11,6 @@
   "canceled" : false
 }, {
   "agentCode" : 0,
-  "flightCompany" : 2,
   "roundTrip" : false,
   "id" : 80734,
   "totalCost" : 559.0,

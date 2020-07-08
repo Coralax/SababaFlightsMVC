@@ -86,7 +86,7 @@ public class FlightRepositoryImpl implements FlightRepository {
     public boolean addFlightToFile(Flight flight){
         return true;
     }
-    public Flight getFlightByID(int id)
+    public Flight getFlightByID(long id)
     {
         for(Flight flight: flights)
         {
@@ -96,6 +96,14 @@ public class FlightRepositoryImpl implements FlightRepository {
         return null;
     }
 
+    @Override
+    public double getFlightPriceById(long flightID) {
+        return this.getFlightByID(flightID).getFlightPrice();
+    }
 
-
+    @Override
+    public void decreaseSeats(long flightID, int seatsAmount) {
+        Flight flight = getFlightByID(flightID);
+        flight.setSeatsLeft(flight.getSeatsLeft() - seatsAmount);
+    }
 }

@@ -3,36 +3,50 @@ import controller.AuthenticationController;
 import controller.OrderController;
 import controller.SearchController;
 import controller.objects.Search;
+import model.objects.AESEncryption;
+import model.objects.Agent;
 import model.objects.Passenger;
+import model.singletons.LoginSingleton;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class SababaSearchView {
     private SearchController searchController;
     private OrderController orderController;
     private AuthenticationController authenticationController;
+    private Agent loggedInAgent;
     public SababaFlightsProgram sababaFlightsProgram;
+
 
     public SababaSearchView(SababaFlightsProgram referer) {
         this.searchController= new SearchController();
         this.orderController=new OrderController();
         this.authenticationController=new AuthenticationController();
         this.sababaFlightsProgram = referer;
+        this.loggedInAgent = LoginSingleton.getInstance().getLoggedInAgent();
     }
 
     public void search() {
         Search search;
-        int idDeparture;
-        int[] idDepartReturn;
-        String destination, departDateStr, returnDateStr, filters, op;
+        List<Long> idDeparture, idDepartReturn;
+        String destination;
+        String departDateStr;
+        String returnDateStr;
+        String filters;
+        String op;
+        String creditCard;
         LocalDate departDate = null, returnDate = null;
-        boolean cabinClass = false, directFlight = false;
+        boolean cabinClass = false, directFlight = false, suitcase = false, meals = false;
         String numOfPass;
         Scanner scanner = new Scanner(System.in);
         DateTimeFormatter formatter;
-        int passenger;
+        int passenger, test;
         boolean flag = false;
+
 
         try {
             //Depart date
@@ -108,39 +122,71 @@ public class SababaSearchView {
 
         // The search itself with all the parameters
         search = new Search(departDate, returnDate, destination, passenger, directFlight);
-        if (returnDate == null) {
-            idDeparture= searchController.searchResultsOneDirection(search);
-            if(idDeparture!=-1)
-                orderController.makeAnOrder(idDeparture,newPassenger());
-            else{
-                System.out.println("What would you like to do? "+"\n" + "1. Start a new search" + "\n" + "2. Return to home page");
-                op = scanner.nextLine();
-                if (op.equals("1"))
-                    this.search();
-                else
-                    sababaFlightsProgram.homePage();
-            }
 
-        } else {
-            idDepartReturn=searchController.searchResultsRoundTrip(search);
-            if(idDepartReturn[0]!=-1)
-               orderController.makeAnOrder(idDepartReturn,newPassenger());
-            else{
-                System.out.println("What would you like to do? "+"\n" + "1. Start a new search" + "\n" + "2. Return to home page");
-            op = scanner.nextLine();
-            if (op.equals("1"))
-                this.search();
-            else
-                sababaFlightsProgram.homePage();
+        //Only one way flight
+        if (returnDate == null) {
+            idDeparture = searchController.searchResultsOneDirection(search);
+            if (idDeparture != null) {
+
+                Passenger ownerPassenger = this.newPassenger();
+                List<Passenger> otherPassengers = new ArrayList<>();
+                int counter = 1;
+                while (counter < search.getNumberOfPassengers()) {
+                    otherPassengers.add(this.newPassenger());
+                    counter++;
+                }
+
+                System.out.println("Would you like to have a suitcase? Y/N");
+                op=scanner.nextLine();
+                if(op.toLowerCase().equals("y"))
+                    suitcase=true;
+
+                System.out.println("Would you like to have a meal? Y/N");
+                op=scanner.nextLine();
+                if(op.toLowerCase().equals("y"))
+                    meals=true;
+
+                do {
+                    System.out.println("Please insert a credit card (16 digits) (-1 to exit): ");
+                    creditCard = scanner.nextLine();
+                    if (creditCard.equals("-1"))
+                        break;
+                    flag = authenticationController.creditCardValidation(creditCard);
+                }while (!flag);
+
+//                System.out.println(1234);
+//                System.out.println(creditCard);
+//                System.out.println(idDeparture);
+//                System.out.println(search.getNumberOfPassengers());
+//                System.out.println(ownerPassenger);
+//                System.out.println(otherPassengers);
+//                System.out.println(meals);
+//                System.out.println(suitcase);
+//                System.out.println(search.getNumberOfPassengers());
+                orderController.makeAnOrder(6565, creditCard, idDeparture, null,
+                        search.getNumberOfPassengers(), ownerPassenger, otherPassengers, meals, suitcase, search.getNumberOfPassengers());
             }
         }
+        //Round trip
+        else {
+            idDepartReturn = searchController.searchResultsRoundTrip(search);
+            if(idDepartReturn!= null) {
+                //TO BE CONTINUED
+//                orderController.makeAnOrder(loggedInAgent.getAgentCode(), 123456789012663456L, idDepartReturn, null, search.getNumberOfPassengers(), ownerPassenger, otherPassengers, meals, suitcase, search.getNumberOfPassengers());
+            }
+        }
+
+        System.out.println("What would you like to do? "+"\n" + "1. Start a new search" + "\n" + "2. Return to home page");
+        op = scanner.nextLine();
+        if (op.equals("1"))
+            this.search();
+        else
+            sababaFlightsProgram.homePage();
     }
 
     public Passenger newPassenger()
     {
-       // long id;
         boolean validFlag;
-       // String idStr;
         String firstName;
         String lastName;
         String email;
@@ -177,7 +223,7 @@ public class SababaSearchView {
 
         //Date of birth validation
        //   do{
-            System.out.println("Birth date in dd/MM/yyyy format: ");
+            System.out.println("Date of birth in dd/MM/yyyy format: ");
             birthDateStr = scanner.nextLine();
 //            try {
 //                formatter.parse(birthDateStr);
@@ -197,27 +243,9 @@ public class SababaSearchView {
             validFlag = authenticationController.passportValidation(passport);
         }    while(!validFlag);
 
-//        //ID validation- NOT IN USE YET
-//        do{
-//            System.out.println("ID: ");
-//            idStr=scanner.nextLine();
-//            validFlag = authenticationController.idValidation(idStr);
-//        }    while(!validFlag);
-//
-     //   id = Long.parseLong(idStr);
 
-        System.out.println("Would you like to have a suitcase? Y/N");
-        op=scanner.nextLine();
-        if(op.toLowerCase().equals("y"))
-        suitcase=true;
-
-        System.out.println("Would you like to have a meal? Y/N");
-        op=scanner.nextLine();
-        if(op.toLowerCase().equals("y"))
-            meals=true;
-
-        //check ID
-        return new Passenger(firstName,lastName,email,birthDateStr,passport,suitcase,meals);
+        return new Passenger(firstName,lastName,email,birthDateStr,passport);
     }
+
 
 }

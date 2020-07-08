@@ -17,7 +17,7 @@ public class SearchService {
     private FlightRepository flightRepo= new FlightRepositoryImpl();
     private OrderService orderService=new OrderService();
 
-    public int[] validateSearchRoundTrip(Search search) {
+    public List<Long> validateSearchRoundTrip(Search search) {
     Map<Integer, List<Flight>> mappingFlights;
     mappingFlights = flightRepo.flightResultsRoundTrip(search.getDestination(), search.getNumberOfPassengers(), search.getDepartureDate(), search.getReturnDate());
     if (mappingFlights == null) {
@@ -28,22 +28,23 @@ public class SearchService {
        return showResultRoundTrip(mappingFlights);
        }
     }
-    public int validateSearchOneDirection(Search search) {
+    public List<Long> validateSearchOneDirection(Search search) {
         List<Flight> flights;
         flights = flightRepo.flightResultOneDirection(search.getDestination(), search.getNumberOfPassengers(), search.getDepartureDate());
         if (flights == null) {
             System.out.println("No flights suits your search, good-bye! " + "\n");
-            return -1;
+            return null;
         }
         else {
            return showResultOneWay(flights);
         }
     }
 
-public int showResultOneWay(List<Flight> oneWay) {
+public List<Long> showResultOneWay(List<Flight> oneWay) {
     int i=1;
     String op;
     int idDeparture;
+    List<Long> flightTo = new ArrayList<>();
     Scanner scanner=new Scanner(System.in);
     System.out.println("\n" + "Departure flights result" + "\n");
     for(Flight flights: oneWay)
@@ -56,17 +57,20 @@ public int showResultOneWay(List<Flight> oneWay) {
     if(op.toLowerCase().equals("y"))
     {
         System.out.println("Please enter the departure flight ID you would like to book");
-        idDeparture=scanner.nextInt();
+        flightTo.add(scanner.nextLong());
+        return flightTo;
     }
     else
-        idDeparture=-1;
+        return null;
 
-    return idDeparture;
+
 }
-    public int[] showResultRoundTrip(Map<Integer,List<Flight>> mappingResults){
+
+
+    public List<Long> showResultRoundTrip(Map<Integer,List<Flight>> mappingResults){
         int i=1, j=1;
-        int idDeparture, idReturn;
-        int[] arr= new int[2];
+        List<Long> flightIDs = new ArrayList<>();
+
         String op;
         Scanner scanner =new Scanner(System.in);
         for(Map.Entry<Integer,List<Flight>> e :mappingResults.entrySet())
@@ -78,11 +82,10 @@ public int showResultOneWay(List<Flight> oneWay) {
             if(op.toLowerCase().equals("y"))
             {
                 System.out.println("Please enter the departure flight ID you would like to book");
-                idDeparture=scanner.nextInt();
-                arr[0]=idDeparture;
+                flightIDs.add(scanner.nextLong());
             }
             else {
-                arr[0]=-1;
+                return null;
             }
             System.out.println("\n"+"Return flights result: " +"\n");
             for(Flight flights: e.getValue())
@@ -93,9 +96,8 @@ public int showResultOneWay(List<Flight> oneWay) {
             i++;
             j=1;
             System.out.println("Please enter the return flight ID you would like to book");
-            idReturn=scanner.nextInt();
-            arr[1]=idReturn;
+            flightIDs.add(scanner.nextLong());
         }
-        return arr;
+        return flightIDs;
     }
 }
