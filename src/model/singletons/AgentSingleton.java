@@ -20,14 +20,4 @@ public class AgentSingleton extends Singleton<Agent> {
         return agentSingletonInstance;
     }
 
-    public Agent getAgentById(int id) {
-        for (Agent agent : this.agentSet) {
-            if (agent.getId() == id) {
-                return agent;
-            }
-        }
-        System.out.println("Could not find an agent with this id");
-        return null;
-    }
-
 }

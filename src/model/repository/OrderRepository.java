@@ -7,6 +7,9 @@ import java.util.Set;
 
 public interface OrderRepository {
 
+    Order getOrderById(long id);
+    Set<Order> getOrdersByAgentCode(long agentCode);
+    Set<Order> getOrdersByPassengerID(long passengerID);
     boolean addPassenger(Order order, long passengerID);
     boolean addPassenger(Order order, Passenger newPassenger);
     boolean removePassengerByID(Order order, long passengerToRemove);

@@ -21,43 +21,4 @@ public class OrderSingleton extends Singleton<Order> {
         return orderSingletonInstance;
     }
 
-    public Order getOrderByID(long id) {
-        for (Order order : this.orderSet) {
-            if (order.getId() == id)
-                return order;
-        }
-        System.out.println("Could not find an order with this id");
-        return null;
-    }
-
-    public Set<Order> getOrdersByAgentCode(long agentCode) {
-        Set<Order> ordersByAgent = new HashSet<>();
-        for (Order order : this.orderSet) {
-            if (order.getAgentCode() == agentCode) {
-                ordersByAgent.add(order);
-            }
-        }
-        if (ordersByAgent.size() == 0)
-            System.out.println("Could not find orders created by provided agent");
-
-        return ordersByAgent;
-    }
-
-    public Set<Order> getOrdersByPassengerID(long passengerID) {
-        Set<Order> ordersByPassenger = new HashSet<>();
-        for (Order order : this.orderSet) {
-            if (order.getOwnerPassengerID() == passengerID) {
-                ordersByPassenger.add(order);
-            }
-        }
-        if (ordersByPassenger.size() == 0)
-            System.out.println("Could not find orders associated with provided passenger");
-
-        return ordersByPassenger;
-    }
-
-//    public Set<Order> getOrdersByDate() {
-//        Set<Order> filteredOrders = new HashSet<>();
-//    }
-
 }

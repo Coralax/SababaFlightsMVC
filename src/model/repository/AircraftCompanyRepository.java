@@ -7,5 +7,6 @@ public interface AircraftCompanyRepository {
 
     boolean addAircraft(AircraftCompany aircraftCompany, int aircraftID);
     boolean removeAircraft(AircraftCompany aircraftCompany, int aircraftID);
+    AircraftCompany getAircraftCompanyById(long id);
 
 }

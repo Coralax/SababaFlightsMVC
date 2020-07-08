@@ -3,11 +3,18 @@ package model.repository;
 import model.objects.Aircraft;
 import model.objects.AircraftCompany;
 import model.FileManager;
+import model.singletons.AircraftCompanySingleton;
 
 import java.util.HashSet;
 import java.util.Set;
 
 public class AircraftCompanyRepositoryImpl implements AircraftCompanyRepository {
+
+    private Set<AircraftCompany> aircraftCompanySet;
+
+    public AircraftCompanyRepositoryImpl() {
+        this.aircraftCompanySet = AircraftCompanySingleton.getInstance().aircraftCompanySet;
+    }
 
     @Override
     public boolean addAircraft(AircraftCompany aircraftCompany, int aircraftID) {
@@ -43,5 +50,16 @@ public class AircraftCompanyRepositoryImpl implements AircraftCompanyRepository 
             return true;
         }
         return false;
+    }
+
+    @Override
+    public AircraftCompany getAircraftCompanyById(long id) {
+        for (AircraftCompany aircraftCompany : this.aircraftCompanySet) {
+            if (aircraftCompany.getId() == id) {
+                return aircraftCompany;
+            }
+        }
+        System.out.println("Could not find an aircraft company with this id");
+        return null;
     }
 }

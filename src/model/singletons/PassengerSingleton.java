@@ -20,14 +20,4 @@ public class PassengerSingleton extends Singleton<Passenger> {
         return passengerSingletonInstance;
     }
 
-    public Passenger getPassengerByID(long passengerID) {
-        for (Passenger passenger : this.passengerSet) {
-            if (passenger.getId() == passengerID) {
-                return passenger;
-            }
-        }
-        System.out.println("Could not find a passenger with this id");
-        return null;
-    }
-
 }

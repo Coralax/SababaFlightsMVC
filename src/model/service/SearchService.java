@@ -8,7 +8,6 @@ import model.repository.AircraftCompanyRepository;
 import model.repository.FlightRepository;
 import model.repository.FlightRepositoryImpl;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -53,7 +52,7 @@ public class SearchService {
         for(Map.Entry<Integer,List<Flight>> e :mappingResults.entrySet())
         {
             System.out.println("\n" + "Departure flight details" + "\n\n"
-                    +"("+i+")"+flightRepo.getFlightByID(e.getKey()).toString());
+                    +"("+i+")"+flightRepo.getFlightById(e.getKey()).toString());
 
             System.out.println("\n"+"Matching return flights: " +"\n");
             for(Flight flights: e.getValue())
