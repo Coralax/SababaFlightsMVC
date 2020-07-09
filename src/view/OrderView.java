@@ -8,11 +8,11 @@ import model.singletons.LoginSingleton;
 import java.util.Scanner;
 import java.util.Set;
 
-public class SababaOrderView {
+public class OrderView {
     private OrderController orderController;
     public SababaFlightsProgram sababaFlightsProgram;
 
-    public SababaOrderView(SababaFlightsProgram referer) {
+    public OrderView(SababaFlightsProgram referer) {
         this.orderController= new OrderController();
         this.sababaFlightsProgram = referer;
     }

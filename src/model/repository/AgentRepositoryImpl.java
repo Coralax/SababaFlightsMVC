@@ -6,6 +6,7 @@ import model.singletons.AgentSingleton;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Scanner;
 import java.util.Set;
 
 //import model.objects.Order;
@@ -47,5 +48,72 @@ public class AgentRepositoryImpl implements AgentRepository {
         }
         System.out.println("Could not find an agent with this id");
         return null;
+    }
+
+    public  boolean removeAgent(long id)
+    {
+        if(getAgentById(id).getPermissionLevel()==10)
+        {
+            System.out.println("Can not remove an admin agent!");
+            return false;
+        }
+        if(getAgentById(id) ==null)
+        {
+            System.out.println("Agent does not exist!");
+            return false;
+        }
+        else
+        {
+            AgentSingleton.getInstance().agentSet.remove(getAgentById(id));
+            AgentSingleton.getInstance().saveSet(agentSet);
+            return true;
+        }
+    }
+
+    public  boolean changePermissionLevel(long id)
+    {
+        int level;
+        Agent agent =getAgentById(id);
+        if(agent.getPermissionLevel()==10){
+            System.out.println("Can not change admin's permission level");
+            return false;
+        }
+        if(agent==null)
+        {
+            System.out.println("Agent does not exist!");
+            return false;
+        }
+        Scanner scanner=new Scanner(System.in);
+        do {
+            System.out.println("Please enter the permission level, must be in 1-10 range");
+            level = scanner.nextInt();
+        }while(level<1 || level>10);
+
+        agent.setPermissionLevel(level);
+        AgentSingleton.getInstance().agentSet.remove(getAgentById(id));
+        agentSet.add(agent);
+        AgentSingleton.getInstance().saveSet(agentSet);
+        return true;
+    }
+
+   public boolean changeEmailAddress(long id,String email){
+       Agent agent =getAgentById(id);
+       if(agent.getPermissionLevel()==10){
+           System.out.println("Can not change admin's email address");
+           return false;
+       }
+       if(agent==null)
+       {
+           System.out.println("Agent does not exist!");
+           return false;
+       }
+       else
+       {
+           agent.setEmail(email);
+           AgentSingleton.getInstance().agentSet.remove(getAgentById(id));
+           agentSet.add(agent);
+           AgentSingleton.getInstance().saveSet(agentSet);
+       }
+       return true;
     }
 }

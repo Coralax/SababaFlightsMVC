@@ -21,17 +21,6 @@
   "permissionLevel" : 2,
   "verified" : false
 }, {
-  "firstName" : "omer",
-  "lastName" : "sha",
-  "id" : 0,
-  "email" : "superomsha@gmail.com",
-  "birthDate" : "01/01/1990",
-  "userName" : "asdf",
-  "password" : "912ec803b2ce49e4a541068d495ab570",
-  "agentCode" : 1,
-  "permissionLevel" : 3,
-  "verified" : false
-}, {
   "firstName" : "Qwer",
   "lastName" : "Asdf",
   "id" : 987654321,
@@ -62,7 +51,7 @@
   "userName" : "co2202",
   "password" : "cb13efcefd2e52a957ddc0c57365fccc",
   "agentCode" : 1,
-  "permissionLevel" : 0,
+  "permissionLevel" : 3,
   "verified" : false
 }, {
   "firstName" : "tal",
@@ -76,15 +65,15 @@
   "permissionLevel" : 0,
   "verified" : false
 }, {
-  "firstName" : "coral",
-  "lastName" : "ifergan",
-  "id" : 8,
-  "email" : "coral@gmail.com",
-  "birthDate" : "12/10/1993",
-  "userName" : "coral2",
-  "password" : "c5564f10ba96a6c8337b67f23c7174ba",
+  "firstName" : "omer",
+  "lastName" : "sha",
+  "id" : 23,
+  "email" : "superomsha@gmail.com",
+  "birthDate" : "01/01/1990",
+  "userName" : "asdf",
+  "password" : "912ec803b2ce49e4a541068d495ab570",
   "agentCode" : 1,
-  "permissionLevel" : 0,
+  "permissionLevel" : 3,
   "verified" : false
 }, {
   "firstName" : "Coral",

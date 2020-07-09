@@ -15,7 +15,7 @@
   "aircraftID" : 1,
   "departureAirportID" : 1,
   "destinationAirportID" : 0,
-  "departureDate" : "07/08/2020",
+  "departureDate" : "12/08/2020",
   "arrivalDate" : "07/08/2020",
   "flightPrice" : 479.0,
   "direct" : true,

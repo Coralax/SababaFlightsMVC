@@ -12,7 +12,8 @@ public class SababaFlightsProgram {
     private AuthenticationController authController;
     private OrderController orderController;
     private SababaSearchView sabbaSearch;
-    private SababaOrderView orderView;
+    private OrderView orderView;
+    private EditDataView editDataView;
 
     private SignUpFormView signUpForm;
 
@@ -21,7 +22,8 @@ public class SababaFlightsProgram {
         this.orderController = new OrderController();
         this.sabbaSearch = new SababaSearchView(this);
         this.signUpForm = new SignUpFormView();
-        this.orderView = new SababaOrderView(this);
+        this.orderView = new OrderView(this);
+        this.editDataView=new EditDataView(this);
      }
 
     public void loginScreen(){
@@ -91,6 +93,12 @@ public class SababaFlightsProgram {
                         } else {
                             System.out.println("Please choose one of the options (USD/ILS)");
                         }
+                        break;
+                    case "4":
+                        if(loggedInAgent.getPermissionLevel()==10)
+                            editDataView.showData();
+                        else
+                            this.homePage();
                         break;
                     case "0":
                         LoginSingleton.getInstance().logOut();

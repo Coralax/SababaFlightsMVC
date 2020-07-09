@@ -1,6 +1,8 @@
 package model.repository;
+import model.objects.Agent;
 import model.objects.Flight;
 
+import model.singletons.AgentSingleton;
 import model.singletons.AircraftSingleton;
 import model.singletons.FlightSingleton;
 
@@ -75,20 +77,25 @@ public class FlightRepositoryImpl implements FlightRepository {
             return resultFlights;
         return null;
     }
-    public List<Flight> flightResultsOneDirectionInRange(String destination, int numOfPassengers, LocalDate departD){
 
-        return null;
-    }
-
-    public Map<Integer, List<Flight>> flightResultsRoundTripInRange(String destination, int numOfPassengers, LocalDate departD, LocalDate returnD){
-        return null;
-    }
 
     public boolean deleteFlightFromFile(int id){
+
+        if(getFlightByID(id) ==null)
+        {
+            System.out.println("Flight does not exist!");
+            return false;
+        }
+        else
+        {
+            FlightSingleton.getInstance().flightSet.remove(getFlightByID(id));
+            FlightSingleton.getInstance().saveSet(flights);
+        }
         return true;
     }
-    public boolean addFlightToFile(Flight flight){
-        return true;
+    public void addFlightToFile(Flight flight){
+         FlightSingleton.getInstance().flightSet.add(flight);
+         FlightSingleton.getInstance().saveSet(flights);
     }
     public Flight getFlightByID(long id)
     {
@@ -99,6 +106,24 @@ public class FlightRepositoryImpl implements FlightRepository {
         }
         return null;
     }
+
+    public boolean changeDepartureDate(long id,String newDate){
+        Flight flight =getFlightByID(id);
+        if(flight==null)
+        {
+            System.out.println("Flight does not exist!");
+            return false;
+        }
+        else
+        {
+            flight.setDepartureDate(newDate);
+            FlightSingleton.getInstance().flightSet.remove(getFlightByID(id));
+            flights.add(flight);
+            FlightSingleton.getInstance().saveSet(flights);
+        }
+        return true;
+    }
+
 
     @Override
     public double getFlightPriceById(long flightID) {
