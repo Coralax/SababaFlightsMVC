@@ -26,4 +26,6 @@ public class DataService {
     public boolean removeAFlight(int flightID ){return flightRepository.deleteFlightFromFile(flightID);}
     public void addAFlight(Flight flight){ flightRepository.addFlightToFile(flight);}
     public boolean changeDepartureDate(long flightID, String newDate){return flightRepository.changeDepartureDate(flightID,newDate);}
+    public boolean changeArrivalDate(long flightID, String newDate){return flightRepository.changeArrivalDate(flightID,newDate);}
+
 }

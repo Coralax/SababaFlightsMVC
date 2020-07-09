@@ -65,6 +65,11 @@ public class Flight {
         formatter.parse(date);
         return (LocalDate.parse(departureDate, formatter));
     }
+    public LocalDate convertToLocalDateArrival(String date){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        formatter.parse(date);
+        return (LocalDate.parse(arrivalDate, formatter));
+    }
 
     @Override
     public boolean equals(Object o) {

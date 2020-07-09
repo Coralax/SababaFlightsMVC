@@ -114,9 +114,37 @@ public class FlightRepositoryImpl implements FlightRepository {
             System.out.println("Flight does not exist!");
             return false;
         }
+
+        if(flight.convertToLocalDate(newDate).isAfter(flight.convertToLocalDateArrival(flight.getArrivalDate())))
+        {
+            System.out.println("Flight departure date must be earlier or equal to arrival date!" +"\n");
+            return false;
+        }
         else
         {
             flight.setDepartureDate(newDate);
+            FlightSingleton.getInstance().flightSet.remove(getFlightByID(id));
+            flights.add(flight);
+            FlightSingleton.getInstance().saveSet(flights);
+        }
+        return true;
+    }
+    public boolean changeArrivalDate(long id,String newDate){
+        Flight flight =getFlightByID(id);
+        if(flight==null)
+        {
+            System.out.println("Flight does not exist!");
+            return false;
+        }
+
+        if(flight.convertToLocalDateArrival(newDate).isBefore(flight.convertToLocalDate(flight.getDepartureDate())))
+        {
+            System.out.println("Flight arrival date must be earlier or equal to departure date!" +"\n");
+            return false;
+        }
+        else
+        {
+            flight.setArrivalDate(newDate);
             FlightSingleton.getInstance().flightSet.remove(getFlightByID(id));
             flights.add(flight);
             FlightSingleton.getInstance().saveSet(flights);
