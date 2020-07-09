@@ -11,5 +11,8 @@ public interface AgentRepository {
 
     String encryptPassword(String password);
     Agent getAgentById(long id);
+    boolean removeAgent(long id);
+    boolean changePermissionLevel(long id);
+    boolean changeEmailAddress(long id,String email);
 
 }

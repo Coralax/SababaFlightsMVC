@@ -15,7 +15,7 @@
   "aircraftID" : 1,
   "departureAirportID" : 1,
   "destinationAirportID" : 0,
-  "departureDate" : "07/08/2020",
+  "departureDate" : "12/08/2020",
   "arrivalDate" : "07/08/2020",
   "flightPrice" : 479.0,
   "direct" : true,
@@ -42,6 +42,28 @@
   "flightPrice" : 348.0,
   "direct" : true,
   "seatsLeft" : 58
+}, {
+  "id" : 5,
+  "destination" : "Sweden",
+  "aircraftID" : 1,
+  "departureAirportID" : 0,
+  "destinationAirportID" : 5,
+  "departureDate" : "13/08/2020",
+  "arrivalDate" : "13/08/2020",
+  "flightPrice" : 233.0,
+  "direct" : false,
+  "seatsLeft" : 100
+}, {
+  "id" : 6,
+  "destination" : "Sweden",
+  "aircraftID" : 1,
+  "departureAirportID" : 0,
+  "destinationAirportID" : 5,
+  "departureDate" : "14/08/2020",
+  "arrivalDate" : "14/08/2020",
+  "flightPrice" : 877.0,
+  "direct" : true,
+  "seatsLeft" : 53
 }, {
   "id" : 0,
   "destination" : "New york",
