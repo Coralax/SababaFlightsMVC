@@ -151,8 +151,10 @@ public class EditDataView {
         departureDate = scanner.nextLine();
         System.out.print("Arrival date: ");
         arrivalDate = scanner.nextLine();
+        scanner = new Scanner(System.in);
         System.out.print("Flight price:");
         flightPrie = scanner.nextDouble();
+        scanner = new Scanner(System.in);
         System.out.print("Aircraft ID:");
         aircraftID = scanner.nextInt();
         System.out.print("Departure airport ID: ");
@@ -161,7 +163,8 @@ public class EditDataView {
         destinationAirtportID = scanner.nextLong();
         System.out.print("Seats left: ");
         seatsLeft = scanner.nextInt();
-        System.out.print("Direct flight? Y/N");
+        scanner = new Scanner(System.in);
+        System.out.print("Direct flight? Y/N" );
         op = scanner.nextLine();
         if (op.toLowerCase().equals("y"))
             direct = true;
