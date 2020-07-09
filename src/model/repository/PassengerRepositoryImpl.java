@@ -1,9 +1,6 @@
 package model.repository;
 
-import model.objects.Agent;
 import model.objects.Passenger;
-import model.FileManager;
-import model.singletons.AgentSingleton;
 import model.singletons.PassengerSingleton;
 
 import java.util.Set;

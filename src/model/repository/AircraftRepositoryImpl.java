@@ -1,9 +1,6 @@
 package model.repository;
 
-import model.FileManager;
 import model.objects.Aircraft;
-import model.objects.AircraftCompany;
-import model.singletons.AircraftCompanySingleton;
 import model.singletons.AircraftSingleton;
 
 import java.util.Set;

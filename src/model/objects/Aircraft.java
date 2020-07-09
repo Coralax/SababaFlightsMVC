@@ -23,11 +23,11 @@ public class Aircraft {
     }
 
     public int getId() { return this.id; }
-    public int getAircraftCompany() { return this.aircraftCompanyID; }
+    public int getAircraftCompanyID() { return this.aircraftCompanyID; }
     public int getSeatsCount() { return this.seatsCount; }
     public String getModel() { return this.model; }
 
-    public void setAircraftCompany(int aircraftCompanyID) { this.aircraftCompanyID = aircraftCompanyID; }
+    public void setAircraftCompanyID(int aircraftCompanyID) { this.aircraftCompanyID = aircraftCompanyID; }
     public void setSeatsCount(int seatsCount) { this.seatsCount = seatsCount; }
     public void setModel(String model) { this.model = model; }
 

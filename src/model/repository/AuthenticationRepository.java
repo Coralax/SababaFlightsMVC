@@ -1,10 +1,5 @@
 package model.repository;
 
-import model.FileManager;
-import model.objects.Airport;
-
-import java.io.IOException;
-
 /*Login,Signup*/
 public interface AuthenticationRepository {
 

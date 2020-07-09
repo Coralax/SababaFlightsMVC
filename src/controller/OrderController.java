@@ -46,7 +46,7 @@ public class OrderController {
     }
 
     public boolean reActivateOrder(Order order) {
-        return orderService.cancelOrder(order);
+        return orderService.reActivateOrder(order);
     }
 
     public boolean deleteOrder(Order order) {

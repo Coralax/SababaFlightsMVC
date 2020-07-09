@@ -1,17 +1,14 @@
 package model.repository;
 
 import model.objects.Order;
-import model.FileManager;
 import model.objects.Passenger;
 import model.singletons.OrderSingleton;
-import model.singletons.PassengerSingleton;
 
 import java.util.*;
 
 public class OrderRepositoryImpl implements OrderRepository {
 
     private Map<Integer, Order> allOrders;
-    private FileManager<Order> fileManager;
     private Set<Order> orderSet;
 
     public OrderRepositoryImpl(){
@@ -177,14 +174,4 @@ public class OrderRepositoryImpl implements OrderRepository {
         System.out.println("Done nothing");
         return false;
     }
-
-    //    @Override
-//    public void cancelOrder(int agentCode, int orderId) {
-//
-//    }
-
-//    @Override
-//    public List<Order> findOrderByDates(String begin, String end) {
-//        return null;
-//    }
 }

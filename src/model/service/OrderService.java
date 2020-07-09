@@ -99,6 +99,8 @@ public class OrderService {
         FlightSingleton.getInstance().saveSet(FlightSingleton.getInstance().flightSet);
         OrderSingleton.getInstance().saveSet(OrderSingleton.getInstance().orderSet);
 
+        System.out.println("Order created successfully");
+
     }
 
 }

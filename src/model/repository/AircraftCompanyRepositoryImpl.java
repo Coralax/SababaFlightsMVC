@@ -1,8 +1,6 @@
 package model.repository;
 
-import model.objects.Aircraft;
 import model.objects.AircraftCompany;
-import model.FileManager;
 import model.singletons.AircraftCompanySingleton;
 
 import java.util.HashSet;
@@ -27,6 +25,7 @@ public class AircraftCompanyRepositoryImpl implements AircraftCompanyRepository 
         if (newSet.add(aircraftID)) {
             System.out.println("Aircraft added successfully");
             aircraftCompany.setAircrafts(newSet);
+            AircraftCompanySingleton.getInstance().saveSet(this.aircraftCompanySet);
             return true;
         } else {
             System.out.println("There was an error adding the aircraft");

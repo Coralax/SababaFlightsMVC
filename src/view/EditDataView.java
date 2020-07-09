@@ -175,7 +175,7 @@ public class EditDataView {
         System.out.print("Seats left: ");
         seatsLeft = scanner.nextInt();
         scanner = new Scanner(System.in);
-        System.out.print("Direct flight? Y/N" );
+        System.out.print("Direct flight? Y/N: " );
         op = scanner.nextLine();
         if (op.toLowerCase().equals("y"))
             direct = true;

@@ -86,15 +86,4 @@
   "agentCode" : 1,
   "permissionLevel" : 10,
   "verified" : false
-}, {
-  "firstName" : "tal",
-  "lastName" : "ha",
-  "id" : 12322232,
-  "email" : "tal@google.com",
-  "birthDate" : "10/10/2019",
-  "userName" : "talha12",
-  "password" : "d5e13b5bb47582f848a42db85eafb4e1",
-  "agentCode" : 1,
-  "permissionLevel" : 0,
-  "verified" : false
 } ]
