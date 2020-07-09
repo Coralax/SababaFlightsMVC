@@ -23,4 +23,6 @@ public class DataController {
    public void addAFlight(Flight flight){ dataService.addAFlight(flight);}
    public boolean removeAFlight(int flightID){return dataService.removeAFlight(flightID);}
    public boolean changeDepartureDate(long flightID,String newDate){return dataService.changeDepartureDate(flightID,newDate);}
+    public boolean changeArrivalDate(long flightID,String newDate){return dataService.changeArrivalDate(flightID,newDate);}
+
 }

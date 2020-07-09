@@ -97,6 +97,7 @@ public class EditDataView {
         System.out.println("1: Add a flight ");
         System.out.println("2: Remove a flight ");
         System.out.println("3: Change flight's departure date");
+        System.out.println("4: Change flight's arrival date");
         System.out.println("-1: Return to home page");
         op = scanner.nextLine();
         switch (op) {
@@ -121,6 +122,16 @@ public class EditDataView {
                 System.out.println("Enter the new departure date in dd/MM/yyyy format");
                 op = scanner.nextLine();
                 if (dataController.changeDepartureDate(id, op))
+                    System.out.println("Changed successfully" + "\n");
+                this.manipulateFlights();
+                break;
+            case "4":
+                System.out.println("Enter the ID of the flight you would like to change the arrival date to");
+                id = scanner.nextLong();
+                scanner = new Scanner(System.in);
+                System.out.println("Enter the new arrival date in dd/MM/yyyy format");
+                op = scanner.nextLine();
+                if (dataController.changeArrivalDate(id, op))
                     System.out.println("Changed successfully" + "\n");
                 this.manipulateFlights();
                 break;
