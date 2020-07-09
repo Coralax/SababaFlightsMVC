@@ -43,11 +43,19 @@ public class AuthenticationController {
         return false;
     }
 
-    public boolean passwordValidation(String password) {
+    public boolean checkPasswordValidation(String password) {
         if (!(password.matches("^(?=.*[0-9])(?=.*[a-zA-Z]).{8,32}$"))) {
             return passwordStrength(password);
         }
         return true;
+    }
+
+    public boolean passwordValidation(String pass){
+        boolean isValid = this.checkPasswordValidation(pass);
+        if( !isValid){
+            throw new IllegalArgumentException("Password is not valid");
+        }
+        return this.checkPasswordValidation(pass);
     }
 
     public boolean passwordStrength(String password) {
@@ -96,6 +104,12 @@ public class AuthenticationController {
              return false;
          }
          return true;
+    }
+
+    public boolean isDate(String date){
+        Pattern pattern = Pattern.compile("\\d{2}/\\d{2}/\\d{4}");
+        Matcher matcher = pattern.matcher(date);
+        return matcher.matches();
     }
 
     public boolean agentSignUp(String firstName, String lastName, long id, String email, String birthDate, boolean enabled , String userName, String password) {

@@ -21,6 +21,7 @@ public class SignUpFormView {
         boolean validFlag;
         String username;
         String password;
+        boolean passwordRequirements = true;
         String email;
         String birthDateStr;
         String firstName;
@@ -38,12 +39,29 @@ public class SignUpFormView {
             validFlag = this.authController.usernameValidation(username);
         }    while(!validFlag) ;
 
-        //Password input and validation
+//        //Password input and validation
+//        do{
+//            System.out.println("Password: ");
+//            password = scanner.nextLine();
+//            validFlag = this.authController.passwordValidation(password);
+//        }    while(!validFlag) ;
+
+        //password validation
         do{
-            System.out.println("Password: ");
+            System.out.println("Password:");
+            if(passwordRequirements){
+                System.out.println("(Password must consist at least one english letter, one digit and length of 8-32 characters)");
+                passwordRequirements = false;
+            }
             password = scanner.nextLine();
-            validFlag = this.authController.passwordValidation(password);
-        }    while(!validFlag) ;
+            try {
+                validFlag = this.authController.passwordValidation(password);
+            }catch (IllegalArgumentException e){
+                validFlag = false;
+                System.out.println(e.getMessage()+", please try again");
+            }
+
+        } while(!validFlag);
 
         //Email input and validation
         do{
