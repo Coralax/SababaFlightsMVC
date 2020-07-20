@@ -1,15 +1,14 @@
 package model.service;
 
-import model.objects.Flight;
 import model.objects.Order;
 import model.objects.Passenger;
 import model.repository.FlightRepositoryImpl;
 import model.repository.OrderRepositoryImpl;
-import model.singletons.FlightSingleton;
-import model.singletons.OrderSingleton;
-import model.singletons.PassengerSingleton;
+import model.filemanager.FlightFileManager;
+import model.filemanager.OrderFileManager;
+import model.filemanager.PassengerFileManager;
 
-import java.lang.reflect.Array;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -17,12 +16,12 @@ import java.util.Set;
 public class OrderService {
 
     private OrderRepositoryImpl orderRepository;
-    private OrderSingleton orderSingletonInstance;
+    private OrderFileManager orderSingletonInstance;
     private FlightRepositoryImpl flightRepository;
     private Set<Order> orders;
 
     public OrderService() {
-        orderSingletonInstance = OrderSingleton.getInstance();
+        orderSingletonInstance = OrderFileManager.getInstance();
         orders = orderSingletonInstance.orderSet;
         orderRepository = new OrderRepositoryImpl();
         flightRepository=new FlightRepositoryImpl();
@@ -60,10 +59,8 @@ public class OrderService {
         return orderRepository.deleteOrder(order);
     }
 
-
     public void makeNewOrder(long agentCode,String creditCard, List<Long> flightToIDs, List<Long> flightFromIDs, int seatsCount,
                              Passenger ownerPassenger, List<Passenger> otherPassengers, boolean isMeal, boolean isSuitcase, int numOfPassegers) {
-
         // Process order data
         double totalPrice = 0;
         for (long flightID : flightToIDs)
@@ -93,14 +90,10 @@ public class OrderService {
 
         // Create the order itself
         Order newOrder = new Order(agentCode, creditCard, totalPrice, flightToIDs, flightFromIDs, ownerPassengerID, otherPassengersIDs,isMeal,isSuitcase);
-        OrderSingleton.getInstance().orderSet.add(newOrder);
-
-        PassengerSingleton.getInstance().saveSet(PassengerSingleton.getInstance().passengerSet);
-        FlightSingleton.getInstance().saveSet(FlightSingleton.getInstance().flightSet);
-        OrderSingleton.getInstance().saveSet(OrderSingleton.getInstance().orderSet);
-
-        System.out.println("Order created successfully");
-
+        OrderFileManager.getInstance().orderSet.add(newOrder);
+        PassengerFileManager.getInstance().saveSet(PassengerFileManager.getInstance().passengerSet);
+        FlightFileManager.getInstance().saveSet(FlightFileManager.getInstance().flightSet);
+        OrderFileManager.getInstance().saveSet(OrderFileManager.getInstance().orderSet);
+        System.out.println( "\n"+"Order with ID <" +newOrder.getId()+"> created successfully!"+"\n");
     }
-
 }

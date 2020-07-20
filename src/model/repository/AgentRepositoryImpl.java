@@ -1,7 +1,7 @@
 package model.repository;
 
 import model.objects.Agent;
-import model.singletons.AgentSingleton;
+import model.filemanager.AgentFileManager;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -16,9 +16,10 @@ public class AgentRepositoryImpl implements AgentRepository {
     private Set<Agent> agentSet;
 
     public AgentRepositoryImpl() {
-        this.agentSet = AgentSingleton.getInstance().agentSet;
+        this.agentSet = AgentFileManager.getInstance().agentSet;
     }
 
+    //MD5 password Encryption
     @Override
     public String encryptPassword(String password) {
         try {
@@ -28,7 +29,6 @@ public class AgentRepositoryImpl implements AgentRepository {
             byte[] digest = m.digest();
             BigInteger bigInt = new BigInteger(1,digest);
             StringBuilder hashtext = new StringBuilder(bigInt.toString(16));
-            // Now we need to zero pad it if you actually want the full 32 chars.
             while(hashtext.length() < 32 ){
                 hashtext.insert(0, "0" ).append(hashtext);
             }
@@ -46,7 +46,7 @@ public class AgentRepositoryImpl implements AgentRepository {
                 return agent;
             }
         }
-        System.out.println("Could not find an agent with this id");
+        System.out.println("\n"+"Could not find an agent with this id!" +"\n");
         return null;
     }
 
@@ -54,18 +54,18 @@ public class AgentRepositoryImpl implements AgentRepository {
     {
         if(getAgentById(id).getPermissionLevel()==10)
         {
-            System.out.println("Can not remove an admin agent!");
+            System.out.println("\n"+"Can not remove an admin!"+"\n");
             return false;
         }
         if(getAgentById(id) ==null)
         {
-            System.out.println("Agent does not exist!");
+            System.out.println("\n"+"Agent does not exist!"+"\n");
             return false;
         }
         else
         {
-            AgentSingleton.getInstance().agentSet.remove(getAgentById(id));
-            AgentSingleton.getInstance().saveSet(agentSet);
+            AgentFileManager.getInstance().agentSet.remove(getAgentById(id));
+            AgentFileManager.getInstance().saveSet(agentSet);
             return true;
         }
     }
@@ -75,44 +75,44 @@ public class AgentRepositoryImpl implements AgentRepository {
         int level;
         Agent agent =getAgentById(id);
         if(agent.getPermissionLevel()==10){
-            System.out.println("Can not change admin's permission level");
+            System.out.println("\n"+"Can not change admin's permission level!"+"\n");
             return false;
         }
         if(agent==null)
         {
-            System.out.println("Agent does not exist!");
+            System.out.println("\n"+"Agent does not exist!"+"\n");
             return false;
         }
         Scanner scanner=new Scanner(System.in);
         do {
-            System.out.println("Please enter the permission level, must be in 1-10 range");
+            System.out.print("Please enter the permission level, in the range of 1-10: ");
             level = scanner.nextInt();
         }while(level<1 || level>10);
 
         agent.setPermissionLevel(level);
-        AgentSingleton.getInstance().agentSet.remove(getAgentById(id));
+        AgentFileManager.getInstance().agentSet.remove(getAgentById(id));
         agentSet.add(agent);
-        AgentSingleton.getInstance().saveSet(agentSet);
+        AgentFileManager.getInstance().saveSet(agentSet);
         return true;
     }
 
    public boolean changeEmailAddress(long id,String email){
        Agent agent =getAgentById(id);
        if(agent.getPermissionLevel()==10){
-           System.out.println("Can not change admin's email address");
+           System.out.println("\n"+"Can not change an admin's email!"+"\n");
            return false;
        }
        if(agent==null)
        {
-           System.out.println("Agent does not exist!");
+           System.out.println("\n"+"Agent does not exist!"+"\n");
            return false;
        }
        else
        {
            agent.setEmail(email);
-           AgentSingleton.getInstance().agentSet.remove(getAgentById(id));
+           AgentFileManager.getInstance().agentSet.remove(getAgentById(id));
            agentSet.add(agent);
-           AgentSingleton.getInstance().saveSet(agentSet);
+           AgentFileManager.getInstance().saveSet(agentSet);
        }
        return true;
     }

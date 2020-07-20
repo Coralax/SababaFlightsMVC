@@ -10,9 +10,8 @@ public class Search {
     private boolean directFlight;
 
 
-    public Search()
-    {
-    }
+    public Search() { }
+
     public Search(LocalDate departureDate, LocalDate returnDate, String destination, int numberOfPassengers,boolean directFlight) {
         this.departureDate = departureDate;
         this.returnDate = returnDate;
@@ -21,21 +20,7 @@ public class Search {
         this.directFlight = directFlight;
     }
 
-
-    public LocalDate getDepartureDate() {
-        return departureDate;
-    }
-    public LocalDate getReturnDate() { return returnDate; }
-    public String getDestination() {
-        return destination;
-    }
-    public int getNumberOfPassengers() {
-        return numberOfPassengers;
-    }
-    public boolean isDirectFlight() {
-        return directFlight;
-    }
-
+    //Setters
     public void setDepartureDate(LocalDate departureDate) {
         this.departureDate = departureDate;
     }
@@ -50,6 +35,21 @@ public class Search {
     }
     public void setDirectFlight(boolean directFlight) {
         this.directFlight = directFlight;
+    }
+
+    //Getters
+    public LocalDate getDepartureDate() {
+        return departureDate;
+    }
+    public LocalDate getReturnDate() { return returnDate; }
+    public String getDestination() {
+        return destination;
+    }
+    public int getNumberOfPassengers() {
+        return numberOfPassengers;
+    }
+    public boolean isDirectFlight() {
+        return directFlight;
     }
 
 }

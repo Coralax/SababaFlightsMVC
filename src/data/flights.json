@@ -41,12 +41,12 @@
   "arrivalDate" : "11/08/2020",
   "flightPrice" : 348.0,
   "direct" : false,
-  "seatsLeft" : 57
+  "seatsLeft" : 52
 }, {
   "id" : 5,
   "destination" : "Sweden",
   "aircraftID" : 1,
-  "departureAirportID" : 0,
+  "departureAirportID" : 1,
   "destinationAirportID" : 5,
   "departureDate" : "13/08/2020",
   "arrivalDate" : "13/08/2020",
@@ -57,7 +57,7 @@
   "id" : 6,
   "destination" : "Sweden",
   "aircraftID" : 1,
-  "departureAirportID" : 0,
+  "departureAirportID" : 1,
   "destinationAirportID" : 5,
   "departureDate" : "15/08/2020",
   "arrivalDate" : "14/08/2020",
@@ -68,13 +68,24 @@
   "id" : 7,
   "destination" : "Austria",
   "aircraftID" : 1,
-  "departureAirportID" : 0,
-  "destinationAirportID" : 10,
+  "departureAirportID" : 1,
+  "destinationAirportID" : 2,
   "departureDate" : "15/09/2020",
   "arrivalDate" : "15/09/2020",
   "flightPrice" : 28282.0,
   "direct" : true,
   "seatsLeft" : 2626
+}, {
+  "id" : 10,
+  "destination" : "Israel",
+  "aircraftID" : 1,
+  "departureAirportID" : 0,
+  "destinationAirportID" : 1,
+  "departureDate" : "10/08/2020",
+  "arrivalDate" : "10/08/2020",
+  "flightPrice" : 225.0,
+  "direct" : false,
+  "seatsLeft" : 85
 }, {
   "id" : 0,
   "destination" : "New york",
@@ -85,5 +96,5 @@
   "arrivalDate" : "01/08/2020",
   "flightPrice" : 512.0,
   "direct" : false,
-  "seatsLeft" : 43
+  "seatsLeft" : 39
 } ]

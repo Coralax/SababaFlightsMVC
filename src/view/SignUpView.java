@@ -7,12 +7,12 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
-public class SignUpFormView {
+public class SignUpView {
 
     private AuthenticationController authController;
     private SababaFlightsProgram sababaFlightsProgram;
 
-    public SignUpFormView(){
+    public SignUpView(){
         this.authController = new AuthenticationController();
     }
 
@@ -21,7 +21,6 @@ public class SignUpFormView {
         boolean validFlag;
         String username;
         String password;
-        boolean passwordRequirements = true;
         String email;
         String birthDateStr;
         String firstName;
@@ -34,38 +33,25 @@ public class SignUpFormView {
 
         //Username input and validation
         do{
-            System.out.println("User name: ");
+            System.out.print("User name: ");
             username = scanner.nextLine();
             validFlag = this.authController.usernameValidation(username);
         }    while(!validFlag) ;
 
-//        //Password input and validation
-//        do{
-//            System.out.println("Password: ");
-//            password = scanner.nextLine();
-//            validFlag = this.authController.passwordValidation(password);
-//        }    while(!validFlag) ;
-
-        //password validation
         do{
-            System.out.println("Password:");
-            if(passwordRequirements){
-                System.out.println("(Password must consist at least one english letter, one digit and length of 8-32 characters)");
-                passwordRequirements = false;
-            }
+            System.out.print("Password: ");
             password = scanner.nextLine();
             try {
                 validFlag = this.authController.passwordValidation(password);
             }catch (IllegalArgumentException e){
                 validFlag = false;
-                System.out.println(e.getMessage()+", please try again");
             }
 
         } while(!validFlag);
 
         //Email input and validation
         do{
-            System.out.println("Email: ");
+            System.out.print("Email: ");
             email = scanner.nextLine();
             validFlag = this.authController.isValidEmail(email);
         }    while(!validFlag);
@@ -73,7 +59,7 @@ public class SignUpFormView {
         //Date of birth input and validation
         do {
             validFlag=true;
-            System.out.println("Date of birth in dd/MM/yyyy format: ");
+            System.out.print("Date of birth in dd/MM/yyyy format: ");
             birthDateStr = scanner.nextLine();
             try {
                 formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -81,7 +67,7 @@ public class SignUpFormView {
                 birthDate = LocalDate.parse(birthDateStr, formatter);
             } catch (Exception e) {
                 validFlag=false;
-                System.out.println("Invalid date of birth format!" +"\n");
+                System.out.println("\n"+"Invalid date of birth format!" +"\n");
             }
         }while(!validFlag);
 
@@ -95,7 +81,7 @@ public class SignUpFormView {
 
         //Name inputs and validations
         do {
-            System.out.println("First name:");
+            System.out.print("First name: ");
              firstName = scanner.nextLine();
              validFlag=authController.validName(firstName);
              if(!validFlag)
@@ -103,7 +89,7 @@ public class SignUpFormView {
             }while(!validFlag);
 
         do {
-            System.out.println("Last name:");
+            System.out.print("Last name: ");
             lastName = scanner.nextLine();
             validFlag=authController.validName(lastName);
             if(!validFlag)
@@ -112,7 +98,7 @@ public class SignUpFormView {
 
         //ID input and validation
         do {
-            System.out.println("ID: ");
+            System.out.print("ID: ");
             idStr = scanner.nextLine();
             validFlag=authController.idValidation(idStr);
            }while(!validFlag);

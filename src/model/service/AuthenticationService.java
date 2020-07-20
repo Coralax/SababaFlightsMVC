@@ -1,8 +1,4 @@
 package model.service;
-/*Need to do:
- * 1. A method to validate that the user name of an agent is not already taken
- * 2. A method to validate that an ID is a unique identifier and no other person exists with the same ID
- * 3. A method to validate that an email address is not already taken by another person*/
 
 import model.objects.Passenger;
 import model.repository.AuthenticationRepositoryImpl;
@@ -33,14 +29,15 @@ public class AuthenticationService {
     public boolean userExist(String username) {
         return authRepository.userExist(username);
     }
+
     public boolean emailExists(String email) {
         return authRepository.emailExists(email);
     }
+
     public Passenger passengerExists(long id){
          PassengerRepositoryImpl passengerRepository= new PassengerRepositoryImpl();
         return passengerRepository.getPassengerByID(id);
     }
-
 }
 
 

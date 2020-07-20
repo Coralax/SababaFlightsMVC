@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface FlightRepository {
+
      Map<Integer, List<Flight>> flightResultsRoundTrip(String destination, int numOfPassengers, LocalDate departD, LocalDate returnD, boolean direct);
 
      List<Flight> flightResultOneDirection(String destination, int numOfPassengers, LocalDate departD, boolean direct);
@@ -23,5 +24,5 @@ public interface FlightRepository {
 
      boolean changeDepartureDate(long flightID, String newDate);
 
-      boolean changeArrivalDate(long id, String newDate);
+     boolean changeArrivalDate(long id, String newDate);
 }

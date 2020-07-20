@@ -3,7 +3,7 @@ package view;
 import controller.AuthenticationController;
 import controller.OrderController;
 import model.objects.*;
-import model.singletons.*;
+import model.filemanager.*;
 
 import java.util.*;
 
@@ -11,17 +11,16 @@ public class SababaFlightsProgram {
 
     private AuthenticationController authController;
     private OrderController orderController;
-    private SababaSearchView sabbaSearch;
+    private SearchView sabbaSearch;
     private OrderView orderView;
     private EditDataView editDataView;
-
-    private SignUpFormView signUpForm;
+    private SignUpView signUpForm;
 
     public SababaFlightsProgram() {
         this.authController = new AuthenticationController();
         this.orderController = new OrderController();
-        this.sabbaSearch = new SababaSearchView(this);
-        this.signUpForm = new SignUpFormView();
+        this.sabbaSearch = new SearchView(this);
+        this.signUpForm = new SignUpView();
         this.orderView = new OrderView(this);
         this.editDataView=new EditDataView(this);
      }
@@ -30,7 +29,7 @@ public class SababaFlightsProgram {
         String op;
         Scanner scanner = new Scanner(System.in);
         do {
-            System.out.println("Welcome to SababaFlight: ");
+            System.out.println("Welcome to SababaFlight! ");
             System.out.println("1: Log in ");
             System.out.println("2: Sign up ");
             System.out.println("-1: Exit ");
@@ -45,14 +44,13 @@ public class SababaFlightsProgram {
                         break;
                     case "-1":
                         LoginSingleton.getInstance().logOut();
-                        this.loginScreen();
+                        System.out.println("Good bye!");
                         System.exit(0);
                         break;
                     default:
                         break;
                 }
             } catch (Exception e) {
-                System.out.println("Invalid parameters");
                 e.printStackTrace();
             }
         }while (!op.equals("-1"));
@@ -84,12 +82,12 @@ public class SababaFlightsProgram {
                         orderView.orderScreen();
                         break;
                     case "3":
-                        System.out.println("Please choose USD or ILS");
+                        System.out.print("Please choose USD or ILS: ");
                         String currencyInput = scanner.nextLine();
                         if (currencyInput.toLowerCase().equals("usd")) {
-                            FlightSingleton.getInstance().setCurrency(0);
+                            FlightFileManager.getInstance().setCurrency(0);
                         } else if (currencyInput.toLowerCase().equals("ils")) {
-                            FlightSingleton.getInstance().setCurrency(1);
+                            FlightFileManager.getInstance().setCurrency(1);
                         } else {
                             System.out.println("Please choose one of the options (USD/ILS)");
                         }
@@ -102,6 +100,7 @@ public class SababaFlightsProgram {
                         break;
                     case "0":
                         LoginSingleton.getInstance().logOut();
+                        System.out.println("Logged out successfully!"+"\n");
                         this.loginScreen();
                         break;
                     case "-1":
@@ -120,9 +119,9 @@ public class SababaFlightsProgram {
 
     public void login() {
         try (Scanner scanner = new Scanner(System.in)) {
-            System.out.println("Username: ");
+            System.out.print("Username: ");
             String userName = scanner.nextLine();
-            System.out.println("Password: ");
+            System.out.print("Password: ");
             String password = scanner.nextLine();
             boolean login = authController.login(userName, password);
             if (login) {
@@ -130,7 +129,7 @@ public class SababaFlightsProgram {
             } else {
                 this.login();
             }
-            System.out.println("Login status: " + login);
+            System.out.print("Login status: " + login);
         }
     }
 

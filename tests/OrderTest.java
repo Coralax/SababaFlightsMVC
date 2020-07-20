@@ -1,16 +1,12 @@
 import controller.OrderController;
+import model.filemanager.PassengerFileManager;
 import model.objects.Order;
 import model.objects.Passenger;
 import model.repository.PassengerRepositoryImpl;
 import model.service.OrderService;
-import model.singletons.PassengerSingleton;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.util.List;
-import java.util.Scanner;
 
 import static org.junit.Assert.*;
 
@@ -24,21 +20,12 @@ public class OrderTest {
 
     }
 
-    @Test
-    public void  passGetOrderByIdTest(){
-        OrderController orderController = new OrderController();
-        Order order = orderController.getOrderByID(1);
-        long passengerID = order.getOwnerPassengerID();
-
-        assertEquals(0,passengerID);
-
-    }
 
     @Test
     public void addPassengerToOrderTest(){
         OrderController orderController = new OrderController();
         Order order = orderController.getOrderByID(1);
-        PassengerSingleton passengerSingleton = PassengerSingleton.getInstance();
+        PassengerFileManager passengerSingleton = PassengerFileManager.getInstance();
         Passenger passenger = new PassengerRepositoryImpl().getPassengerByID(3);
         boolean success = orderController.addPassengerToOrder(order, passenger.getId());
         assertTrue(success);

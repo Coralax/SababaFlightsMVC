@@ -1,4 +1,4 @@
-package model.singletons;
+package model.filemanager;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JavaType;
@@ -10,12 +10,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Set;
 
-public class Singleton<T> {
+public class FileManager<T> {
 
     protected final String fileName;
     protected final ObjectMapper mapper;
 
-    protected Singleton(String fileName) {
+    protected FileManager(String fileName) {
         this.fileName = fileName;
         mapper = new ObjectMapper();
     }

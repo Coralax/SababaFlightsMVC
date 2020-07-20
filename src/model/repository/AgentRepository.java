@@ -14,5 +14,4 @@ public interface AgentRepository {
     boolean removeAgent(long id);
     boolean changePermissionLevel(long id);
     boolean changeEmailAddress(long id,String email);
-
 }

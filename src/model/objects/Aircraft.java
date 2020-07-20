@@ -7,10 +7,6 @@ public class Aircraft {
     private int seatsCount;
     private String model;
 
-    static {
-        aircraftsCount = 0;
-    }
-
     public Aircraft() {
         aircraftsCount++;
     }
@@ -22,19 +18,17 @@ public class Aircraft {
         this.model = model;
     }
 
+    //Getters
     public int getId() { return this.id; }
     public int getAircraftCompanyID() { return this.aircraftCompanyID; }
     public int getSeatsCount() { return this.seatsCount; }
     public String getModel() { return this.model; }
 
+    //Setters
     public void setAircraftCompanyID(int aircraftCompanyID) { this.aircraftCompanyID = aircraftCompanyID; }
     public void setSeatsCount(int seatsCount) { this.seatsCount = seatsCount; }
     public void setModel(String model) { this.model = model; }
-
-    /* TODO: Implement getAircraftByID(List<Aircraft> aircraftList, int id) in Repository */
-    /* TODO: Implement getAircraftByCompanyName(List<Aircraft> aircraftList, String companyName) in Repository */
-    /* TODO: Implement addFlight(Flight flight, int id) in Repository */
-    /* TODO: Implement removeFlight(Flight flight) in Repository */
+    public void setId(int id) { this.id = id; }
 
     @Override
     public String toString() {

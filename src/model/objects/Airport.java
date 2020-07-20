@@ -9,9 +9,9 @@ public class Airport {
     private String country, airportName;
     private List<String> terminals = new ArrayList<>();
 
-    static { airportsCount = 0; }
-
-    public Airport() { airportsCount++; }
+    public Airport() {
+        airportsCount++;
+    }
 
     public Airport(String country, String airportName, List<String> terminals) {
         this.id = airportsCount++;
@@ -20,6 +20,7 @@ public class Airport {
         this.terminals = terminals;
     }
 
+    //Setters
     public void setCountry(String country) {
         this.country = country;
     }
@@ -27,7 +28,9 @@ public class Airport {
         this.airportName = airportName;
     }
     public void setId(long id) { this.id = id; }
+    public void setTerminals(List<String> terminals) { this.terminals = terminals; }
 
+    //Getters
     public String getCountry() {
         return this.country;
     }

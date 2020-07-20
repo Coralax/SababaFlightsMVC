@@ -1,27 +1,24 @@
 package model.repository;
 
 import model.objects.Passenger;
-import model.singletons.PassengerSingleton;
+import model.filemanager.PassengerFileManager;
 
 import java.util.Set;
 
 public class PassengerRepositoryImpl implements PassengerRepository {
 
     private Set<Passenger> passengerSet;
-    private PassengerSingleton passengerSingleton;
+    private PassengerFileManager passengerFileManagerInst;
 
     public PassengerRepositoryImpl() { }
 
     public Passenger getPassengerByID(long passengerID) {
-        passengerSet=PassengerSingleton.getInstance().passengerSet;
+        passengerSet= PassengerFileManager.getInstance().passengerSet;
         for (Passenger passenger : this.passengerSet) {
             if (passenger.getId() == passengerID) {
-                System.out.println("Passenger already exists");
                 return passenger;
             }
         }
         return null;
     }
-
-
 }

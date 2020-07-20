@@ -1,7 +1,7 @@
 package model.repository;
 
 import model.objects.Aircraft;
-import model.singletons.AircraftSingleton;
+import model.filemanager.AircraftFileManager;
 
 import java.util.Set;
 
@@ -10,7 +10,7 @@ public class AircraftRepositoryImpl implements AircraftRepository{
     private Set<Aircraft> aircraftSet;
 
     public AircraftRepositoryImpl() {
-        this.aircraftSet = AircraftSingleton.getInstance().aircraftSet;
+        this.aircraftSet = AircraftFileManager.getInstance().aircraftSet;
     }
 
     @Override
@@ -20,7 +20,7 @@ public class AircraftRepositoryImpl implements AircraftRepository{
                 return aircraft;
             }
         }
-        System.out.println("Could not find an aircraft with this id");
+        System.out.println("\n"+"Could not find an aircraft with the provided ID! "+"\n");
         return null;
     }
 

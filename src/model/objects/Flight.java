@@ -1,7 +1,11 @@
 package model.objects;
 
 import model.adapter.FlightCurrencyAdapterImpl;
-import model.singletons.FlightSingleton;
+import model.filemanager.FlightFileManager;
+import model.repository.AircraftRepository;
+import model.repository.AircraftRepositoryImpl;
+import model.repository.AirportRepository;
+import model.repository.AirportRepositoryImpl;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -20,8 +24,6 @@ public class Flight {
     private int seatsLeft;
 
 
-    static { staticFlightID = 0; }
-
     public Flight() { staticFlightID++; }
 
     public Flight(int aircraftID, long departureAirportID, long destinationAirportID,
@@ -38,17 +40,8 @@ public class Flight {
         this.seatsLeft = seatsLeft;
     }
 
-    public int getAircraftID() { return this.aircraftID; }
-    public int getId() { return id; }
-    public long getDepartureAirportID() { return this.departureAirportID; }
-    public long getDestinationAirportID() { return this.destinationAirportID; }
-    public String getDepartureDate() { return this.departureDate; }
-    public String getArrivalDate() { return this.arrivalDate; }
-    public double getFlightPrice() { return this.flightPrice; }
-    public boolean isDirect() { return this.direct; }
-    public String getDestination() { return destination; }
-    public int getSeatsLeft() { return seatsLeft; }
 
+    //Setters
     public void setAircraftID(int aircraftID) { this.aircraftID = aircraftID; }
     public void setDepartureAirport(long departureAirportID) { this.departureAirportID = departureAirportID; }
     public void setDestinationAirport(long destinationAirportID) { this.destinationAirportID = destinationAirportID; }
@@ -60,7 +53,35 @@ public class Flight {
     public void setDestination(String destination) { this.destination = destination; }
     public void setSeatsLeft(int seatsLeft) { this.seatsLeft = seatsLeft; }
 
-    public LocalDate convertToLocalDate(String date){
+    //Getters
+    public int getAircraftID() { return this.aircraftID; }
+    public int getId() { return id; }
+    public long getDepartureAirportID() { return this.departureAirportID; }
+    public long getDestinationAirportID() { return this.destinationAirportID; }
+    public String getDepartureDate() { return this.departureDate; }
+    public String getArrivalDate() { return this.arrivalDate; }
+    public double getFlightPrice() { return this.flightPrice; }
+    public boolean isDirect() { return this.direct; }
+    public String getDestination() { return destination; }
+    public int getSeatsLeft() { return seatsLeft; }
+
+    public String departureAirportName(){
+        AirportRepository airportRepository=new AirportRepositoryImpl();
+        return airportRepository.getAirportById(this.departureAirportID).getAirportName();
+    }
+
+    public String destinationAirportName(){
+        AirportRepository airportRepository=new AirportRepositoryImpl();
+        return airportRepository.getAirportById(this.destinationAirportID).getAirportName();
+    }
+
+    public String aircraftNameByID()
+    {
+        AircraftRepository aircraftRepository=new AircraftRepositoryImpl();
+        return aircraftRepository.getAircraftById(this.getAircraftID()).getModel();
+    }
+
+    public LocalDate convertToLocalDateDepart(String date){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         formatter.parse(date);
         return (LocalDate.parse(departureDate, formatter));
@@ -86,28 +107,29 @@ public class Flight {
 
     @Override
     public String toString() {
-        int currency = FlightSingleton.getInstance().getCurrency();
+        int currency = FlightFileManager.getInstance().getCurrency();
         if (currency == 1) {
             FlightCurrencyAdapterImpl currencyAdapter = new FlightCurrencyAdapterImpl(this);
-            return
+            return " \n**Flight details**"+"\n"+
                     " Flight ID: " + id + "\n"+
                     " Seats left: " +seatsLeft +"\n"+
-                    " Aircraft: " + aircraftID + "\n" +
+                    " Aircraft: " + aircraftNameByID() + "\n" +
                     " Destination: "+ destination +"\n"+
-                    " Departure airport: " + departureAirportID + "\n" +
-                    " Destination airport: " + destinationAirportID + "\n" +
+                    " Departure airport: " + departureAirportName() + "\n" +
+                    " Destination airport: " + destinationAirportName() + "\n" +
                     " Departure date: " + departureDate + "\n" +
                     " Arrival date: " + arrivalDate + "\n" +
                     " Flight price: " + currencyAdapter.getFlightPrice() + "\n" +
                     " Is direct: " + direct + "\n" ;
         } else {
             return
+                    " \n**Flight details**"+"\n"+
                     " Flight ID: " + id + "\n"+
                     " Seats left: "+seatsLeft +"\n"+
-                    " Aircraft: " + aircraftID + "\n" +
+                    " Aircraft: " + aircraftNameByID() + "\n" +
                     " Destination: "+ destination +"\n"+
-                    " Departure airport: " + departureAirportID + "\n" +
-                    " Destination airport: " + destinationAirportID + "\n" +
+                    " Departure airport: " +  departureAirportName() + "\n" +
+                    " Destination airport: " + destinationAirportName() + "\n" +
                     " Departure date: " + departureDate + "\n" +
                     " Arrival date: " + arrivalDate + "\n" +
                     " Flight price: " + flightPrice + "\n" +

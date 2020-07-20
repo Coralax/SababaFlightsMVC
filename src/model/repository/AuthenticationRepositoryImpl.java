@@ -1,22 +1,20 @@
 package model.repository;
 
 import model.objects.Agent;
-import model.singletons.AgentSingleton;
-import model.singletons.LoginSingleton;
+import model.filemanager.AgentFileManager;
+import model.filemanager.LoginSingleton;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.Set;
 
 public class AuthenticationRepositoryImpl implements AuthenticationRepository {
-    AgentSingleton agentSingleton;
-    Set<Agent> agents;
 
+    AgentFileManager agentSingleton;
+    Set<Agent> agents;
 
     @Override
     public boolean userNameLogin(String userName, String password) {
         AgentRepositoryImpl agentRepository = new AgentRepositoryImpl();
-        Set<Agent> agents = AgentSingleton.getInstance().agentSet;
+        Set<Agent> agents = AgentFileManager.getInstance().agentSet;
 
         boolean foundUserName = false;
         for (Agent agent : agents) {
@@ -24,23 +22,23 @@ public class AuthenticationRepositoryImpl implements AuthenticationRepository {
                 foundUserName = true;
                 if (agent.getPassword().equals(agentRepository.encryptPassword(password))) {
                     LoginSingleton.getInstance().logIn(agent);
-                    System.out.println("Logged in successfully :)");
+                    System.out.println("Logged in successfully!" +"\n");
                     return true;
                 } else {
-                    System.out.println("Wrong password, please try again.");
+                    System.out.println("\n"+"Wrong password, please try again! " +"\n");
                     break;
                 }
             }
         }
         if (!foundUserName)
-            System.out.println("Username does not exist in the system");
+            System.out.println("\n"+"Username does not exist in the system! "+"\n");
         return false;
     }
 
     @Override
     public void logOut() {
         LoginSingleton.getInstance().logOut();
-        System.out.println("Logged out successfully");
+        System.out.println("Logged out successfully! "+"\n");
     }
 
     @Override
@@ -60,12 +58,12 @@ public class AuthenticationRepositoryImpl implements AuthenticationRepository {
 
     public boolean emailExists(String email) {
         //JSON parser object to parse read file
-        agentSingleton = AgentSingleton.getInstance();
+        agentSingleton = AgentFileManager.getInstance();
         agents = agentSingleton.agentSet;
 
         for (Agent agent : agents) {
             if (agent.getEmail().equals(email)) {
-                System.out.println("\nEmail already exists!");
+                System.out.println("\nEmail already exists!"+"\n");
                 return true;
             }
         }
@@ -74,12 +72,12 @@ public class AuthenticationRepositoryImpl implements AuthenticationRepository {
 
     public boolean userExist(String username) {
         //JSON parser object to parse read file
-        agentSingleton = AgentSingleton.getInstance();
+        agentSingleton = AgentFileManager.getInstance();
         agents = agentSingleton.agentSet;
 
         for (Agent agent : agents) {
             if (agent.getUserName().equals(username)) {
-                System.out.println("\nUser name already exists!");
+                System.out.println("\nUser name already exists!"+"\n");
                 return true;
             }
         }

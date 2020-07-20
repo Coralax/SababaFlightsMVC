@@ -1,7 +1,7 @@
 package model.repository;
 
 import model.objects.Airport;
-import model.singletons.AirportSingleton;
+import model.filemanager.AirportFileManager;
 
 import java.util.Set;
 
@@ -10,7 +10,7 @@ public class AirportRepositoryImpl implements AirportRepository {
     private Set<Airport> airportSet;
 
     public AirportRepositoryImpl() {
-        this.airportSet = AirportSingleton.getInstance().airportSet;
+        this.airportSet = AirportFileManager.getInstance().airportSet;
     }
 
     public Airport getAirportById(long id) {
@@ -19,7 +19,7 @@ public class AirportRepositoryImpl implements AirportRepository {
                 return airport;
             }
         }
-        System.out.println("Could not find an airport with this id");
+        System.out.println("\n"+"Could not find an airport with the provided ID!"+"\n");
         return null;
     }
 

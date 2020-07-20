@@ -1,7 +1,7 @@
 package model.repository;
 
 import model.objects.AircraftCompany;
-import model.singletons.AircraftCompanySingleton;
+import model.filemanager.AircraftCompanyFileManager;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -11,7 +11,7 @@ public class AircraftCompanyRepositoryImpl implements AircraftCompanyRepository 
     private Set<AircraftCompany> aircraftCompanySet;
 
     public AircraftCompanyRepositoryImpl() {
-        this.aircraftCompanySet = AircraftCompanySingleton.getInstance().aircraftCompanySet;
+        this.aircraftCompanySet = AircraftCompanyFileManager.getInstance().aircraftCompanySet;
     }
 
     @Override
@@ -23,12 +23,12 @@ public class AircraftCompanyRepositoryImpl implements AircraftCompanyRepository 
         }
         Set<Integer> newSet = aircraftCompany.getAircrafts();
         if (newSet.add(aircraftID)) {
-            System.out.println("Aircraft added successfully");
+            System.out.println("Aircraft added successfully!");
             aircraftCompany.setAircrafts(newSet);
-            AircraftCompanySingleton.getInstance().saveSet(this.aircraftCompanySet);
+            AircraftCompanyFileManager.getInstance().saveSet(this.aircraftCompanySet);
             return true;
         } else {
-            System.out.println("There was an error adding the aircraft");
+            System.out.println("\n"+"There was an error adding the particular aircraft"+"\n");
             return false;
         }
     }
@@ -58,7 +58,7 @@ public class AircraftCompanyRepositoryImpl implements AircraftCompanyRepository 
                 return aircraftCompany;
             }
         }
-        System.out.println("Could not find an aircraft company with this id");
+        System.out.println("\n"+ "Could not find an aircraft company with the provided ID! "+"\n");
         return null;
     }
 }

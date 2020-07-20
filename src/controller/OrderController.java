@@ -8,6 +8,7 @@ import model.objects.Order;
 import model.objects.Passenger;
 import model.service.OrderService;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -16,7 +17,6 @@ public class OrderController {
 
     private OrderService orderService = new OrderService();
 
-    // boolean because order might not exist/no orders in the range of dates/agent code...
     public Order getOrderByID(long orderID) {
         return orderService.getOrderByID(orderID);
     }
@@ -27,10 +27,6 @@ public class OrderController {
 
     public Set<Order> getOrdersByPassengerID(long passengerID) {
         return orderService.getOrdersByPassengerID(passengerID);
-    }
-
-    public boolean searchByDate() {
-        return false;
     }
 
     public boolean addPassengerToOrder(Order order, long passengerID) {

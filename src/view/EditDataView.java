@@ -2,10 +2,7 @@ package view;
 
 import controller.AuthenticationController;
 import controller.DataController;
-import model.objects.AircraftCompany;
 import model.objects.Flight;
-import model.objects.Passenger;
-import model.singletons.*;
 
 import java.util.Scanner;
 

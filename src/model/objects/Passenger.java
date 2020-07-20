@@ -24,7 +24,7 @@ public class Passenger extends Person {
         this.passport = passport;
     }
 
-    // Setters (which will be used by the builder)
+    // Setters
     public void setPassport(String passport) {
         this.passport = passport;
     }

@@ -1,10 +1,7 @@
 package model.repository;
-import model.objects.Agent;
 import model.objects.Flight;
 
-import model.singletons.AgentSingleton;
-import model.singletons.AircraftSingleton;
-import model.singletons.FlightSingleton;
+import model.filemanager.FlightFileManager;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -12,8 +9,9 @@ import java.util.*;
 
 public class FlightRepositoryImpl implements FlightRepository {
 
-    Set<Flight> flights = FlightSingleton.getInstance().flightSet;
+    Set<Flight> flights = FlightFileManager.getInstance().flightSet;
 
+    //A method that searches and pairs a depart flight with a list of return flights. Returns a Map that links between a particular departure flight (by ID) and a corresponding List<Flight>
     public Map<Integer, List<Flight>> flightResultsRoundTrip(String destination, int numOfPassengers, LocalDate departD, LocalDate returnD,boolean direct) {
         List<Flight> resultOneWay = new ArrayList<>();
         Map<Integer,List<Flight>> resultTwoWayMapping = new HashMap<>();
@@ -22,7 +20,7 @@ public class FlightRepositoryImpl implements FlightRepository {
         int i = 0;
         for (Flight flight : flights) {
             if (flight.getDestination().toLowerCase().equals(destination.toLowerCase())) {
-                if ((flight.convertToLocalDate(flight.getDepartureDate())).compareTo(departD) == 0) {
+                if ((flight.convertToLocalDateDepart(flight.getDepartureDate())).compareTo(departD) == 0) {
                     if (flight.getSeatsLeft() >= numOfPassengers) {
                         if(flight.isDirect()==direct) {
                             resultOneWay.add(flight);
@@ -39,7 +37,7 @@ public class FlightRepositoryImpl implements FlightRepository {
                 for (Flight flightReturn : flights) {
                     if (flightReturn.getDestination().toLowerCase().equals(airportRepository.getAirportById(foundOneWay.getDepartureAirportID()).getCountry().toLowerCase()))
                     {
-                        if((flightReturn.convertToLocalDate(flightReturn.getDepartureDate())).compareTo(returnD)==0)
+                        if((flightReturn.convertToLocalDateDepart(flightReturn.getDepartureDate())).compareTo(returnD)==0)
                             if(flightReturn.getSeatsLeft()>=numOfPassengers) {
                                 if (flightReturn.isDirect() == direct) {
                                     flightBackFound.add(flightReturn);
@@ -52,21 +50,22 @@ public class FlightRepositoryImpl implements FlightRepository {
             }
             if(!twoWay) //no return flight found
             {
-                System.out.println("No return flight found");
+                System.out.println("\n"+"No return flight found!"+"\n");
                 return null;
             }
         }
-        //No flights at all, not even depart flight
+        //No flights at all, not even the depart flight
         else
             return null;
         return resultTwoWayMapping;
     }
 
+    //A method that searches departure flights with the given arguments from the user. Returns a corresponding List<Flight>
     public List<Flight> flightResultOneDirection(String destination, int numOfPassengers, LocalDate departD,boolean direct) {
         List<Flight> resultFlights = new ArrayList<>();
         for (Flight flight : flights) {
             if (flight.getDestination().toLowerCase().equals(destination.toLowerCase())) {
-                if ((flight.convertToLocalDate(flight.getDepartureDate())).compareTo(departD) == 0) {
+                if ((flight.convertToLocalDateDepart(flight.getDepartureDate())).compareTo(departD) == 0) {
                     if (flight.getSeatsLeft() >= numOfPassengers)
                         if(flight.isDirect()==direct)
                         resultFlights.add(flight);
@@ -83,20 +82,22 @@ public class FlightRepositoryImpl implements FlightRepository {
 
         if(getFlightByID(id) ==null)
         {
-            System.out.println("Flight does not exist!");
+            System.out.println("\n"+"Flight does not exist!"+"\n");
             return false;
         }
         else
         {
-            FlightSingleton.getInstance().flightSet.remove(getFlightByID(id));
-            FlightSingleton.getInstance().saveSet(flights);
+            FlightFileManager.getInstance().flightSet.remove(getFlightByID(id));
+            FlightFileManager.getInstance().saveSet(flights);
         }
         return true;
     }
+
     public void addFlightToFile(Flight flight){
-         FlightSingleton.getInstance().flightSet.add(flight);
-         FlightSingleton.getInstance().saveSet(flights);
+         FlightFileManager.getInstance().flightSet.add(flight);
+         FlightFileManager.getInstance().saveSet(flights);
     }
+
     public Flight getFlightByID(long id)
     {
         for(Flight flight: flights)
@@ -111,47 +112,47 @@ public class FlightRepositoryImpl implements FlightRepository {
         Flight flight =getFlightByID(id);
         if(flight==null)
         {
-            System.out.println("Flight does not exist!");
+            System.out.println("\n"+"Flight does not exist!"+"\n");
             return false;
         }
 
-        if(flight.convertToLocalDate(newDate).isAfter(flight.convertToLocalDateArrival(flight.getArrivalDate())))
+        if(flight.convertToLocalDateDepart(newDate).isAfter(flight.convertToLocalDateArrival(flight.getArrivalDate())))
         {
-            System.out.println("Flight departure date must be earlier or equal to arrival date!" +"\n");
+            System.out.println("\n"+"Flight departure date must be earlier or equal to arrival date!" +"\n");
             return false;
         }
         else
         {
             flight.setDepartureDate(newDate);
-            FlightSingleton.getInstance().flightSet.remove(getFlightByID(id));
+            FlightFileManager.getInstance().flightSet.remove(getFlightByID(id));
             flights.add(flight);
-            FlightSingleton.getInstance().saveSet(flights);
+            FlightFileManager.getInstance().saveSet(flights);
         }
         return true;
     }
+
     public boolean changeArrivalDate(long id,String newDate){
         Flight flight =getFlightByID(id);
         if(flight==null)
         {
-            System.out.println("Flight does not exist!");
+            System.out.println("\n"+"Flight does not exist!"+"\n");
             return false;
         }
 
-        if(flight.convertToLocalDateArrival(newDate).isBefore(flight.convertToLocalDate(flight.getDepartureDate())))
+        if(flight.convertToLocalDateArrival(newDate).isBefore(flight.convertToLocalDateDepart(flight.getDepartureDate())))
         {
-            System.out.println("Flight arrival date must be earlier or equal to departure date!" +"\n");
+            System.out.println("\n"+"Flight arrival date must be earlier or equal to departure date!" +"\n");
             return false;
         }
         else
         {
             flight.setArrivalDate(newDate);
-            FlightSingleton.getInstance().flightSet.remove(getFlightByID(id));
+            FlightFileManager.getInstance().flightSet.remove(getFlightByID(id));
             flights.add(flight);
-            FlightSingleton.getInstance().saveSet(flights);
+            FlightFileManager.getInstance().saveSet(flights);
         }
         return true;
     }
-
 
     @Override
     public double getFlightPriceById(long flightID) {

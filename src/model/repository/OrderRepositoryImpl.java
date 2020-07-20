@@ -2,8 +2,9 @@ package model.repository;
 
 import model.objects.Order;
 import model.objects.Passenger;
-import model.singletons.OrderSingleton;
+import model.filemanager.OrderFileManager;
 
+import java.time.LocalDate;
 import java.util.*;
 
 public class OrderRepositoryImpl implements OrderRepository {
@@ -12,7 +13,7 @@ public class OrderRepositoryImpl implements OrderRepository {
     private Set<Order> orderSet;
 
     public OrderRepositoryImpl(){
-        orderSet = OrderSingleton.getInstance().orderSet;
+        orderSet = OrderFileManager.getInstance().orderSet;
     }
 
     @Override
@@ -21,7 +22,7 @@ public class OrderRepositoryImpl implements OrderRepository {
             if (order.getId() == id)
                 return order;
         }
-        System.out.println("Could not find an order with this id");
+        System.out.println("\n"+"Could not find an order with the provided ID!"+"\n");
         return null;
     }
 
@@ -34,7 +35,7 @@ public class OrderRepositoryImpl implements OrderRepository {
             }
         }
         if (ordersByAgent.size() == 0)
-            System.out.println("Could not find orders created by provided agent");
+            System.out.println("\n"+"Could not find any orders for this agent!" +"\n");
 
         return ordersByAgent;
     }
@@ -48,7 +49,7 @@ public class OrderRepositoryImpl implements OrderRepository {
             }
         }
         if (ordersByPassenger.size() == 0)
-            System.out.println("Could not find orders associated with provided passenger");
+            System.out.println("\n"+"Could not find orders associated with this passenger! " +"\n");
 
         return ordersByPassenger;
     }
@@ -56,19 +57,19 @@ public class OrderRepositoryImpl implements OrderRepository {
     @Override
     public boolean addPassenger(Order order, long passengerID) {
         if (order.getOwnerPassengerID() == passengerID) {
-            System.out.println("The provided passenger is the order's owner");
+            System.out.println("\n"+"Oops! This passenger is the order's owner!" +"\n");
             return false;
         } else {
             if (order.getOtherPassengersIDs() == null) {
                 List<Long> passengersIDs = new ArrayList<>();
                 passengersIDs.add(passengerID);
                 order.setOtherPassengersIDs(passengersIDs);
-                System.out.println("Successfully added passenger to order");
+                System.out.println("Successfully added passenger to the order!"+"\n");
                 return true;
             } else {
                 for (long pID : order.getOtherPassengersIDs()) {
                     if (pID == passengerID) {
-                        System.out.println("Passenger is already in order");
+                        System.out.println("\n"+"The passenger already exists in the order! "+"\n");
                         return false;
                     }
                 }
@@ -102,14 +103,14 @@ public class OrderRepositoryImpl implements OrderRepository {
             }
             if (successfullyRemoved) {
                 order.setOtherPassengersIDs(p);
-                System.out.println("Successfully removed passenger from order");
+                System.out.println("Successfully removed passenger from the order!"+"\n");
                 return true;
             } else {
-                System.out.println("Could not find a passenger with the given ID in provided order");
+                System.out.println("\n"+"Could not find a passenger with the provided ID for this order!"+"\n");
                 return false;
             }
         }
-        System.out.println("Done nothing");
+        System.out.println("Done nothing..."+"\n");
         return false;
     }
 
@@ -118,20 +119,20 @@ public class OrderRepositoryImpl implements OrderRepository {
         Scanner input = new Scanner(System.in);
         System.out.println("Are you sure you want to delete the order? (Y / N)");
         String userInput = input.nextLine();
-        if (userInput.equals("Y") || userInput.equals("y")) {
+        if (userInput.toLowerCase().equals("y")) {
             Iterator<Order> iterator = orderSet.iterator();
             while (iterator.hasNext()) {
                 Order order = iterator.next();
                 if (order.getId() == orderToDelete.getId()) {
                     iterator.remove();
-                    System.out.println("Order has been deleted");
+                    System.out.println("Order deleted successfully! "+"\n");
                     return true;
                 }
             }
-            System.out.println("There is no order with the provided ID");
+            System.out.println("\n"+"There is no order with the provided ID!"+"\n");
             return false;
         }
-        System.out.println("Done nothing");
+        System.out.println("Done nothing..." +"\n" );
         return false;
     }
 
@@ -140,18 +141,18 @@ public class OrderRepositoryImpl implements OrderRepository {
         Scanner input = new Scanner(System.in);
         System.out.println("Are you sure you want to cancel the order? (Y / N)");
         String userInput = input.nextLine();
-        if (userInput.equals("Y") || userInput.equals("y")) {
+        if (userInput.toLowerCase().equals("y")){
             for (Order order : this.orderSet) {
                 if (order.getId() == orderToCancel.getId()) {
                     order.setCanceled(true);
-                    System.out.println("Order has been deactivated");
+                    System.out.println("Order has been deactivated successfully!"+"\n");
                     return true;
                 }
             }
-            System.out.println("There is no order with the provided ID");
+            System.out.println("\n"+"There is no order with the provided ID!"+"\n");
             return false;
         }
-        System.out.println("Done nothing");
+        System.out.println("Done nothing..." +"\n");
         return false;
     }
 
@@ -160,18 +161,19 @@ public class OrderRepositoryImpl implements OrderRepository {
         Scanner input = new Scanner(System.in);
         System.out.println("Are you sure you want to re-open the order? (Y / N)");
         String userInput = input.nextLine();
-        if (userInput.equals("Y") || userInput.equals("y")) {
+        if (userInput.toLowerCase().equals("y")){
             for (Order order : this.orderSet) {
                 if (order.getId() == orderToReopen.getId()) {
                     order.setCanceled(false);
-                    System.out.println("Order has been canceled");
+                    System.out.println("Order canceled successfully!"+"\n");
                     return true;
                 }
             }
-            System.out.println("There is no order with the provided ID");
+            System.out.println("\n"+"There is no order with the provided ID!"+"\n");
             return false;
         }
-        System.out.println("Done nothing");
+        System.out.println("Done nothing..."+"\n");
         return false;
     }
+
 }

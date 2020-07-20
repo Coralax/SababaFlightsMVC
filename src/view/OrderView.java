@@ -1,15 +1,17 @@
 package view;
 
 import controller.OrderController;
-import controller.SearchController;
 import model.objects.Order;
-import model.singletons.LoginSingleton;
+import model.filemanager.LoginSingleton;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import java.util.Set;
 
 public class OrderView {
     private OrderController orderController;
+    private boolean validFlag;
     public SababaFlightsProgram sababaFlightsProgram;
 
     public OrderView(SababaFlightsProgram referer) {
@@ -25,7 +27,6 @@ public class OrderView {
             System.out.println("1: Search order by ID ");
             System.out.println("2: Search order by Agent code");
             System.out.println("3: Search order by Passenger ID");
-            System.out.println("4: Search order by dates");
             System.out.println("9: Back");
             System.out.println("0: Logout");
             System.out.println("-1: Exit");
@@ -35,26 +36,22 @@ public class OrderView {
                 Set<Order> orders;
                 switch (op) {
                     case "1":
-                        System.out.println("Please enter order ID");
+                        System.out.print("Order ID: ");
                         Order order = orderController.getOrderByID(Long.parseLong(scanner.nextLine()));
                         if (order != null)
                             this.editOrder(order);
                         break;
                     case "2":
-                        System.out.println("Please enter agent code");
+                        System.out.print("Agent code: ");
                         orders = orderController.getOrdersByAgentCode(Long.parseLong(scanner.nextLine()));
                         if (orders != null)
                             System.out.println(orders);
                         break;
                     case "3":
-                        System.out.println("Please enter passenger ID");
+                        System.out.print("Passenger ID: ");
                         orders = orderController.getOrdersByPassengerID(Long.parseLong(scanner.nextLine()));
                         if (orders != null)
                             System.out.println(orders);
-                        break;
-                    case "4":
-                        System.out.println("Still to be implemented");
-                        orderController.searchByDate();
                         break;
                     case "9":
                         sababaFlightsProgram.homePage();
@@ -93,18 +90,18 @@ public class OrderView {
             try {
                 switch (op) {
                     case "1":
-                        System.out.println(order.toString());
+                        System.out.println(order.toString() );
                         break;
                     case "2":
-                        System.out.println("Please enter passenger's ID");
+                        System.out.print("Passenger's ID: ");
                         orderController.addPassengerToOrder(order, Long.parseLong(scanner.nextLine()));
                         break;
                     case "3":
                         if (order.getOtherPassengersIDs() == null) {
-                            System.out.println("This order has no additional passengers - nothing to remove");
+                            System.out.println("\n"+"This order has no additional passengers - nothing to remove!"+ "\n");
                             break;
                         }
-                        System.out.println("Please enter passenger's ID");
+                        System.out.print("Passenger's ID: ");
                         orderController.removePassengerFromOrder(order, Long.parseLong(scanner.nextLine()));
                         break;
                     case "4":
@@ -137,5 +134,4 @@ public class OrderView {
             }
         } while (!op.equals("-1"));
     }
-
 }

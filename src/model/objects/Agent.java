@@ -15,12 +15,10 @@ import java.util.Objects;
 public class Agent extends Person {
 
     private String userName, password;
-    static int agentsCount;
+    static int agentsCount=0;
     private long agentCode;
     private boolean isVerified;
     private int permissionLevel;
-
-    static { agentsCount = 0; }
 
     public Agent() {
         super();
@@ -36,14 +34,8 @@ public class Agent extends Person {
     }
 
     // Setters
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
+    public void setUserName(String userName) { this.userName = userName; }
     public void setPassword(String password) { this.password = password; }
-    public void setEncryptedPassword(String password) {
-        AgentRepositoryImpl agentRepository = new AgentRepositoryImpl();
-        this.password = agentRepository.encryptPassword(password);
-    }
     public void setAgentCode(int agentCode) {
         this.agentCode = agentCode;
     }
@@ -52,6 +44,10 @@ public class Agent extends Person {
     }
     public void setPermissionLevel(int permissionLevel) { this.permissionLevel = permissionLevel; }
     public void setVerified(boolean verified) {  isVerified = verified;}
+    public void setEncryptedPassword(String password) {
+        AgentRepositoryImpl agentRepository = new AgentRepositoryImpl();
+        this.password = agentRepository.encryptPassword(password);
+    }
 
     // Getters
     public String getUserName() { return this.userName; }
@@ -80,6 +76,7 @@ public class Agent extends Person {
 
     @Override
     public int hashCode() {
+
         return Objects.hash(super.hashCode(), agentCode);
     }
 }

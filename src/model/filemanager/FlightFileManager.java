@@ -1,25 +1,25 @@
-package model.singletons;
+package model.filemanager;
 
 import model.objects.Flight;
 import java.util.Set;
 
-public class FlightSingleton extends Singleton<Flight> {
+public class FlightFileManager extends FileManager<Flight> {
 
-    private static FlightSingleton flightSingletonInstance = null;
+    private static FlightFileManager flightFileManagerInst = null;
     public Set<Flight> flightSet;
     private int currency;   // 0 - USD; 1 - ILS
 
-    private FlightSingleton() {
+    private FlightFileManager() {
         super("src/data/flights.json");
         flightSet = this.read(Flight.class);
         this.currency = 0;
     }
 
-    public static FlightSingleton getInstance() {
-        if (flightSingletonInstance == null)
-            flightSingletonInstance = new FlightSingleton();
+    public static FlightFileManager getInstance() {
+        if (flightFileManagerInst == null)
+            flightFileManagerInst = new FlightFileManager();
 
-        return flightSingletonInstance;
+        return flightFileManagerInst;
     }
 
     public void setCurrency(int currency) {

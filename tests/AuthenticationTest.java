@@ -1,23 +1,10 @@
 import controller.AuthenticationController;
-import model.repository.AuthenticationRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.fail;
 
 public class AuthenticationTest {
 
-    @Test
-    public void weakPasswordSignUp(){
-        AuthenticationController authenticationController = new AuthenticationController();
-        String pass = "james13";
-        try{
-            authenticationController.passwordValidation(pass);
-            fail("Password is valid, there's a logic error");
-        }catch (IllegalArgumentException e){
-            Assertions.assertEquals("Password is not valid",e.getMessage());
-        }
-    }
 
     @Test
     public void failLoginEmptyPassword(){
